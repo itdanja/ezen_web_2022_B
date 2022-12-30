@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<!-- 상대경로 : 현재파일 기준으로 해당 파일의경로 -->
+	
+	<!-- 1.현재 html과 같은 폴더에 있을경우 -->
+	<img alt="강아지사진" src="강아지1.jpg" />		
+	<!-- 2.현재 html 폴더의 상위폴더[ public 폴더 ]에 있을경우 -->
+	<img alt="강아지사진" src="../강아지1.jpg" />
+	<!-- 3.현재 public -> img 폴더에 있을경우  -->
+	<img width="50px" alt="강아지사진" src="../img/강아지1.jpg" />
+	
+	<!-- 절대경로 : 실제파일의 모든 경로의 주소  * pc마다 경로가 다를수 있음 -->
+	<img width="50%" src ="C:\Users\504t\git\ezen_web_2022_B\frontend\public\img\강아지1.jpg"/>
+		<!-- 해당 파일 오른쪽클릭 -> properties -> location -->
+		
+		
+	
+</body>
+</html>
