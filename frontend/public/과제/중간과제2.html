@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<fieldset>
+		<legend> <h3> 비회원 게시판</h3> </legend>
+		카테고리
+		<select>
+			<option>공지사항</option>
+			<option>자유게시판</option>
+			<option>공유게시판</option>
+		</select><br/>
+		
+		<input type="text" placeholder="작성자"> <input type="password" placeholder="비밀번호"><br/>
+		<hr>
+		<input type="text" placeholder="게시물 제목 입력">	<br/>
+		<hr>
+		<textarea rows="15" cols="64" style="resize: none" placeholder="게시물 내용입력"></textarea>	<br/>
+		
+		
+		공개선택 <input type="radio" name="view" checked="checked"> 공개글 <input type="radio" name="view"> 비공개글 <br/>
+		공유선택 <input type="checkbox" name="alarm">카카오톡 <input type="checkbox" name="alarm"> 트위터 <input type="checkbox" name="alarm"> 네이버카페 <br/>
+		작성일자 <input type="date"> 작성시간 <input type="time"> <br/>
+		<hr>
+	
+		첨부파일 <input type="file"> <br/><br/>
+		
+		<input type="button" value="목록보기"> <input type="submit" value="글쓰기"> <input type="reset" value="다시쓰기">
+		
+		</fieldset>
+</body>
+</html>
