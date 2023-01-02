@@ -16,42 +16,57 @@
 
 
 	<form>	<!-- form s -->
-		[읽기모드] <input value="인사과" readonly="readonly"/>					<br/>	<!-- 입력상자 -->
-		[사용금지] <input type="text" disabled="disabled" placeholder="신입" /> 					<br/>	<!-- 문자 -->
-		[포커스] <input type="password" placeholder="패스워드" autofocus="autofocus" />				<br/>	<!-- 패스워드 -->
+	
+		<fieldset>	<!-- 입력 그룹 s -->
+			<legend> 자주 사용되는 input </legend>	<!-- 그룹 타이틀 -->
 		
-		[단일선택]
-		<input type="radio" name="email" checked="checked"/> 예			<!-- 동그라미 선택 버튼 -->
-		<input type="radio" name="email"/> 아니오 <br/>	
+			[읽기모드] <input value="인사과" readonly="readonly"/>					<br/>	<!-- 입력상자 -->
+			[사용금지] <input type="text" disabled="disabled" placeholder="신입" /> 					<br/>	<!-- 문자 -->
+			[포커스] <input type="password" placeholder="패스워드" autofocus="autofocus" />				<br/>	<!-- 패스워드 -->
+			[단일선택]
+			<input type="radio" name="email" checked="checked"/> 예			<!-- 동그라미 선택 버튼 -->
+			<input type="radio" name="email"/> 아니오 <br/>	
+			[복수선택]
+			<input type="checkbox" name="item"> 뉴스			<!-- 네모 선택 버튼 -->
+			<input type="checkbox" name="item"> 드라마<br/>	
+			[긴글텍스트]
+			<textarea rows="5" cols="30" style="resize: none"></textarea> <br/>
+			[목록상자]
+			<select>
+				<option> 네이버 </option>
+				<option> 카카오 </option>
+				<option> 네이트 </option>
+			</select>									 <br/>
+			
+			<hr>	<!-- 구분선 -->
+			
+			[첨부파일 1개]
+			<input type="file">							<br/>
+			[첨부파일 여러개]
+			<input type="file" multiple="multiple">		<br/>
+			
+			<hr>
+			
+			[버튼목록]
+			<input type="button" 	value="인증">
+			<input type="submit" 	value="폼전송">
+			<input type="reset" 	value="입력초기화">	<br/>
+			
+		</fieldset>	<!-- 입력 그룹 e -->
 		
-		[복수선택]
-		<input type="checkbox" name="item"> 뉴스			<!-- 네모 선택 버튼 -->
-		<input type="checkbox" name="item"> 드라마<br/>	
+		<fieldset>
+			<legend> html5 이상부터 추가된 input </legend>
 		
-		[긴글텍스트]
-		<textarea rows="5" cols="30" style="resize: none"></textarea> <br/>
-		
-		[목록상자]
-		<select>
-			<option> 네이버 </option>
-			<option> 카카오 </option>
-			<option> 네이트 </option>
-		</select>									 <br/>
-		
-		[버튼목록]
-		<input type="button" 	value="인증">
-		<input type="submit" 	value="폼전송">
-		<input type="reset" 	value="입력초기화">	<br/>
-		
-		<input type="color">  					<br/>	<!-- 색상 선택 -->
-		<input type="date"> 					<br/>	<!-- 날짜 선택 -->
-		<input type="datetime-local">			<br/>	<!-- 날짜/시간 선택 -->
-		<input type="email">					<br/>	<!-- 이메일[@]형식 입력 -->
-		<input type="month">	  				<br/>	<!-- 날짜[월] 선택 -->
-		<input type="time">						<br/>	<!-- 시간 선택 -->
-		<input type="week">						<br/>	<!-- 날짜[주] 선택 -->
-		<input type="range" min = 0 max = 10>	<br/>	<!-- 범위 스크롤 -->
-		<input type="number" min = 0 max = 10 >	<br/>	<!-- 범위내 숫자 입력 -->
+			<input type="color">  					<br/>	<!-- 색상 선택 -->
+			<input type="date"> 					<br/>	<!-- 날짜 선택 -->
+			<input type="datetime-local">			<br/>	<!-- 날짜/시간 선택 -->
+			<input type="email">					<br/>	<!-- 이메일[@]형식 입력 -->
+			<input type="month">	  				<br/>	<!-- 날짜[월] 선택 -->
+			<input type="time">						<br/>	<!-- 시간 선택 -->
+			<input type="week">						<br/>	<!-- 날짜[주] 선택 -->
+			<input type="range" min = 0 max = 10>	<br/>	<!-- 범위 스크롤 -->
+			<input type="number" min = 0 max = 10 >	<br/>	<!-- 범위내 숫자 입력 -->
+		</fieldset>
 	</form>	<!-- form e -->
 
 </body>
