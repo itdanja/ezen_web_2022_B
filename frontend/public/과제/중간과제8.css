@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+/* 가운데 정렬 */
+h3{ text-align: center; }
+.login_t{ width : 400px; margin: 0 auto; }
+
+.input_id , .input_pw{ height: 30px; width: 200px; }
+
+.btn_login{ padding: 30px 20px; }
