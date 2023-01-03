@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+
+div{ /* 1. div 에 적용 */
+	border: solid 1px red;
+	margin: 20px;
+}
+span{
+	border: solid 1px orange;
+}
+
+.s1{ /* 3. s1 클래스 에 적용 */
+	display: inline;
+	width: 200px; height: 100px;
+}
+.s2{
+	display: block;
+	width: 200px; height: 100px;
+}
+.s3{
+	display: inline-block;
+	width: 200px; height: 100px;
+}
+.s4{
+	display: none;
+	width: 200px; height: 100px;
+}
+.d1{
+	display: inline;
+	width: 200px; height: 100px;
+}
+.d2{
+	display: block;
+	width: 200px; height: 100px;
+}
+.d3{
+	display: inline-block;
+	width: 200px; height: 100px;
+}
+.d4{
+	display: none;
+	width: 200px; height: 100px;
+}
+
+
+
+
+
+
+
+
+
