@@ -1,0 +1,107 @@
+@charset "UTF-8";
+
+/* css 주석 */
+/* 준비물 : 누구를 어떻게 꾸미기할껀지? */
+/* 1. 선택자 2.속성 3. 속성값 */
+
+
+h4{ border: solid 1px red;  }
+
+h5{
+	border-top: solid 1px skyblue;
+	border-right: dotted 1px orange;
+	border-bottom: double 1px red;
+	border-left: dashed 1px black;
+	border-radius: 5px;
+	box-shadow: 0px 0px 5px orange;
+}
+
+h6{
+	border: solid 2px red;
+	
+	padding-top: 20px; 		/*안쪽(테두리와 내용 간격)윗 여백*/
+	padding-right: 30px;	/*안쪽 오른쪽 여백 */
+	padding-bottom: 40px;	/*안쪽 아래 여백 */
+	padding-left: 50px;		/*안쪽 왼쪽 여백 */
+	
+	margin-top: 20px;		/*바깥(테두리부터 윗아이템 바깥여백까의 간격) 윗 여백 */
+	margin-right: 30px;
+	margin-bottom: 40px;
+	margin-left: 50px;
+}
+
+h2{ 
+	border: solid 1px red;  
+	padding: 10px;					/* 모든 위치 안쪽여백 */
+	padding: 10px 20px;				/* 위/아래 , 왼/오른쪽 */
+	padding: 10px 20px 30px 40px;	/* 위 , 오른쪽,아래,왼쪽 */
+
+	margin: 10px;					/* 모든 위치 안쪽여백 */
+	margin: 10px 20px;				/* 위/아래 , 왼/오른쪽 */
+	margin: 10px 20px 30px 40px;	/* 위 , 오른쪽 , 아래 , 왼쪽 */
+}
+h1{
+	width: 200px;			/*가로 사이즈 */
+	border: solid 1px orange;
+	text-align: center;		/* 박스 안에서의 텍스트 가운데정렬 */
+	margin: 0 auto;			/* 박스의 가운데정렬 */
+}
+
+/* 클래스 . 선택자 */
+.box1{ 
+	width: 100px;
+	margin: 60px;
+	padding: 60px;
+	border: 10px solid red;
+	box-sizing: border-box; /* ! */
+}
+/* 아이디 # 선택자 */
+#box2{
+	width: 100px;
+	margin: 60px;
+	padding: 60px;
+	border: 10px solid red;
+	box-sizing: content-box;	/* ! */
+}
+#box3{
+	width: 100px;
+	border: 10px solid red;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
