@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+	<link
+		href="과제9.css"
+		rel="stylesheet"
+	>
+
+</head>
+<body>
+
+	<h3 class="signup_title"> 회원 가입 폼 </h3>
+	
+	<form class="signup_form">	<!-- 추후에 입력된 input들의 데이터 보낼 예정 -->
+		<ul class="signup_box">
+		
+			<li> 	<!-- 행 start -->
+				<ul class="colums">
+					<li class="col1"> 아이디 </li> 				<!-- 1열 -->
+					<li class="col2"> <input type="text"> </li> <!-- 2열 -->
+				</ul>
+			</li>	<!-- 행 end  -->
+			
+			<li> 	<!-- 행 start -->
+				<ul class="colums">
+					<li class="col1"> 비밀번호 </li> 				<!-- 1열 -->
+					<li class="col2"> <input type="password"> </li> <!-- 2열 -->
+				</ul>
+			</li>	<!-- 행 end  -->
+			
+			<li> 	<!-- 행 start -->
+				<ul class="colums">
+					<li class="col1"> 비밀번호 확인 </li> 				<!-- 1열 -->
+					<li class="col2"> <input type="password"> </li> <!-- 2열 -->
+				</ul>
+			</li>	<!-- 행 end  -->
+			
+			<li> 	<!-- 행 start -->
+				<ul class="colums">
+					<li class="col1"> 이름 </li> 						<!-- 1열 -->
+					<li class="col2"> <input type="text"> </li> <!-- 2열 -->
+				</ul>
+			</li>	<!-- 행 end  -->
+			
+			<li> 	<!-- 행 start -->
+				<ul class="colums">
+					<li class="col1"> 이메일 </li> 						<!-- 1열 -->
+					<li class="col2">  <!-- 2열 -->
+						<input type="text">  @  
+						<select>
+							<option> 직접입력 </option>
+							<option> naver.com </option>
+							<option> nate.com </option>
+						</select> 
+					</li> 
+				</ul>
+			</li>	<!-- 행 end  -->
+			<li> 	<!-- 행 start -->
+				<ul class="colums">
+					<li class="col1"> 이메일 수신여부 </li> 						<!-- 1열 -->
+					<li>  <!-- 2열 --> <!-- radio 타입 name 속성 필수 -->
+						<input type="radio" name="reception"> 비수신
+						<input type="radio" name="reception" checked > 수신
+					</li> 
+				</ul>
+			</li>	<!-- 행 end  -->
+			
+			<li> 	<!-- 행 start -->
+				<ul class="colums">
+					<li class="col1"> 가입 경로 </li> 						<!-- 1열 -->
+					<li>  <!-- 2열 --> <!-- checkbox 타입 name 속성 필수 -->
+						<input type="checkbox" name="signuproute"> 친구추천
+						<input type="checkbox" name="signuproute"> 인터넷검색
+						<input type="checkbox" name="signuproute"> 기타
+					</li> 
+				</ul>
+			</li>	<!-- 행 end  -->
+			
+			<li> 	<!-- 행 start -->
+				<ul class="colums">
+					<li class="col1"> 가입 경로 </li> 						<!-- 1열 -->
+					<li class="col2">  <!-- 2열 -->
+						<textarea rows="10" cols="52"></textarea>
+					</li> 
+				</ul>
+			</li>	<!-- 행 end  -->
+			
+		</ul>
+		
+		<div class="btn_box">
+			<input type="submit" value="저장하기">
+			<input type="reset" value="취소하기">
+		</div>
+		
+	</form>
+	
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
