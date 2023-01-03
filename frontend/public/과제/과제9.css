@@ -52,6 +52,8 @@ textarea { resize: none; }
 	margin: 10px 10px 0px 0px;
 }
 
+/* 가입경로 텍스트 세로 정렬 */
+.hello{ vertical-align: top; }
 
 
 
