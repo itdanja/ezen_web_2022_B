@@ -66,7 +66,27 @@ li{ list-style-type: none; }
 
 
 /* --- 2.메인 본문 ----*/
-.main_content{ width: 940px; }
+.main_content{ 
+	width: 940px; 
+	display: flex; justify-content: space-between;
+}
+
+/* 1. 게시판 */
+.left_content{ width: 460px; }
+.main_content h3{ 
+	border-bottom: solid 2px black; 
+	padding-bottom: 8px;
+}
+.board_ul{ margin: 10px 0px 40px 0px }
+
+.items{ 
+	display: flex; justify-content: space-between;
+	padding: 8px 0px;
+}
+
+/* 2. 제품 */
+.right_content{ width: 460px; }
+
 
 /* ------------푸터------------- */
 #footer{ background-color: #05354E; height: 200px; }
