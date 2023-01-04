@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+*{ border: 1px solid gray ;}
+
+#header{ 
+	width: 1200px; 	/* 가로길이 */
+	height: 100px;	/* 세로길이 */
+	margin: 0 auto; /* 가운데정렬 */
+	display: flex;	/* 하위 요소들 가로배치 */
+	justify-content: space-between; /* 양쪽 여백 없이 균등배치 */	
+}
+
+/* li 가로 배치 */
+.main_menu li{ display: inline-block; }
