@@ -15,7 +15,7 @@ li{ list-style-type: none; }
     font-style: normal;
 }
 /*확인용*/
-
+/* *{ border: 1px solid red;} */
 /* ------------헤더------------- */
 #header{ 
 	width: 1200px; margin: 0 auto; 
@@ -40,9 +40,59 @@ li{ list-style-type: none; }
 	background-position: center;
 }
 /* ------------본문------------- */
-#content{ width: 1200px; margin: 0 auto; height: 600px;}
+#content{ 
+	width: 1200px; margin: 0 auto; 
+	height: 600px;
+	display: flex; justify-content: space-between;
+}
+/* --- 1.사이드바 ----*/
+.side_bar{ width: 250px; }
+.side_bar h3{ 
+	background-color: #0CA9A3;
+	color: white;
+	font-size: 20px;
+	padding: 15px;
+}
+.side_bar p{ padding: 15px; line-height: 150%; }
+.side_bar .search_input{ width: 170px; height: 30px;}
+.side_bar .search_btn{ margin-left:5px; padding: 6px 10px;}
+.side_bar h4{
+	border-top: solid 2px black;
+	border-bottom: solid 1px #eeeeee;
+	padding: 15px; font-size: 15px;
+	margin-top: 20px;
+}
+.side_bar li{ padding: 10px 15px;}
+
+
+/* --- 2.메인 본문 ----*/
+.main_content{ width: 940px; }
+
 /* ------------푸터------------- */
 #footer{ background-color: #05354E; height: 200px; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
