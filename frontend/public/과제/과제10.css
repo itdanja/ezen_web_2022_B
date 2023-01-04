@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+
+.write_box{
+	width: 700px;	/* 가로길이 */
+	margin: 0 auto;	/* box 가운데정렬 */
+	/* border: 1px solid red; */ /* 구역 확인용 : 추후삭제 */
+}
+.write_t{
+	/* border: 1px solid blue; *//* 구역 확인용 : 추후삭제 */
+	border-top: 3px solid black; /* 윗줄 테두리 */
+	width: 700px;		/* 가로길이 */
+}
+.write_t td{
+	border-bottom: solid 1px #eeeeee; 	/* 아래줄 테두리 */
+	padding: 7px;		/* 안쪽여백 */
+}
+.write_t input{
+	width: 500px; height: 25px;
+}
+.write_t  textarea{
+	width: 500px; height: 100px; resize: none; /* 크기 고정 */
+}
+.btn_box{
+	/* border: 1px solid orange; *//* 구역 확인용 : 추후삭제 */
+	text-align: right; /* p , h , input , button , img 등 가로배치 */
+}
+.btn_box input{ padding: 5px 20px; margin: 20px 5px; }
+
+
+
+
+
+
+
