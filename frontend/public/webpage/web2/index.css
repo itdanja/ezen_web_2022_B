@@ -79,17 +79,31 @@ li{ list-style-type: none; }
 }
 .board_ul{ margin: 10px 0px 40px 0px }
 
-.items{ 
+.board_ul .items{ 
 	display: flex; justify-content: space-between;
 	padding: 8px 0px;
 }
 
 /* 2. 제품 */
-.right_content{ width: 460px; }
-
+.right_content{ width: 460px;  }
+.product_ul{ width:200px; margin: 20px 15px 20px 15px; }
+.product_list{ display: flex; flex-wrap: wrap; }
 
 /* ------------푸터------------- */
-#footer{ background-color: #05354E; height: 200px; }
+#footer{ background-color: #05354E; margin-top: 50px;  }
+
+.ft_content{ 
+	width: 1200px; margin: 0 auto; 
+	color: white; padding: 30px;
+}
+.ft_top li{ 
+	display: inline-block; margin-right: 20px; 
+	font-weight: bold;
+}
+.ft_sub{
+	margin: 50px 0px;
+	display: flex; justify-content: space-between;
+}
 
 
 
