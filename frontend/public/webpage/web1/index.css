@@ -15,14 +15,19 @@
     font-style: normal;
 }
 
+/* ------- 공통 ---------------*/
+
 a{ /* a 태그 기본 색상,밑줄 제거 */
 	color: black; 
 	text-decoration: none;
 }
+li{ list-style-type: none; }
+ul{ padding: 0px; }
+
+/* -------------------------- */
 
 #header{ 
 	width: 1200px; 	/* 가로길이 */
-/* 	height: 100px;	세로길이 */
 	margin: 0 auto; /* 가운데정렬 */
 	display: flex;	/* 하위 요소들 가로배치 */
 	justify-content: space-between; /* 양쪽 여백 없이 균등배치 */	
@@ -69,14 +74,25 @@ a{ /* a 태그 기본 색상,밑줄 제거 */
 }
 /*사이드바 목록 */
 .side_bar li{
-	list-style-type: none;  /*글머리 제거 */
 	border-bottom: dotted 1px #eeeeee; /* 아래 테두리*/
 	padding: 10px;
 }
-.side_bar ul{ padding: 0px; } /* ul 태그의 기본 안쪽여백 제거 */
 
+/* 메인 본문 */
+.main_content h3{
+	font-size: 20px; 
+	border-bottom: solid 1px #eeeeee;
+	padding-bottom: 15px;
+}
 
-
+/* 푸터 */
+#footer{ background-color: #2C2A29; margin-top: 50px; }
+#ft_box{ 
+	width: 1200px; margin: 0 auto; 
+	display: flex; justify-content: space-between; 
+	padding: 20px;
+}
+#ft_box li{ color: white; }
 
 
 
