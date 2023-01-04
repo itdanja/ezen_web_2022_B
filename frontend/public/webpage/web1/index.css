@@ -1,14 +1,104 @@
 @charset "UTF-8";
 
-*{ border: 1px solid gray ;}
+/*
+	웹폰트 : 눈누 사이트 참고 
+	1. 기본 베이스 폰트 : 맑은 고딕 , 굴림
+	2. 강조 폰트 : 외부 폰트 가져오기  [ @font-face ]
+*/
+
+
+
+@font-face {	/* 눈누에서 가져온 외부폰트 */
+    font-family: 'Ansungtangmyun-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/Ansungtangmyun-Bold.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+a{ /* a 태그 기본 색상,밑줄 제거 */
+	color: black; 
+	text-decoration: none;
+}
 
 #header{ 
 	width: 1200px; 	/* 가로길이 */
-	height: 100px;	/* 세로길이 */
+/* 	height: 100px;	세로길이 */
 	margin: 0 auto; /* 가운데정렬 */
 	display: flex;	/* 하위 요소들 가로배치 */
 	justify-content: space-between; /* 양쪽 여백 없이 균등배치 */	
 }
 
-/* li 가로 배치 */
-.main_menu li{ display: inline-block; }
+/* 본 메뉴  */
+.main_menu li{ 
+	display: inline-block;	/* li 가로 배치 [ 자동으로 글머리 제거 ] */
+	margin-left: 80px; 		/* li 끼리의 사이 여백 */
+	font-family: "Ansungtangmyun-Bold";		/* pc에 설치된 폰트만 가능 */
+ }
+
+/* 상단 메뉴 */
+.top_menu{ 
+	text-align: right; 		/* 오른쪽 정렬 */
+	margin-top: 20px;		/* 바깥 위 여백 */
+}
+
+
+/* 대표이미지 */
+#main_img{
+	width:100%; height:250px;	/* 사이즈 */
+	background-image: url("img/main_img.png"); 	/* 배경이미지 */
+	background-repeat: no-repeat;				/* 자동채우기 제거 */
+	background-position: center; /* 배경 위치 */
+	margin: 20px 0px;
+}
+
+/* 본문 */
+#content{
+	width: 1200px; margin: 0 auto;					/* 가로사이즈 , 가운데정렬 */
+	display: flex; justify-content: space-between; 	/* 하위요소 가로배치 */
+}
+
+.side_bar{ width: 250px;  }			/* 사이즈 */
+
+.main_content{ width: 900px;  }		/* 사이즈 */
+
+/* 사이드바 제목 */
+.side_bar h3{ 
+	font-size: 20px;	color : #55CFAD;			/* color : 1.RGB 2.HEX 3.keyword */
+	background-color:  #516E7F;
+	padding: 10px;									/* 안쪽 여백 */
+}
+/*사이드바 목록 */
+.side_bar li{
+	list-style-type: none;  /*글머리 제거 */
+	border-bottom: dotted 1px #eeeeee; /* 아래 테두리*/
+	padding: 10px;
+}
+.side_bar ul{ padding: 0px; } /* ul 태그의 기본 안쪽여백 제거 */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
