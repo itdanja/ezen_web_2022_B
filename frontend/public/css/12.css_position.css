@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+.box1 , .box2 , .box3 ,
+.box4 , .box5 , .box6 , 
+.box7 , .box8 , .box9 , 
+.box10 , .box11 , .box12 
+{ 
+	width: 100px; height: 80px;
+	background-color: yellow;
+	border: solid 1px red; 
+}
+.parent1{
+	width: 300px; height: 300px; 
+	border: 1px solid red;
+}
+
+/* 1. relative  */
+.box2{ position: relative; 	
+left: 50px; top:50px; }
+
+/* 2. absolute */
+.box5{ position: absolute; 	
+left: 50px; top:50px; }
+
+/* 3. fixed */
+.box8{ position: fixed; 	
+left: 50px; top:50px; }
+
+/* 4. relative <-- absolute */
+.parent1{ position: relative; }
+.box11{ position: absolute; 
+right: 10px; bottom: 10px; }
+
+/* 5. static[default] : 위치이동 불가능 */
+.box12{ left: 20px; }
+
+
+
+
+
