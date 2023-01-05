@@ -32,6 +32,40 @@ li{ list-style-type: none; }
 /* -------------- 푸터 -----------------*/
 #footer{ background-color: #292C32; height: 200px; }
 
+.ft_content{
+	width: 1200px; margin: 0 auto;
+	display: flex; justify-content: space-between;
+	padding: 50px 0px;
+	color: white;
+}
+
+.ft_item{ width: 500px; }
+.ft_sns{ width: 200px; }
+.ft_content li{ display: inline-block ;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
