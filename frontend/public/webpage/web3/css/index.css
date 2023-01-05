@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+/* --------- 기본 css  ----------- */
+*{ margin: 0; padding: 0; font-family: "맑은 고딕";}
+a{ text-decoration: none; color: black; }
+li{ list-style-type: none; }
+
+/* *{ border: 1px solid blue;} */
+
+/* -------------- 헤더 -----------------*/
+#header{ 
+	width: 1200px; margin: 0 auto; height: 100px; 
+	position: relative;		/* 상위요소에 relative */
+}
+.h_logo{ 
+	position: absolute; 	/* 하위요소에 absolute */
+	left: 0px; top:20px; 
+}
+.h_logo span{ color: blue; font-weight: bold;}
+.h_menu{
+	position: absolute; 	 /* 하위요소에 absolute */
+	right: 0px; top:30px;
+}
+.h_menu li{ display: inline-block; margin-left: 30px; }
+
+/* -------------- 대표이미지 -----------------*/
+#main_img{ text-align: center; }
+
+/* -------------- 본문 -----------------*/
+#content{ width: 1200px; margin: 0 auto; height: 600px; }
+
+/* -------------- 푸터 -----------------*/
+#footer{ background-color: #292C32; height: 200px; }
+
+
+
+
+
+
+
