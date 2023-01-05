@@ -14,3 +14,6 @@
 #sub_img1{
 	background-image: url("../img/sub_intro.jpg");
 }
+#content img{ width: 580px; padding: 50px 10px;}
+#content div{ width: 580px;	padding: 50px 10px;}
+#content h4 , p { margin-bottom: 20px;}
