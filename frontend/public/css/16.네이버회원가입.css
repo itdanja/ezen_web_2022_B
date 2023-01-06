@@ -30,20 +30,33 @@ h3{ text-align: left; font-size: 14px; margin-bottom: 8px;}
 	background-color: white;	
 	padding: 10px;
 	display: flex;
+	align-items: center; /* 세로정렬*/
 }
-#input_id{
+.input_id{
 	border: none;	/* input 테두리 지우기 */
 	width: 100%;	/* input 가로사이즈 전체 */
 	height: 30px;	/* input 세로사이즈 */
 }
+.signup_at{ color:#8E8E8E; }
+
 .signup_lock{
 	/* 네이버에서 아이콘 이미지 주소 */
 	background-image: url("https://static.nid.naver.com/images/ui/join/m_icon_pw_step.png");
 	/* 요소 사이즈 */
 	width: 25px; height: 25px;
-	/* 배경 이미지 사이즈 */
+	/* 배경이미지 사이즈 */
 	background-size: 120px 75px;
 }
+/* 생년월일 */
+.birthbox{ 
+	display: flex; 
+	justify-content: space-between; 
+}
+#birth_y , #birth_m , #birth_d 
+{ width: 120px; }
+#birth_m { margin: 0px 20px;}
+
+
 
 
 

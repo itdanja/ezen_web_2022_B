@@ -23,24 +23,52 @@
 		<form id="join_form">
 		
 			<div> <!-- 아이디 , 비밀번호 , 비밀번호 확인 구역  -->
-			
 				<!-- 1개 입력창 -->
 				<h3> 아이디 </h3>
 				<span class="signup_input">
-					<input id="input_id" type="text">
-					<span>@naver.com</span>
+					<input class="input_id" type="text">
+					<span class="signup_at">@naver.com</span>
 				</span>
 				
 				<h3> 비밀번호 </h3>
 				<span class="signup_input">
-					<input id="input_id" type="password">
-					<span class="signup_lock"></span>
+					<input class="input_id" type="password">
+					<span class="signup_lock"> </span>
 				</span>
 				
 				<h3> 비밀번호 확인 </h3>
 				<span class="signup_input">
-					<input id="input_id" type="password">
-					<span class="signup_lock"></span>
+					<input class="input_id" type="password">
+					<span class="signup_lock"> </span>
+				</span>
+			</div>
+			
+			<div> <!-- 이름 , 생년월일 , 성별 , 이메일 -->
+				<h3> 이름 </h3>
+				<span class="signup_input">
+					<input class="input_id" type="text">
+				</span>
+				
+				<h3> 생년월일 </h3>
+				<span class="birthbox">
+					<!-- 연도 -->
+					<span class="signup_input" id="birth_y" >
+						<input class="input_id"  type="text" placeholder="년(4자)">
+					</span>
+					<!-- 월  -->
+					<span class="signup_input" id="birth_m">
+						<select class="input_id" >
+							<option>월</option><option>1</option><option>2</option>
+							<option>3</option><option>4</option><option>5</option>
+							<option>6</option><option>7</option><option>8</option>
+							<option>9</option><option>10</option><option>11</option>
+							<option>12</option>
+						</select>
+					</span>
+					<!-- 일  -->
+					<span class="signup_input" id="birth_d">
+						<input class="input_id" type="text" placeholder="일">
+					</span>
 				</span>
 				
 			</div>
@@ -54,3 +82,19 @@
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
