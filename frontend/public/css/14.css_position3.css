@@ -1,12 +1,15 @@
 @charset "UTF-8";
 
+
 #header{ 
 	display: flex; 
 	justify-content: space-between;
 	position : sticky;		/* 해당 요소가 화면에 나갔을때 위치 고정 */
 	top:0px;				/* 가장 위에 */
 	
-	background-color: red;
+	opacity:0.9;
+	
+	background-color: white;
 	border-bottom: 1px solid #eeeeee;
 	
 	z-index: 1;				/* 다른 요소와 겹쳤을때의 대한 배치 순서 */
@@ -26,7 +29,7 @@
 	background-color: white;	/* 기본값 :  transparent */
 }
 
-body{ background-color:  yellow; }
+body{ background-color:  white; }
 
 
 

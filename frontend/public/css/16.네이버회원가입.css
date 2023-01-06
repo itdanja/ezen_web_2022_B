@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+/* -----------공통------------*/
+body{ background: #F5F6F7; }		/* 전체 배경색 */
+a{ color: black; text-decoration: none;}
+*{ font-family: "맑은 고딕"; }
+*:focus{ outline: none; } /* input 입력창에 마우스커서[포커스] 생겼을대 이벤트
+/* --------------------------*/
+
+/*-------------- 헤더 ------------------*/
+.logo{
+	width: 460px;				/* 로고 박스권 */
+	margin: 0 auto;				/* 로고 가운데정렬 */
+	display: flex;				/* 하위 요소 가운데 정렬 */
+	justify-content: center;
+}
+.logo img{
+	height: 50px;				/* 사진 높이 사이즈 */
+	margin: 50px 0px; 			/* 위아래 바깥여백 */
+}
+/* ---------------- 본문 -----------------*/
+
+#join_form{ width: 460px; margin: 0 auto; }
+
+h3{ text-align: left; font-size: 14px; margin-bottom: 8px;}
+
+/* 1. 입력상자 */
+.signup_input{
+	border: 1px solid #DADADA;	/* input , span 의 테두리 */
+	background-color: white;	
+	padding: 10px;
+	display: flex;
+}
+#input_id{
+	border: none;	/* input 테두리 지우기 */
+	width: 100%;	/* input 가로사이즈 전체 */
+	height: 30px;	/* input 세로사이즈 */
+}
+.signup_lock{
+	/* 네이버에서 아이콘 이미지 주소 */
+	background-image: url("https://static.nid.naver.com/images/ui/join/m_icon_pw_step.png");
+	/* 요소 사이즈 */
+	width: 25px; height: 25px;
+	/* 배경 이미지 사이즈 */
+	background-size: 120px 75px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
