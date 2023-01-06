@@ -1,0 +1,51 @@
+@charset "UTF-8";
+
+a{
+	color: black;
+	text-decoration: none;
+}
+a:hover{ /* 마우스를 올렸을때 CSS*/
+	color: orange;
+}
+a:active { /* 마우스를 클릭할때 CSS */
+	color: blue;
+}
+a:visited {	/* 클릭한 적이 있을때 CSS */
+	color: red;
+}
+
+#header{
+	background-color: #eeeeee;
+	display: flex;
+	justify-content: center;
+}
+#header .drop_menu{ display: inline-block; margin-right: 50px;
+}
+.drop_menu{  position: relative; } 	/* 상위 요소에 relative */
+.sub_menu{ 
+	position: absolute; 			/* 하위 요소에 absolute */
+	top : 10px; left: -30px;				/* ! 상위요소와 하위요소의 접점이 있어야 hover 유지 */
+	display: none;					/* 숨기기 [ 화면에 표시 안함 ] */
+	
+	padding-top : 50px;						/* 상위요소와 하위요소 사이 여백 */
+	
+	border-bottom : 1px solid #eeeeee;	
+	border-right : 1px solid #eeeeee;
+	border-left : 1px solid #eeeeee;
+	
+	width: 90px;
+	font-size: 15px;
+}
+.drop_menu a{ width: 200px; }
+
+.drop_menu:hover .sub_menu{ display: block; } /* 보여주기 [ 화면 표시 ] */
+
+
+
+
+
+
+
+
+
+
