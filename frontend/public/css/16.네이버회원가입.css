@@ -56,11 +56,29 @@ h3{ text-align: left; font-size: 14px; margin-bottom: 8px;}
 { width: 120px; }
 #birth_m { margin: 0px 20px;}
 
+/* 이메일 (선택) 폰트 변경 */
 .s_text{
 	font-size: 8px;
 	color: #8E8E8E;
 	font-weight: normal; /* 진하게 제거 */
 }
+/* 휴대전화입력란 , 인증 버튼 가로배치  */
+.phonebox{ 
+	display: flex; 
+	justify-content: space-between; 
+	margin: 10px 0px;
+}
+/* 인증 버튼 */
+.btn_auth{
+	background-color: #03C75A;
+	border: none;	color: white;
+	width: 120px;
+}
+/*휴대전화입력란 */
+#input_phone{ width: 300px; }
+/* 인증번호 입력란 */
+#authbox , #input_auth{ background-color: #F5F6F7 }
+
 
 
 

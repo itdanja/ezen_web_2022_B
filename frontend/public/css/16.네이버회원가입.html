@@ -41,7 +41,7 @@
 					<input class="input_id" type="password">
 					<span class="signup_lock"> </span>
 				</span>
-			</div>
+			</div> <!-- 아이디 , 비밀번호 , 비밀번호 확인 구역  end  -->
 			
 			<div> <!-- 이름 , 생년월일 , 성별 , 이메일 -->
 				<h3> 이름 </h3>
@@ -85,7 +85,33 @@
 					<input class="input_id" placeholder="선택입력" type="text">
 				</span>
 				
-			</div>
+			</div> <!-- 이름 , 생년월일 , 성별 , 이메일  end -->
+			
+			<div>	<!-- 휴대전화 구역 -->
+				<h3> 휴대전화 </h3>
+				
+				<!-- 국가 선택  -->
+				<span class="signup_input">
+					<select class="input_id">
+						<option>대한민국 +82 </option>
+					</select>
+				</span>
+				
+				<span class="phonebox">
+					<!-- 전화번호 입력란 -->
+					<span class="signup_input" id="input_phone">
+						<input class="input_id" type="text" placeholder="전화번호 입력">
+					</span>
+					<!-- 인증 버튼 -->
+					<input class="btn_auth" type="button" value="인증번호 받기">
+				</span>
+				
+				<!-- 인증번호 입력란 -->
+				<span class="signup_input" id="authbox">
+					<input readonly class="input_id" id="input_auth" type="text" placeholder="인증번호 입력하세요">
+				</span>
+				
+			</div>	<!-- 휴대전화 구역 end  -->
 			
 		</form>
 		<div id="footer">푸터</div>
