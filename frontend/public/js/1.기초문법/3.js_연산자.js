@@ -196,15 +196,27 @@ console.log( '78점수의 등급 : ' + 등급 )
 	문제12 : 정수 3개를 입력받아 오름차순 으로 출력 	[ 7 5 9 -> 5 7 9]
 */
 
+// 문제9 
+let value1 = Number( prompt('정수') )
+console.log( value1 + '의 홀짝 판단 : ' + ( value1%2==0 ? '짝수' : '홀수' ) )
 
+// 문제10
+let value2 = Number( prompt('정수2') )
+let value3 = Number( prompt('정수3') )
+console.log( value2+' 과 '+value3 +' 중 더 큰수는 : ' + 
+			( value2>value3 ? value2 : value2<value3 ? value3 : ' 두수는 같다')
+			)
+// 첫번째값이 더 크면 첫번째값출력 아니면 두번째값이 더크면 두번째값 출력 아니면 두 수는 같다
+// 변수 + 문자 + 변수 + 문자 + (삼항연산자중첩)
 
-
-
-
-
-
-
-
+// 문제11
+let value4 = Number( prompt('정수4') )
+let value5 = Number( prompt('정수5') )
+let value6 = Number( prompt('정수6') )
+let max = value4	// 가장 큰수 변수에 첫번째 값 대입 / max : 가장 큰수 를 저장하는 변수 
+max = max < value5 ? value5 : max	// 만약에 max보다 더크면 max에 대입 
+max = max < value6 ? value6 : max
+console.log( ' 가장 큰 수는 : ' + max )
 
 
 
