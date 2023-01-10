@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<!--  과제1: 학번[8자리] 입력 시, 배열에 존재하면 "로그인 성공" 출력 / 없을 경우, "로그인 실패" 출력
+	  기본옵션1) const studentArray = [ '20230110', '20230109', '20230108' ]
+	  기본옵션2) 입력 <input> 사용하여 학번 입력받기
+	  기본옵션3) 로그인 버튼 생성 (로그인 이벤트 실행)
+	  
+	  추가옵션1) 입력상자 공백이면, "학번을 입력해주세요." 출력
+	  추가옵션2) 로그인 성공되거나 학번 등록이 완료되면, 입력상자[input] value 다시 공백으로 초기화
+	  추가옵션3) 입력상자[input]에 입력한 데이터가 8자리가 아니면, "8자리로 입력해주세요." 출력
+	  
+	  과제2: 입력상자에 학번[8자리] 입력하면, 배열에 저장 (저장 완료되면, "성공" 출력 / esle, "실패" 출력)
+	  기본옵션1) studentArray 배열에 push 등록한다.
+	  기본옵션2) studentArray 배열에 동일한 학번이 존재하면 "실패(원인:학번 중복)" 출력
+	  기본옵션3) 등록 button 사용하여 등록 이벤트 실행
+	  
+	  추가옵션1) 입력상자 공백이면, "학번을 입력해주세요." 출력
+	  추가옵션2) 로그인 성공되거나 학번 등록이 완료되면, 입력상자[input] value 다시 공백으로 초기화
+	  추가옵션3) 입력상자[input]에 입력한 데이터가 8자리가 아니면, "8자리로 입력해주세요." 출력
+	  
+	  
+-->
+	<script src="중간과제12_js.js"></script>
+	학번: <input type = "text" class="sNum">
+	
+	<button onclick="onLogin()" type="button"> 로그인 </button>
+	<button onclick="onRegist()" type="button"> 정보등록 </button>
+	<button onclick="onDelete()" type="button"> 정보삭제 </button>
+	
+</body>
+</html>

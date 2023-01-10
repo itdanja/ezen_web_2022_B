@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title> JS 과제 </title>
+</head>
+<body>
+	<script src="js_과제1.js" type="text/javascript"></script>
+	
+	<!--
+	과제1 : 학번[8자리] 입력 후 로그인 버튼 클릭시 배열에 존재하면 
+			로그인성공 출력 / 로그인 실패
+		
+	[조건1]
+		const studentArray = [ '20230110', '20230109', '20230108' ]
+	[조건2]
+		입력 <input> 사용
+	[조건3]
+		로그인 <button> 사용해서 로그인 이벤트 실행 
+	 -->
+	 <h3> 과제 1 </h3>
+	 학번 : <input type="text" id="student_id">
+	 <button onclick="id_check()" type="button"> 로그인 </button>
+	 
+	 <div class="login_result">
+	 </div> 
+	 
+	 <br/>
+	 
+	 <!--
+	 과제2: 입력상자에 학번[8자리] 등록 입력후에 
+	 배열에 저장 -> 저장했으면 성공출력 / 아니면 실패 출력
+
+	 [조건1]
+		studentArray 배열에 push 등록한다.
+	 [조건2]
+		만약에 배열에 존재하는 학번이면 '실패'
+	 [조건3]
+		등록 <button> 사용해서 등록 이벤트 실행 
+	  -->
+	 <h3> 과제 2 </h3>
+	 학번 등록 : <input type="text" id="student_id_reg">
+	 <button onclick="id_reg()" type="button"> 등록 </button>
+	 <button onclick="id_del()" type="button"> 삭제 </button>
+	 <div class="reg_box">
+	 </div> 
+	 
+
+</body>
+</html>
