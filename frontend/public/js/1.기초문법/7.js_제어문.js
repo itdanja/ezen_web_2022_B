@@ -73,6 +73,17 @@ console.log('[거짓] 10이 10 미만이다. ')
 		90점 이상이면 'A등급'	80점 이상이면 'B등급' 70점 이상이면 'C등급' 그외 '탈락'
 */
 
+// 1. 
+let 정수 = Number( prompt('정수1') )
+
+if( 정수 >= 90 ){ console.log("합격"); }
+else{ console.log('탈락') }
+// if( 조건 ){ 참실행문; }
+// else{ 거짓실행문; }
+	// vs
+// 조건 ? 참 : 거짓 
+정수>=90 ?  console.log("합격") : console.log('탈락')
+
 
 
 
