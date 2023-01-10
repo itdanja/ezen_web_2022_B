@@ -71,18 +71,32 @@ console.log('[거짓] 10이 10 미만이다. ')
 	
 	3. prompt 로 점수 1개 입력받아 
 		90점 이상이면 'A등급'	80점 이상이면 'B등급' 70점 이상이면 'C등급' 그외 '탈락'
+		
 */
 
 // 1. 
 let 정수 = Number( prompt('정수1') )
-
 if( 정수 >= 90 ){ console.log("합격"); }
 else{ console.log('탈락') }
-// if( 조건 ){ 참실행문; }
-// else{ 거짓실행문; }
 	// vs
-// 조건 ? 참 : 거짓 
 정수>=90 ?  console.log("합격") : console.log('탈락')
+
+// 2. 
+let 성별 = prompt('성별 입력 ')
+
+if( 성별 == 'M' || 성별 == 'm' || 성별 == '남' || 성별 =='남자'){
+	console.log( '남자 이군요')
+}else if( 성별 =='W' || 성별 == 'w' || 성별 == '여' || 성별 == '여자'){
+	console.log( '여자 이군요')
+}else{ console.log('남자이면 m,M,남,남자 형식 / 여자이면 w,W,여,여자 형식으로 입력해주세요') }
+
+// 3. 
+let 점수 = Number( prompt('점수 입력 ') )
+if( 점수 >=90 ) { console.log('A등급'); }
+else if( 점수 >= 80 ){ console.log('B등급'); }
+else if( 점수 >= 70 ){ console.log('C등급'); }
+else { console.log('탈락'); }
+
 
 
 
