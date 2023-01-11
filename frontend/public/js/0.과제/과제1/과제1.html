@@ -6,6 +6,7 @@
 </head>
 <body>
 	
+<h3> F5 새로고침하면 JS 초기화[배열 초기로 돌아옴]</h3>
 <!---------------  과제1   --------------->
 	<h3> 로그인 </h3>
 	<!-- 2.HTML -->
@@ -25,12 +26,15 @@
 <!---------------  과제2   --------------->
 	<h3> 등록 </h3>
 	
-	학번 : <input type="text">
+		<!-- 2. input 태그 식별자선언[ class or id ] -->
+	학번 : <input class="sno2" type="text">
 	
-	<button type="button">등록</button>
+		<!-- 1. 이벤트 정의 onclick = "onAdd()"  -->
+	<button onclick="onAdd()" type="button">등록</button>
 	
-	<div> </div>
-	
+		<!-- 4.  -->
+	<div class="resultBox2"> </div>
+		
 	<!-- 1. js파일 가져오기 -->
 	<script src="과제1.js"></script>
 	
