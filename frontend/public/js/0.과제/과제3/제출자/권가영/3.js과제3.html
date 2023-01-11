@@ -5,20 +5,26 @@
 			<title>방문록 게시판 과제</title>
 		</head>
 		<body>
-			<h3>---------------방문록 작성----------------</h3>
 			
-			<!-- 방문록 input text -->
-			내용 : <input type= "text" class = "noticeBorad" id = "board">
-			<!-- 방문록 등록 버튼 -->
-			<button onclick="addContent()" type ="button">등록</button>
+			<div style = "width: 450px; margin-top: 10px; text-align: center">
+				<h3>---------------방문록 작성----------------</h3>
+				<!-- 방문록 input text -->
+				내용 : <input type= "text" class = "noticeBorad" id = "board">
+				
+				<!-- 방문록 등록 버튼 -->
+				<button onclick="addContent()" type ="button">등록</button>
 			
-			<table class = "noticeTable" border = "1" style="margin-top: 30px;">
+			</div>
+
+			
+			<table class = "noticeTable" border = "1" style="margin-top: 30px; width : 450px;">
 				<tr>
 					<th style="column-span: 2; padding : 5px 20px;">
 						방문해 주셔서 감사합니다.
 					</th>
 				</tr>
 			</table>
+			<div id ="notice"></div>
 			
 			<script src = "3.js과제3.js"></script>
 		</body>

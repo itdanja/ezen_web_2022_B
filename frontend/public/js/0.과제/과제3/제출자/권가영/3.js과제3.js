@@ -16,27 +16,39 @@
 let contentArray = [];
 
 //방문록 테이블 함수 밖 선언 -> 누적해야하기 때문
-let tableRow = '<tr>'+'<th style="padding : 5px 20px;">'+ "번호"+'</th>'
-		+'<th style="padding : 5px 20px;">'+ '방문록'+'</th>'+'</tr>';
+let tableRow = '<tr>'+'<th style="padding : 5px 20px; width :100px; text-align : center">'+ "번호"+'</th>'
+		+'<th style="padding : 5px 20px; text-align : center">'+ '방문록'+'</th>'+'</tr>';
 
+//알림텍스트
+let noticeText = document.querySelector('#notice');
+		
 //addContent 함수
 function addContent(){
+	
+	document.getElementById("notice").value = null;
+	
 	//input에 넣은 데이터 값을 가져온다.
 	let textContent = document.querySelector('.noticeBorad');
 	let text = textContent.value;
 	
-	//등록한 내용을 contentArray배열에 저장
-	contentArray.push(text);
+	if(text.trim()== "" || text ==""){ //내용이 공백일 경우
+		
+		noticeText.innerHTML = '<div style = "color : red;">' + '공백입니다. 내용을 입력해주세요.'+ '</div>'
+	}else{
+		//등록한 내용을 contentArray배열에 저장
+		contentArray.push(text);
 	
-	//등록한 내용의 인덱스를 찾고, 변수에 저장
-	let tableIndex = contentArray.indexOf(text)
+		//등록한 내용의 인덱스를 찾고, 변수에 저장
+		let tableIndex = contentArray.indexOf(text)
+		
+		tableRow += '<tr>'+'<td style="padding : 5px 20px; width :100px; text-align : center">'+ tableIndex+'</th>'
+			+'<th style="padding : 5px 20px; text-align : center;">'+ contentArray[tableIndex]+'</th>'+'</tr>'
 	
-	tableRow += '<tr>'+'<td style="padding : 5px 20px;">'+ tableIndex+'</th>'
-		+'<th style="padding : 5px 20px;">'+ contentArray[tableIndex]+'</th>'+'</tr>'
-
-	let content = document.querySelector('.noticeTable');
-	content.innerHTML = tableRow
-	
-	//방문록을 등록했다면 해당 input의 text를 초기화 해준다.
-	document.getElementById("board").value ='';
+		let content = document.querySelector('.noticeTable');
+		content.innerHTML = tableRow
+		
+		noticeText.innerHTML = '<div style = "color : blue;">' + '환영합니다.'+ '</div>'
+		//방문록을 등록했다면 해당 input의 text를 초기화 해준다.
+		document.getElementById("board").value ='';
+	}
 }
