@@ -61,7 +61,7 @@ function onAdd(){ // 1. 함수 시작
 	if( sno2Value == '' ){ console.log('공백이네요.~'); confirm++; }
 	// ! 추가코드 2. 만약에 입력된 값이 8자리 아니면 
 		console.log('2. 입력값 길이 : ' + sno2Value.length );
-	if( sno2Value.length !=8 ){ console.log('8자리 아니네요~'); confirm++; }
+	if( confirm == 0 && sno2Value.length !=8 ){ console.log('8자리 아니네요~'); confirm++; }
 	// 3. 유효성검사[ 중복체크 ]
 		// 입력받은 값[sno2Value]이 있고 기존에 있는 값들[studentArray] 과 비교
 		// 경우의수 2가지 [ 중복이 있다 or 없다 ] 
