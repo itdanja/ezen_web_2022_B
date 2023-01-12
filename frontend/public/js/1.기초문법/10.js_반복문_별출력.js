@@ -143,6 +143,88 @@ for( let i = 1 ; i<=line3 ; i++ ){ // for s
 } // for end 
 console.log( output )
 
+/*
+
+4. 입력받은 줄수[line] 만큼 출력 예시 ) 5
+			i[line]			b[공백]			s[별]
+	*****	i = 1			b = 			s = 1 2 3 4 5 
+	 ****	i = 2			b = 1 			s = 1 2 3 4 
+	  ***	i = 3			b = 1 2 		s = 1 2 3 
+	   **	i = 4			b = 1 2 3 		s = 1 2 
+	    *	i = 5			b = 1 2 3 4 	s = 1 
+	    	- i는 1부터 입력받은줄수 	까지 1씩증가		=for( let i = 1 ; i<=line4 ; i++ )
+	    	- b는 1부터 (현재줄수-1)	까지 1씩증가		=for( let b = 1 ; b<=i-1 ; b++ )
+	    	- s는 1부터 (입력은줄수-현재줄수+1) 까지 1씩증가	=for( let s = 1 ; s<=line4-i+1 ; s++ )
+*/
+output = ''
+let line4 = Number( prompt('문제4 줄수 ') )
+for( let i = 1 ; i<=line4 ; i++ ){ // for s 
+	//1. 
+	for( let b = 1 ; b<=i-1 ; b++ ){ // for s 
+		output += ' '
+	} // for e 
+	//2.
+	for( let s = 1 ; s<=line4-i+1 ; s++  ){
+		output += '*'
+	}
+	//3.
+	output += '\n'
+} // for e 
+console.log( output )
+/*
+	만약에 줄수가 3를 입력했으며 line4 = 3 
+	i = 1일때
+	
+		b = 1일때 	b<=i-1			1<=1-1		F
+		
+		s = 1일때		s<=line4-i+1	1<=3-1+1	T		output = '*'
+		s = 2일때		s<=line4-i+1	2<=3-1+1	T		output = '**'
+		s = 3일때		s<=line4-i+1	3<=3-1+1	T		output = '***'
+		
+		output += '\n'									output = '***\n'
+			
+	i = 2일때
+	
+		b = 1일떄 	b<=i-1			1<=2-1		T		output = '***\n '
+		b = 2일떄		b<=i-1			2<=2-1		F		
+		
+		s = 1일때		s<=line4-i+1	1<=3-2+1	T		output = '***\n *'
+		s = 2일때		s<=line4-i+1	2<=3-2+1	T		output = '***\n **'
+		s = 3일때		s<=line4-i+1	3<=3-2+1	F		
+		
+		output += '\n'									output = '***\n **\n'
+		
+	i = 3일떄
+		
+		b = 1일떄 	b<=i-1			1<=3-1		T		output = '***\n **\n '
+		b = 2일떄 	b<=i-1			2<=3-1		T		output = '***\n **\n  '
+		b = 3일떄 	b<=i-1			2<=3-1		F		
+		
+		s = 1일때		s<=line4-i+1	1<=3-3+1	T		output = '***\n **\n  *'
+		s = 2일때		s<=line4-i+1	2<=3-3+1	F		
+		
+		output += '\n'									output = '***\n **\n  * \n'
+		
+*/
+
+/*
+5.입력받은 줄수[line] 만큼 출력 예시 ) 5
+					i[line]			b[공백]:문제3		s[별]
+		    *		i = 1			b = 1 2 3 4 	s = 1 
+		   ***		i = 2 			b = 1 2 3 		s = 1 2 3  
+		  *****		i = 3			b = 1 2			s = 1 2 3 4 5
+		 *******	i = 4			b = 1 			s = 1 2 3 4 5 6 7 
+		*********	i = 5			b=				s = 1 2 3 4 5 6 7 8 9
+					- i는 1부터 입력받은 줄수 			까지 1씩증가 	= for( let i = 1 ; i<=line5 ; i++ )
+					- b는 1부터 (입력받은줄수-현재줄수) 	까지 1씩증가	= for( let b = 1 ; b<=line5-i ; b++)
+					- s는 1부터 (현재줄수*2-1) 			까지 1씩증가	= for( let s = 1 ; s<=i*2-1 ; s++ )
+						1부터 i까지	1부터 i*2까지		i부터	 i*2-1까지
+						1부터 1까지	1부터	 2까지		1부터 1까지
+						1부터 2까지	1부터 4까지		1부터 3까지
+						1부터 3까지	1부터 6까지		1부터 5까지
+						1부터 4까지	1부터 8까지 		1부터 7까지
+						1부터 5까지	1부터 10까지		1부터 9까지
+*/
 
 
 
