@@ -111,7 +111,6 @@ console.log( output )
 
 /*
 3. 입력받은 줄수[line] 만큼 출력 예시 ) 5	
-
 			i[line]		b[공백]:문제2		s[별]:문제1
 	    *	i = 1		b = 1 2 3 4  	s = 1 
 	   ** 	i = 2		b = 1 2 3 		s = 1 2 
@@ -128,6 +127,46 @@ console.log( output )
 				for( let s = 1 ; s<=i s++ ){ }
 			}
 */
+output = ''
+let line3 = Number( prompt('문제3 줄수 '))
+for( let i = 1 ; i<=line3 ; i++ ){ // for s 
+	// 1. 공백출력
+	for( let b = 1 ; b <= line3-i ; b++ ){
+		output += ' '
+	}
+	// 2. 별출력
+	for( let s = 1 ; s <= i ; s++ ){
+		output += '*'
+	}
+	// 3. 줄바꿈
+	output += '\n'
+} // for end 
+console.log( output )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
