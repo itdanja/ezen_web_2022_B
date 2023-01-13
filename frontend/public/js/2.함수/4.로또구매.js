@@ -33,10 +33,12 @@ let 선택번호목록 = [ ]
 // 3. 버튼 클릭 함수 
 function 버튼클릭( 번호 ){
 	console.log( 번호 +" 번호 를 선택했군요.")
-	
 	// 1. 중복검사	/취소 [ 배열명.indexOf(찾을데이터) : 찾은데이터의 인덱스번호 반환 , 없으면 -1]
 	if( 선택번호목록.indexOf( 번호 ) >= 0 ){ // if s 
-		alert('이미 선택한 번호 입니다.')
+		alert('이미 선택한 번호 입니다.[해당 버튼 취소 했습니다.]')
+		// [ 배열명.splice( 인덱스 , 개수 ) : 해당 인덱스부터 개수만큼 삭제 ]
+		선택번호목록.splice( 선택번호목록.indexOf(번호) , 1  )
+		추첨버튼출력() // 함수호출
 		return ;	// 반환값은 없지만 함수를 끝낼수 있다. [ 더이상 아래로 코드가 실행되지 않는다.]
 	} // if e
 	// 2. 6개까지만 저장 [ 배열명.length : 배열내 데이터 총 개수 ]
@@ -44,11 +46,21 @@ function 버튼클릭( 번호 ){
 		alert('이미 모두[6개]를 선택했습니다.')
 		return ;	
 	} // if e 
-	
 	// 위 2가지 유효성검사를 충족하지 않았을때 저장 
 	선택번호목록.push( 번호 )
+	추첨버튼출력(); // 함수호출
+} // f e 
+// 4. 선택번호목록 출력 및 추첨버튼 활성화
+function 추첨버튼출력( ){
+	// 추첨버튼 활성화/비활성화
+	if( 선택번호목록.length == 6  ){
+		document.querySelector('.추첨버튼').style.display = 'inline'
+	}else{
+		document.querySelector('.추첨버튼').style.display = 'none'
+	}
 	document.querySelector('.선택번호상자').innerHTML=선택번호목록
-}
+} 
+
 
 
 
