@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+*{ background-color: black; } /* 연동 확인용 */
+
+*{ color:  white; }
+
+.wrap{ display: flex; }
+
+.content{
+	width: 50%;
+	border: 1px solid white; 
+}
