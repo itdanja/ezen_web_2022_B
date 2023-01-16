@@ -19,5 +19,7 @@
 .게임판 div{  /* class명이 게임판 인 아래에 있는 div 선택 */
 	width: 30%; height : 150px; /* 가로사이즈 세로사이즈 */
 	border: 5px solid white; 	/* 테두리*/
-	background-color: #eeeeee; /* 배경색 */
+	background-color: skyblue; /* 배경색 */
 }
+
+
