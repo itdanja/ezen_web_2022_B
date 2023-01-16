@@ -52,6 +52,39 @@ function 출력(){
 		// 3. 반복문 종료시 누적된 html 해당 table 출력 
 	document.querySelector('.게시물테이블').innerHTML = html;
 }
+// 4. 해당 인덱스의 객체[게시물]를 1개 내용 수정 함수
+function 수정( i ){
+	// 1. 비밀번호검증
+	let 비밀번호 = prompt(' 비밀번호 : ')
+	// 2. 입력받은 비밀번호와 게시물의 비밀번호와 같으면
+	if( 비밀번호 == boardArray[i].password ){
+		// 3. 수정할 내용 입력받아
+		let 새로운내용 = prompt(' 수정할 내용 : ')	
+		// 4. 선택한 게시물의 속성의 값 수정 
+		boardArray[i].content = 새로운내용;
+		alert('수정 성공');
+		// 5. 화면 새로고침/업데이트
+		출력();
+	}else{ // 같지 않으면 
+		alert('비밀번호가 일치하지 않습니다. 수정 실패')
+	}
+}
+
+// boardArray 				: 배열
+// boardArray[i] 			: 배열내 i번째 요소 --> 객체 1개
+// boardArray[i].content 	: 객체.속성명
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
