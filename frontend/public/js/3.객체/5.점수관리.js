@@ -36,17 +36,39 @@ addbtn.addEventListener( 'click' , () => {
 		alert('숫자형식으로 입력해주세요') ; check = false;
 	}
 	// 3. 저장 [ 위 유효성검사에서 하나라도 충족하지 않았을때 ]
-	if( check ){ studentArray.push( info ); alert('학생점수 등록했습니다.') }
+	if( check ){ studentArray.push( info ); alert('학생점수 등록했습니다.'); printTable(); }
 	
 }) // addEvent end 
 
+// 2. 배열내 객체 정보를 테이블에 출력하는 함수  [ 1.JS열렸을때 2.등록할때마다/업데이트 3.삭제 4.수정 ]
+printTable(); // 함수 호출 
+function printTable(){ // 함수 정의 
+	// 1. html 구성
+	let html = `<tr><th> 번호 </th><th> 이름 </th><th> 국어 </th>
+					<th> 영어 </th><th> 수학 </th><th> 총점 </th>
+					<th> 평균 </th><th> 순위 </th><th> 비고 </th>
+				</tr>`
+	// 2. 배열내 객체 정보를 html 대입 
+	studentArray.forEach( ( o , i ) => {
+		html+=`<tr>
+					<td> ${ i+1 } </td>		<td> ${ o.name } </td>	<td> ${ o.kor } </td>
+					<td> ${ o.eng } </td>	<td> ${ o.mat } </td>	<td> ${ o.kor+o.eng+o.mat } </td>
+					<td> ${ parseInt( (o.kor+o.eng+o.mat)/3 ) } </td>	<td> 순위 </td>	<td> 비고 </td>
+				</tr>`
+	} )
+	// 3. 
+	document.querySelector('.listtable').innerHTML = html;
+}
 
 /*
+	// 1. 
 	studentArray.forEach( (object) => {
 		if( object.name == info.name ){
 			alert('이미 등록된 이름입니다.')
 		}
 	})
+	// 2. 
+	
 */
 
 
