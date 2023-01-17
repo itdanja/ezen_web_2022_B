@@ -82,9 +82,9 @@ function onDelete( i ){
 	printTable(); // 삭제후 새로고침/업데이트
 }// f e 
 // 4. 수정 버튼을 클릭했을때 [ 수정할 인덱스 !!! ]
-let upindex = -1;	// 수정할 인덱스 // 여러개 { } 에서 동일한 변수 사용할려고 // 전역변수
+let upindex = -1;	// -1 : 기본값 인덱스없다 // 수정할 인덱스 // 여러개 { } 에서 동일한 변수 사용할려고 // 전역변수
 function onUpdate( i ){
-	upindex = i // 내가 선택한 i번째 인덱스 
+	upindex = i // i값을 upindex 대입  // 내가 선택한 i번째 인덱스 
 	document.querySelector('.updatebox').style.display = 'block' 	//1.수정페이지 보여주기 
 	//2. 선택한 i번째 객체의 속성 데이터를 대입 
 	document.querySelector('.upname').value = studentArray[upindex].name
