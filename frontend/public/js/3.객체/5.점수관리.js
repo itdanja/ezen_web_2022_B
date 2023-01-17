@@ -40,7 +40,7 @@ addbtn.addEventListener( 'click' , () => {
 	
 }) // addEvent end 
 
-// 2. 배열내 객체 정보를 테이블에 출력하는 함수  [ 1.JS열렸을때 2.등록할때마다/업데이트 3.삭제 4.수정 ]
+// 2. 배열내 객체 정보를 테이블에 출력하는 함수  [ 1.JS열렸을때 2.등록할때마다 3.삭제할때마다 4.수정할때마다 ]
 printTable(); // 함수 호출 
 function printTable(){ // 함수 정의 
 	// 1. html 구성
@@ -66,12 +66,45 @@ function printTable(){ // 함수 정의
 					<td> ${ i+1 } </td>		<td> ${ o.name } </td>	<td> ${ o.kor } </td>
 					<td> ${ o.eng } </td>	<td> ${ o.mat } </td>	<td> ${ total } </td>
 					<td> ${ parseInt( total/3 ) } </td>	<td> ${ rank } </td>	
-					<td> <button>삭제</button>  <button>수정</button> </td>
+					<td> 
+						<button onclick="onDelete( ${ i } )">삭제</button>  
+						<button onclick="onUpdate( ${ i } )">수정</button> 
+					</td>
 				</tr>`
 	} )
 	// 3. 
 	document.querySelector('.listtable').innerHTML = html;
-}
+} // f e 
+
+// 3. 배열내 객체 삭제 [ 삭제할 인덱스 !!! ]
+function onDelete( i ){
+	studentArray.splice( i , 1); // 선택한 i번째 인덱스 객체 삭제
+	printTable(); // 삭제후 새로고침/업데이트
+}// f e 
+// 4. 수정 버튼을 클릭했을때 [ 수정할 인덱스 !!! ]
+let upindex = -1;	// 수정할 인덱스 // 여러개 { } 에서 동일한 변수 사용할려고 // 전역변수
+function onUpdate( i ){
+	upindex = i // 내가 선택한 i번째 인덱스 
+	document.querySelector('.updatebox').style.display = 'block' 	//1.수정페이지 보여주기 
+	//2. 선택한 i번째 객체의 속성 데이터를 대입 
+	document.querySelector('.upname').value = studentArray[upindex].name
+	document.querySelector('.upkor').value = studentArray[upindex].kor
+	document.querySelector('.upeng').value = studentArray[upindex].eng
+	document.querySelector('.upmat').value = studentArray[upindex].mat
+} // f e
+// 5. 수정완료 버튼을 클릭했을때 
+let updatebtn = document.querySelector('.updatebtn')
+updatebtn.addEventListener('click' , ()=>{
+	//1. 수정된 데이터 가져오기 // //2. 해당 객체의 속성 값 변경
+	studentArray[upindex].kor = parseInt( document.querySelector('.upkor').value )
+	studentArray[upindex].eng = parseInt( document.querySelector('.upeng').value )
+	studentArray[upindex].mat = parseInt( document.querySelector('.upmat').value )
+	document.querySelector('.updatebox').style.display = 'none' //3.수정페이지 숨기기
+	printTable(); // 4. 수정 후 새로고침/업데이트
+})
+
+
+
 
 /*
 	// 1. 

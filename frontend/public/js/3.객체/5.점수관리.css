@@ -4,12 +4,15 @@
 .wrap{
 	display: flex;			/* 레이아웃 배치 사용 */
 	justify-content: center; /* 레이아웃 가운데정렬 */
+	flex-wrap: wrap;	/* 레이아웃 가로사이즈 넘쳤을때 자동줄바꿈 */
 }
-.addbox , .listbox{
+.addbox , .listbox , .updatebox {
 	border: 1px solid red;	/* 테두리 */
 	width: 40%;				/* 가로길이 배율 */
 	text-align: center;		/* content 가운데정렬 */
 }
-.addtable{
+.addtable , .updatetable{
 	margin: 0 auto;
 }
+.updatebox{ display: none; }	/* 기본값으로 수정창 표시안함[숨기기] */
+
