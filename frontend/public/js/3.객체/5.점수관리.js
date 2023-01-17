@@ -50,10 +50,23 @@ function printTable(){ // 함수 정의
 				</tr>`
 	// 2. 배열내 객체 정보를 html 대입 
 	studentArray.forEach( ( o , i ) => {
+		
+		// 1.총점
+		let total = o.kor+o.eng+o.mat;
+		// 2.순위구하기
+		let rank = 1;
+		studentArray.forEach( (o2) => {
+			// 1.비교할총점
+			let total2 = o2.kor + o2.eng + o2.mat ; 
+			// 2. 만약에 총점이 비교할총점 보다 작으면 순위 하락
+			if( total < total2 ){ rank++; }
+		})
+		
 		html+=`<tr>
 					<td> ${ i+1 } </td>		<td> ${ o.name } </td>	<td> ${ o.kor } </td>
-					<td> ${ o.eng } </td>	<td> ${ o.mat } </td>	<td> ${ o.kor+o.eng+o.mat } </td>
-					<td> ${ parseInt( (o.kor+o.eng+o.mat)/3 ) } </td>	<td> 순위 </td>	<td> 비고 </td>
+					<td> ${ o.eng } </td>	<td> ${ o.mat } </td>	<td> ${ total } </td>
+					<td> ${ parseInt( total/3 ) } </td>	<td> ${ rank } </td>	
+					<td> <button>삭제</button>  <button>수정</button> </td>
 				</tr>`
 	} )
 	// 3. 
@@ -67,9 +80,60 @@ function printTable(){ // 함수 정의
 			alert('이미 등록된 이름입니다.')
 		}
 	})
+	
 	// 2. 
 	
 */
+
+/*
+	- 배열내 순위 
+	예시)
+		for1 : 80	90	75	100
+		for2 : 80	90	75	100
+		
+	1.
+		80 일때	rank = 1
+			80일때	80 < 80		f
+			90일때	80 < 90		t rank++	rank = 2
+			75일때	80 < 75		f
+			100일때	80 < 100	t rank++	rank = 3 
+		90 일때	rank = 1
+			80일때	90 < 80		f
+			90일때	90 < 90		f
+			75일때	90 < 75		f
+			100일때	90 < 100	t rank++	rank = 2
+		75 일때	rank = 1
+			80일때	75 < 80		t rank++	rank = 2
+			90일때	75 < 90		t rank++	rank = 3 
+			75일때	75 < 75		f
+			100일때	755 < 100	t rank++	rank = 4
+		100 일때	rank = 1
+			80일때	100 < 80	f
+			90일때	100 < 90 	f
+			75일때	100 < 75	f
+			100일때	100 < 100	f			rank = 1
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
