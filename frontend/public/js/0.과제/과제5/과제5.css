@@ -25,22 +25,26 @@
 }
 /* 키오스크 구역 사이즈 */
 .kioskbox{
-	width: 100%; height : 800px; /*가로 세로 사이즈*/
+	width: 100%; height : 900px; /*가로 세로 사이즈*/
 }
 /* 키오스크내 헤더 구역 사이즈 */
-.header{
-	height: 250px;
-	border: 1px solid red;	/* 테두리 */
-}
+.header{ height: 250px; }
+
 /* 키오스크내 헤더 구역의 메뉴 */
 .categorybox li{
 	display: inline-block; /*가로 배치 */
 	margin: 10px 40px;
 	color: #8e8e8e;
 }
+/* 선택된 li 꾸미기 */
+.categoryselect{
+	color : red !important; /* 속성 충돌시 최우선 !important */
+	border-bottom: 5px solid red;
+	padding-bottom: 5px;
+}
 /* 키오스크내 본문 */
 .content{
-	height: 500px;
+	height: 600px;
 	border: 1px solid orange;	/* 테두리 */
 }
 /* 키오스크내 푸터 */
