@@ -150,7 +150,6 @@ function cart_print(){
 			let 새로운배열 = [ ]
 			for( let i = 0 ; i<cartList.length ; i++ ){ 새로운배열.push( cartList[i] ) }
 
-
 */
 
 
