@@ -53,7 +53,7 @@ function product_print( index ){
 		
 		if( burgerList[i].category == categoryList[index] ){
 			// i번째 버거객체의 카테고리와 선택된 카테고리와 같으면 
-			html += `<div class="product">
+			html += `<div onclick="cardadd( ${i} )" class="product">
 						<img src="img/${ burgerList[i].img }" width="100%" />
 						<div class="productinfo">
 							<div class="ptitle"> ${ burgerList[i].name } </div>
@@ -65,6 +65,59 @@ function product_print( index ){
 	// 2. 구성된 html를 마크업 대입
 	document.querySelector('.productbox').innerHTML = html;
 }
+// 4. 선택한 제품을 카트에 담기 
+function cardadd( i ){ // f s 
+	cartList.push( burgerList[i] ) // 1. 선택한 i번째 버거의 객체를 cartlist에 추가 
+	cart_print();  // 카트내 제품 화면 렌더링[새로고침]
+} // f e 
+
+// 5. 주문 취소 버튼 
+function cancel(){
+	alert('주문 취소합니다.'); cartList.splice(0); // 개수 생략시 모두 삭제 
+	cart_print(); // 카트내 제품 화면 렌더링[새로고침]
+} 
+
+// 6. 주문 하기 버튼 
+function order(){
+	alert('주문 합니다.');
+	// 주문목록 구현 
+		// ~~~~~~~~ 카트리스트--->주문목록 
+	cartList.splice(0)
+	cart_print();
+}
+
+// 7. 카트내 버거 출력 [ 1. 제품 클릭할때마다 , 2.취소/주문 ]
+function cart_print(){
+	// 2. 버거 개수 카운트
+	document.querySelector('.pcount').innerHTML = cartList.length
+	// 3. 버거 총 금액 
+	let total = 0;
+	for( let j = 0 ; j<cartList.length ; j++ ){ total += cartList[j].price } 
+	document.querySelector('.ptotal').innerHTML = total.toLocaleString();
+	// 4.
+	let html = ''	// 1. 기본 html 구성 
+	for( let j = 0 ; j<cartList.length ; j++ ){
+		html += `<div class="item">
+					<div class="ititle"> ${ cartList[j].name } </div>
+					<div class="iprice"> ${ cartList[j].price.toLocaleString() }원</div>
+				</div>`
+	}
+	document.querySelector('.cartbottom').innerHTML = html; // 2. 구성된 html 마크업에 대입 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
 
 
 

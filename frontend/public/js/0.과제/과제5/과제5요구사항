@@ -20,15 +20,33 @@
 				{ name : '치킨킹팩1' , price : 13000 , img : '치킨킹팩1.png' , category : '스페셜' } 
 			]
 		4. 카트 
-			let cartList = [  ]
+			let cartList = [ {burger} , {burger} , {burger} , {burger}  ]
+		
+		5. 주문객체 
+			ler order = {
+				orderno : 주문번호 ( 중복없음 )
+				orderitems : 주문된 cartlist = [ ]
+				ordertime : 주문시간 
+				orderstate : 주문상태 [ true=주문,false=완료 ]
+				ordercomplete : 주문완료시간
+				orderprice : 주문가격
+			}
 			
+		6. 주문목록 
+			let orderList = [ {order} , {order} , {order} , {order} ]
+			
+		- 예시 
+			let 주문목록 = [
+							{ 주문번호:1 , cartlist : [ { burger } , { burger } , { burger } ]  } ,  
+							{ 주문번호:2 , cartlist : [ {burger } ]  } 
+						 ] 
 			
 1.고객 요구사항
 	1. 프론트엔드 :카카오톡 사진 기준
 		1. 슬라이드 화살표 구현 X
 	2. 기능 :
 		1. 메뉴[카테고리] : 메뉴에 맞는 제품들만 출력 
-		2. 제품이미지[클릭] : 클릭된 제품을 카트에 담기
+		2. 제품[클릭] : 클릭된 제품을 카트에 담기
 		3. 카트
 			1. 카트내 제품 개수 
 			2. 카트내 제품 총가격 
