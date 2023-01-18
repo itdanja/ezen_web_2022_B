@@ -1,12 +1,15 @@
 
 /* 공통 - DB */
+// 등록된 카테고리 목록 
 let categoryList = [ '프리미엄', '스페셜' , '와퍼', '올데이킹','치킨버거']
+// 등록된 버거 목록 
 let burgerList = [ 
 	{ name : '기네스콰트로치즈와퍼' , price : 9500 , img : '기네스콰트로치즈와퍼.png' , category : '프리미엄' } ,
 	{ name : '몬스터X' , price : 8000 , img : '몬스터X.png' , category : '프리미엄' } ,
 	{ name : '치킨킹팩1' , price : 13000 , img : '치킨킹팩1.png' , category : '스페셜' } 
 ]
-let cartList = [  ]
+let cartList = [  ] // 카트 목록 
+let orderList = [  ] // 주문 목록
 
 category_print();
 categoey_select( 0 ); // 기본값 : 프리미엄
@@ -50,7 +53,6 @@ function product_print( index ){
 	// *
 	for( let i = 0 ; i<burgerList.length ; i++ ){
 		// i는 0번째 인덱스부터 마지막인덱스까지 버거 객체 가져온다.
-		
 		if( burgerList[i].category == categoryList[index] ){
 			// i번째 버거객체의 카테고리와 선택된 카테고리와 같으면 
 			html += `<div onclick="cardadd( ${i} )" class="product">
@@ -80,8 +82,35 @@ function cancel(){
 // 6. 주문 하기 버튼 
 function order(){
 	alert('주문 합니다.');
-	// 주문목록 구현 
-		// ~~~~~~~~ 카트리스트--->주문목록 
+	// 1. 주문번호 만들기  [ // 마지막인덱스 : 배열명.length-1 ]
+	let no = 0;
+	if( orderList.length == 0 ){ no = 1;} // 1. 만약에 길이가 0 이면 [ 주문 하나도 없으면 주문번호 1 ]
+	else{ no = orderList[ orderList.length-1 ].no+1 } // 2. 아니면 마지막인덱스 주문객체의 주문번호+1 를 다운 주문번호 사용 
+	
+	// 2. 카트배열 -> 새로운배열 [ 주문객체에 카트배열 대입시 카트배열 초기화시 주문객체내 카트배열도 초기화 = 메모리 동일하기 때문에 ]
+	let for배열 = cartList.forEach( (o) => { console.log(o); return o; } )
+	console.log( for배열 )
+	console.log("--------------------------------------")
+	let map배열 = cartList.map( (o) => {console.log(o); return o; } )
+	console.log( map배열 )
+	
+	// 3. 총가격 만들기 
+	let total = 0;
+	for( let i = 0 ; i< map배열.length ; i++ ){ total += map배열[i].price }
+	
+	// 1. 주문
+		// 1. order 객체 만들기 
+		let order = { 
+			no :  no ,
+			itmes : map배열 ,			// 카트배열 ---> 새로운배열 
+			time :  new Date() ,	// new Date() : 현재 날짜/시간 호출   
+			state : true ,			// true : 일단 주문	// false : 주문완료  
+			complete : 0 ,			// 아직 주문 완료 되기전 
+			price : total			// cartlist 배열내 버거객체들의 총금액 합계 
+		}
+		// 2. order 객체 배열에 저장 
+		orderList.push( order  ); console.log(  orderList )
+	// 2. 주문완료 후 
 	cartList.splice(0)
 	cart_print();
 }
@@ -104,6 +133,25 @@ function cart_print(){
 	}
 	document.querySelector('.cartbottom').innerHTML = html; // 2. 구성된 html 마크업에 대입 
 }
+
+/*
+	for( let 반복변수 of 배열명 ) {  실행문; }		: 배열내 모든 요소를 하나씩 반복변수에 대입후 실행문;
+	
+	배열명.forEach( (반복변수) -> { 실행문; }  )		: 배열내 모든 요소를 하나씩 반복변수에 대입후 실행문;
+	
+	배열명.map( (반복변수) -> { 실행문; retrun 값; } )	: 배열내 모든 요소를 하나씩 반복변수에 대입후 실행문;
+						* retrun 값을 새로운 배열 반환
+
+	- 기존 배열 메모리를 새로운 배열메모리 할당 방법
+		1. 
+			let 새로운배열  = cartList.map( (o) => {console.log(o); return o; } )
+
+		2. 
+			let 새로운배열 = [ ]
+			for( let i = 0 ; i<cartList.length ; i++ ){ 새로운배열.push( cartList[i] ) }
+
+
+*/
 
 
 
