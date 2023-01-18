@@ -1,6 +1,16 @@
 @charset "UTF-8";
+
+/* 웹폰트 : 눈누 */
+@font-face {
+    font-family: 'TTTtangsbudaejjigaeB';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/TTTtangsbudaejjigaeB.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
 /* 기본값 제거 */
 *{ padding: 0px; margin: 0px; } /* 여백 기본값 제거 */
+*{ font-family: 'TTTtangsbudaejjigaeB'; } /* 기본폰트 적용 */
 
 /* 구역 나누기 */
 .wrap{
@@ -25,7 +35,8 @@
 /* 키오스크내 헤더 구역의 메뉴 */
 .categorybox li{
 	display: inline-block; /*가로 배치 */
-	margin: 10px 40px; 
+	margin: 10px 40px;
+	color: #8e8e8e;
 }
 /* 키오스크내 본문 */
 .content{
@@ -37,3 +48,4 @@
 	height: 50px;
 	border: 1px solid blue;	/* 테두리 */
 }
+

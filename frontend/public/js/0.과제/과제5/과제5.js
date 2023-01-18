@@ -1,5 +1,5 @@
 
-/* 공통 */
+/* 공통 - DB */
 let categoryList = [ '프리미엄', '스페셜' , '와퍼', '올데이킹','치킨버거']
 
 category_print();
