@@ -17,7 +17,9 @@ function onwrite(){ //  f s // 1.글 등록버튼을 눌렀을떄
 		bwriter : document.querySelector('.bwriter').value , 
 		bpassword : document.querySelector('.bpassword').value ,
 		btitle : document.querySelector('.btitle').value , 
-		bcontent : document.querySelector('.bcontent').value 
+		bcontent : document.querySelector('.bcontent').value ,
+		bdate : new Date()  ,  // 현재 날짜/시간 반환
+		bview : 0 // 조회수 
 	}
 	console.log( info ) // 객체 정보 출력시 문자열 연결연산자 금지
 	// 2. 유효성검사	//  객체명.속성명
@@ -43,20 +45,31 @@ function onwrite(){ //  f s // 1.글 등록버튼을 눌렀을떄
 function onprint(){ // f s // 1. js 열렸을때 2.글 등록했을때 3.글삭제 4.글수정
 	console.log('onprint 열림')
 	// 1. 기본 html 구성
-	let html = `<tr><th>번호</th><th>제목</th><th>작성자</th></tr>`
+	let html = `<tr><th>번호</th><th>제목</th><th>작성자</th><th>작성일</th><th>조회수</th></tr>`
 	// 2. 내용 html 구성
 	for( let i = 0 ; i<contents.length ; i++ ){
+		
+		let date = contents[i].bdate.getFullYear() + '년 ' +
+					(contents[i].bdate.getMonth()+1) + '월 ' +
+					contents[i].bdate.getDay() +'일  ' +
+					contents[i].bdate.getHours()+':' +
+					contents[i].bdate.getMinutes()+':' +
+					contents[i].bdate.getSeconds()
+		
 		html += `<tr onclick="onview( ${i} )">
 					<th>${ i+1 }</th>
 					<th>${ contents[i].btitle }</th>
 					<th>${ contents[i].bwriter }</th>
+					<th>${ date  }</th>
+					<th>${ contents[i].bview  }</th>
 				</tr>`
 	} 	
 	// 3. 마크업에 html 대입
 	document.querySelector('.boardtable').innerHTML = html;
 } // f 
-// 3. 글 보기 함수
+// 3. 글 보기 함수 [ 조회수 증가 ]
 function onview( i ){ // f s // 1. 글 목록에서 해당 행을 클릭했을때
+	contents[i].bview += 1; onprint();
 	console.log( i )
 	let html = `<div> 제목 : ${ contents[i].btitle }</div>
 				<div> 내용 : ${ contents[i].bcontent } </div>
