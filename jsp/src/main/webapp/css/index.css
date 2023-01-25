@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+/* 웹폰트 : 눈누홈페이지 */
+@font-face {
+    font-family: 'RixInooAriDuriR';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/RixInooAriDuriR.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+/* 기본값 설절 글꼴,색상,여백 */
+*{ font-family: '맑은 고딕'; color:black; margin: 0; padding: 0px; }
+
+/* 로고 구역에서 텍스트 가운데 정렬  */
+.logobox{ text-align: center; }
+
+/* 로고 제목 꾸미기 : 폰트 , 색상 , 사이즈 */
+.title{ font-family: 'RixInooAriDuriR'; color: black; font-size: 40px; }
+
+/* sticky 메뉴 2개 이므로 충돌 : 하단 메뉴 top 위치 변경 */
+.h_bottom{ top : 40px !important; /* 부트스트랩보다 우선순위 */ }
+
+/* a 마크업 색상 변경 */
+.nav-link{ color : black !important; }
+
+/* 상단 메뉴 : 오른쪽 배치 */
+.h_topmenu{ width: 100%; display: flex; justify-content: flex-end; font-size: 9px;}
+
+/* 하단 메뉴 : 가로 수평정렬 / justify-content: space-between 사용시 width 필수!  */
+.h_bottommenu{ width: 100%; display: flex; justify-content: space-between; font-size: 12px; font-weight: bold;}
+
+
+
+
+
+
+
+
+
+
+
+
+
