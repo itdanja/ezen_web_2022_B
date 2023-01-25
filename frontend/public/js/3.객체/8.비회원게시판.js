@@ -61,11 +61,23 @@ function onview( i ){ // f s // 1. 글 목록에서 해당 행을 클릭했을�
 	let html = `<div> 제목 : ${ contents[i].btitle }</div>
 				<div> 내용 : ${ contents[i].bcontent } </div>
 				<div> 작성자 : ${ contents[i].bwriter } </div>
-				<div> <button>삭제</button>  </div>
+				<div> <button onclick="ondelete( ${ i } )">삭제</button>  </div>
 				`
 	document.querySelector('.viewbox').innerHTML = html;
 } // f e 
 // 4. 글 삭제 함수 
+function ondelete( i ){
+	let password = prompt('비밀번호 : ')
+	if( password == contents[i].bpassword ){
+		alert('삭제 성공')
+		contents.splice( i  , 1 )
+		onprint();	
+		document.querySelector('.viewbox').innerHTML = '';
+	}else{
+		alert('삭제 실패')
+	}
+}
+
 
 
 
