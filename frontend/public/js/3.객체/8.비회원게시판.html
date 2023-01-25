@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<div class="wrap"> <!-- 기본값 : display: block; -->
+		<div class="box">
+			<h3> 글쓰기 페이지 </h3>
+			<form> <!-- 입력형식 -->
+				작성자 : <input type="text" 			class="bwriter"> <br/>
+				비밀번호 : <input type="password" 		class="bpassword"> <br/>
+				제목 : <input type="text" 			class="btitle"> <br/>
+				내용 : <textarea rows="10" cols="50" class="bcontent"></textarea> <br/>
+				<button type="button" onclick="onwrite()"> 글 등록 </button>
+				<!-- form 마크업 안에서 꼭 button마크업 type="button" 설정 -->
+			</form>
+		</div>
+		<div class="box">
+			<h3> 글목록 페이지 </h3>
+		</div>
+		<div class="box">
+			<h3> 글보기 페이지 </h3>
+		</div>
+	</div>
+
+	<!--  -->
+	<script src="8.비회원게시판.js" type="text/javascript"></script>
+</body>
+</html>
