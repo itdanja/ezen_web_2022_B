@@ -72,6 +72,7 @@
 .item_title{
 	font-size: 14px;
 	margin: 5% 0%;	/* 위아래 왼오른쪽 */
+	height: 35px;
 }
 .item_size{
 	font-size: 13px;
