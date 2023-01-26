@@ -28,6 +28,105 @@
 /* 하단 메뉴 : 가로 수평정렬 / justify-content: space-between 사용시 width 필수!  */
 .h_bottommenu{ width: 100%; display: flex; justify-content: space-between; font-size: 12px; font-weight: bold;}
 
+/* ---------------------------------  */
+
+.itembox{ display: flex; flex-wrap: wrap; margin: 3%; }
+
+.box_title{
+	text-align: center; /* 텍스트 가운데 정렬 */
+	font-family: 'RixInooAriDuriR';
+	border-bottom: 2px solid #999999;
+	width: 20%;			/* 박스 가로길이 */
+	margin: 0 auto; 	/* 박스권 가운데정렬 */
+	padding-top: 10%;	/* 안쪽 윗 여백 */
+	padding-bottom: 1%;	/* 안쪽 아래 여백 */
+}
+/* 서로 다른 사이즈[디바이스] 마다 css 다르게 설정 -> 미디어쿼리  */
+	/* @media( 조건 ){ 참일경우 css } */
+
+/* 1. 1200px 이상 기준 */
+.item{ width: 20%; margin: 2%; }
+/* 2. 1200px 이하 기준 */
+@media( max-width : 1000px ){	/* 최대 가로사이즈 1000px 아래이면 */
+	.item{ 
+		width: 45% !important;
+		margin: 2% !important; 
+	}
+}
+/* 3. 500px 이하 기준 */
+@media( max-width : 500px ){ /* 최대 가로사이즈 500px 아래이면 */
+	.item{ 
+		width: 90% !important;
+		margin: 2% !important; 
+	}
+}
+
+
+.item img{
+	width: 100%; /* 상위 요소의 크기 백분율 */
+	border-radius: 20px; /* 둥근 모서리 */
+}
+.item :hover{ /* 해당 요소의 마우스를 올렸을때 */
+	opacity: 0.8;	/*투명도 1:100% */
+}
+.item_title{
+	font-size: 14px;
+	margin: 5% 0%;	/* 위아래 왼오른쪽 */
+}
+.item_size{
+	font-size: 13px;
+	color: #999999;
+	border-bottom: 1px solid #999999;
+	padding-bottom: 4%;
+}
+.item_price{
+	text-decoration: line-through; /* 취소선 */
+	font-size: 14px;
+	color: #999999;
+	margin-top: 3%;
+}
+.item_sale{ font-family: 'RixInooAriDuriR'; font-size: 17px; }
+.item_discount{
+	font-family: 'RixInooAriDuriR'; color: #ff9995; font-size: 17px; }
+.item_bottom{
+	display: flex;	/* 하위 요소 가로배치 */
+	justify-content: space-between; /* 하위 요소 가로 정렬*/
+	align-items: center; /* 하위요소 들의 세로 정렬 */
+	margin-top: 3%;
+}
+.item_review{ font-size: 12px; color: #999999; text-align: right;  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

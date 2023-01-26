@@ -14,6 +14,7 @@
 
 	<!-- 헤더에서 사용되는 경로 : 절대경로 [ 페이지마다 헤더 사용하는데 페이지마다 상대경로 다르다. ]   -->
 		<!-- 
+			href , src 에서 경로 주의~ 
 			서버경로 : 
 				1. http://localhost:8080/프로젝트명/파일명
 				2. http://192.168.17.96:8080/프로젝트명/파일명
@@ -100,13 +101,40 @@
 		<button class="carousel-control-next" type="button" data-bs-slide="next" data-bs-target="#mainCarousel">
 			<span class="carousel-control-next-icon"></span>
 		</button>
+	</div> <!-- 캐러셀 end  -->
+	
+	<div class="container"> <!-- 구역 생성 -->
 		
+		<h3 class="box_title"> Category Best </h3>	<!-- 구역 제목 -->
+		
+		<div class="itembox">			<!-- 제품 출력되는 구역  -->
+			
+			<div class="item"> 					<!-- 제품 1개 -->
+				<img src="img/p1.gif"><!-- 제품이미지 -->
+				<div class="item_info"><!-- 제품정보 구역 -->
+					<div class="item_title">소느아 숄카라 퍼장식 롱 패딩 코트</div>	<!-- 제품명 -->
+					<div class="item_size">[ M , L ]</div>	<!-- 제품사이즈 -->
+					<div class="item_price">189,000</div>	<!-- 원가 -->
+					<div>
+						<span class="item_sale">145,000</span>	<!-- 판매가 -->
+						<span class="item_discount">23%</span>	<!-- 할인율 -->
+					</div>
+				</div>
+				<div class="item_bottom">	<!-- 제품정보 하단 구역  -->
+					<div>
+						<span class="badge rounded-pill text-bg-warning">주문폭주</span> <!-- 배지 -->
+						<span class="badge rounded-pill text-bg-danger">1+1</span>
+					</div>
+					<div class="item_review"> 찜 54 리뷰수 412</div>	
+				</div>
+			</div>
+	
+		</div>
 	</div>
 	
-	<!-- 부트스트랩 : js -->
+	
+	<!-- 부트스트랩 : js   body 하단 작성 -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-	
-	
 </body>
 </html>
 
