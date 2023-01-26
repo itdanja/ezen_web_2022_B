@@ -134,6 +134,7 @@ function order(){
 	// 2. 주문완료 후 
 	cartList.splice(0) // 전역변수내 초기화 // 그전에 안에 들어있는 데이터를 다른곳으로 옮기자 -> 주석 2번 코드 
 	cart_print();
+	order_print(); // (관리자)주문현황 테이블 렌더링
 }
 
 // 7. 카트내 버거 출력 [ 1. 제품 클릭할때마다 , 2.취소/주문 ]
@@ -175,7 +176,7 @@ function cart_print(){
 
 
 /* ------------------------------------------------------ */
-// 1. 
+// 1. 버거 등록 
 function onAdd(){ // f s
 	console.log( 'onAdd 호출 ')
 	// 1. 객체[ 여러개의 메모리를 하나의 메모리 ] 
@@ -196,10 +197,69 @@ function onAdd(){ // f s
 		// let 배열 = [ 사람객체1 , 사람객체2 ]
 	burgerList.push( burger ); alert('버거등록완료');  console.log( burgerList );
 	// 3. 키오스크 쪽 프론트 새로고침
-	categoey_select( 0 ); 
+	categoey_select( 0 ); print();
 }// f e 
 
+print();
+// 2. 모든 버거 출력  // 1.js열렸을때 //2.버거 등록될때 // 3. 버거 삭제시 // 4. 버거 수정시
+function print(){
+	// 1. 기본 html 구성
+	let html = `<tr> <th width="5%"> 제품번호 </th> 	<th width="10%"> 이미지 </th> 
+					<th width="30%"> 버거이름</th> 	<th width="20%"> 카테고리 </th>
+					<th width="15%"> 가격 </th>		<th width="20%"> 비고 </th>
+				</tr>`
+	// 2. 내용 html 구성   // o : i번째 객체   i : 인덱스 
+	burgerList.forEach( ( o , i ) => { 
+		html +=`<tr> <td> ${ i+1 } </td>
+					<td> <img src="img/${ o.img }" width="100%"> </td>
+					<td> ${ o.name } </td>
+					<td> ${ o.category } </td>
+					<td> ${ o.price.toLocaleString() } </td>
+					<td>  
+						<button onclick="onDelete( ${ i } )"> 삭제 </button>
+						<button onclick="onUpdate( ${ i } )"> 수정 </button>
+					</td>
+				</tr>`
+	})
+	// 3. 구성 html 마크업 대입
+	document.querySelector('.burgertable').innerHTML = html;
+} // f e 
+// 3. 버거 삭제 
+function onDelete( i ){ console.log( i +'번 버거 삭제 ')
+	burgerList.splice( i , 1 ); alert('버거가 삭제 되었습니다'); // 삭제 
+	print();  categoey_select( 0 );  // 관리자쪽   // 고객쪽
+}
+// 4. 버거 수정 
+function onUpdate( i ){ 	console.log( i +'번 버거 수정 ')
+	let newprice = parseInt( prompt('새로운 금액 : ') )
+	burgerList[i].price = newprice ; alert('버거 금액 변경 되었습니다.');
+	print();  categoey_select( 0 );  // 관리자쪽   // 고객쪽
+}
 
+order_print();
+// 5. 주문 현황 출력 
+function order_print(){ // 1. js열렸을때 // 2. 주문[주문하기버튼-6] 들어올때마다 // 3. 수정[주문상태 변경]
+	let html = `<tr>
+					<th width="10%"> 주문번호 </th> <th width="30%"> 버거이름 </th>
+					<th width="10%"> 상태 </th> 	<th width="30%"> 요청일/완료일</th> 
+					<th width="20%"> 비고 </th>
+				<tr>`
+	orderList.forEach( ( order ,i) => { // 주문리스트 회전/반복
+		order.itmes.forEach( ( burger , j ) => {	// 각 주문마다의 버거리스트 회전/반복 
+			let time1 = order.time.getHours()+':'+order.time.getMinutes();
+			html += `<tr>
+						<th> ${ order.no } </th>
+						<th> ${ burger.name } </th>
+						<th> ${ order.state ? "주문요청" : "주문완료" } </th>
+						<th> ${ time1 }</th>
+						<th> 
+							<button> 주문완료 </button>
+						</th>
+					<tr>`
+		})
+	})
+	document.querySelector('.ordertable').innerHTML = html;
+}
 
 /*
 	'숫자' 	: 문자	'10'	: 문자 
@@ -220,6 +280,15 @@ function onAdd(){ // f s
 	if( 조건1 ){}
 	else if( 조건2 ){}
 	else if( 조건3 ){}
+	
+	
+	// 
+	
+	1. 배열명.forEach( ( 객체  ) => { } )
+	1. 배열명.forEach( ( 객체 , i ) => { } )
+	2. for( let i = 0 ; i<배열명.length ; i++ ){
+		let 객체 = 배열명[i];
+	}
 
 */
 
