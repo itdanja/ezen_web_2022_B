@@ -174,11 +174,54 @@ function cart_print(){
 */
 
 
+/* ------------------------------------------------------ */
+// 1. 
+function onAdd(){ // f s
+	console.log( 'onAdd 호출 ')
+	// 1. 객체[ 여러개의 메모리를 하나의 메모리 ] 
+	let burger = {
+		 name : document.querySelector('.bname').value ,
+		 category : document.querySelector('.bcategory').value ,
+		 price : parseInt( document.querySelector('.bprice').value ) ,
+		 img : document.querySelector('.bimg').value
+	}; console.log( burger )
+	// 2. 유효성검사 [ 배열명.includes( 데이터 ) : 해당 데이터가 배열내 포함 여부 / 존재하면 true / fasle ] 
+		// ! : 부정 not  / true -> false / false -> true 
+		// 1. 
+	if( !categoryList.includes( burger.category ) ) { alert('등록 불가능한 카테고리 입니다.'); return;}
+		// 2. // 문자이면 true / 숫자이면 false
+	if( isNaN( burger.price) ) {  alert('가격은 숫자만 가능합니다.'); return; }
+	// 2. 배열 저장 [ 여러개의 메모리를 저장 : 동일한 데이터유형 끼리 / 서로 다른 데이터유형 힘듬 ]
+		// let 배열 = [ '김현수' , 10 , '여' , '유재석' , 20 , '남' ]
+		// let 배열 = [ 사람객체1 , 사람객체2 ]
+	burgerList.push( burger ); alert('버거등록완료');  console.log( burgerList );
+	// 3. 키오스크 쪽 프론트 새로고침
+	categoey_select( 0 ); 
+}// f e 
 
 
 
+/*
+	'숫자' 	: 문자	'10'	: 문자 
+	
+	* parseInt( 데이터 ) : 해당 데이터가 '숫자' 문자형 이면 ' ' 제거 숫자형 변환 아니면
+	parseInt( '10' ) -> 10
+	parseInt( 'a' ) -> NaN  [ 불가능 ]
+	
+	
+	모든 조건을 검사 하고 여러개의 true 		
+	if( 조건1 ){}
+	if( 조건2 ){}
+	if( 조건3 ){}
+	
+		vs								true인경우 return 사용하면 차이점 없음
+		
+	모든 조건을 검사 하고 하나의 true
+	if( 조건1 ){}
+	else if( 조건2 ){}
+	else if( 조건3 ){}
 
-
+*/
 
 
 
