@@ -13,7 +13,7 @@
 			itmes :  ,			// 카트배열 ---> 새로운배열 
 			time :  ,			// new Date() : 현재 날짜/시간 호출   
 			state :  ,			// true : 일단 주문	// false : 주문완료  
-			complete :  ,		// 아직 주문 완료 되기전 
+			complete :  ,		// 아직 주문 완료 되기전 0 // 주문완료시 new Date() 완료시간 대입 
 			price : 			// cartlist 배열내 버거객체들의 총금액 합계 
 	}
 
@@ -135,6 +135,7 @@ function order(){
 	cartList.splice(0) // 전역변수내 초기화 // 그전에 안에 들어있는 데이터를 다른곳으로 옮기자 -> 주석 2번 코드 
 	cart_print();
 	order_print(); // (관리자)주문현황 테이블 렌더링
+	sales_print(); // (관리자)매출현황 테이블 렌더링 
 }
 
 // 7. 카트내 버거 출력 [ 1. 제품 클릭할때마다 , 2.취소/주문 ]
@@ -241,24 +242,66 @@ order_print();
 function order_print(){ // 1. js열렸을때 // 2. 주문[주문하기버튼-6] 들어올때마다 // 3. 수정[주문상태 변경]
 	let html = `<tr>
 					<th width="10%"> 주문번호 </th> <th width="30%"> 버거이름 </th>
-					<th width="10%"> 상태 </th> 	<th width="30%"> 요청일/완료일</th> 
+					<th width="10%"> 상태 </th> 	<th width="30%"> 요청/완료</th> 
 					<th width="20%"> 비고 </th>
 				<tr>`
-	orderList.forEach( ( order ,i) => { // 주문리스트 회전/반복
+	orderList.forEach( ( order , i) => { // 주문리스트 회전/반복
 		order.itmes.forEach( ( burger , j ) => {	// 각 주문마다의 버거리스트 회전/반복 
-			let time1 = order.time.getHours()+':'+order.time.getMinutes();
+			let time = order.time.getHours()+':'+order.time.getMinutes();
+			if( order.state == false ){ // 만약에 주문완료 이면 / 주문완료시간 존재 하면 완료시간 같이 표기 +=
+				time += ' / ' + order.complete.getHours()+':'+order.complete.getMinutes();
+			}
 			html += `<tr>
 						<th> ${ order.no } </th>
 						<th> ${ burger.name } </th>
 						<th> ${ order.state ? "주문요청" : "주문완료" } </th>
-						<th> ${ time1 }</th>
-						<th> 
-							<button> 주문완료 </button>
+						<th> ${ time }</th>
+						<th>
+							${	order.state ? 
+								'<button onclick="onComplete( '+i+' )">주문완료</button>' : ''
+							}
 						</th>
 					<tr>`
 		})
 	})
 	document.querySelector('.ordertable').innerHTML = html;
+}
+// 6. 주문상태 변경 [ state 상태 / complete 완료시간 ]
+function onComplete( i ){ console.log( i );
+	orderList[i].state = false; // 주문완료 
+	orderList[i].complete = new Date(); // 현재시간 대입 [ 주문완료 시간 ]
+	order_print(); // 주문현황테이블 렌더링
+}
+
+sales_print();
+// 7. 매출 현황 테이블 출력 
+function sales_print(){	// 1. js열렸을때 // 2. 주문들어왔을때[ 키오스크 6번함수 ]
+	let html = `<tr><th width="10%">제품번호</th> <th width="30%">버거이름</th>
+					<th width="10%">판매수량</th> <th width="10%">매출액</th> 	<th width="10%">순위</th>
+				</tr>`
+	burgerList.forEach( ( burger , i ) => { 
+		html += `<tr>
+					<th width="10%">${ i+1 }</th> 
+					<th width="30%">${ burger.name }</th>
+					<th width="10%">${ sales_count(i) }</th> 
+					<th width="10%">${ ( sales_count(i) * burger.price ).toLocaleString()  }</th> 	
+					<th width="10%">순위</th>
+				</tr>`
+	})
+	document.querySelector('.salestable').innerHTML = html;
+} // f e 
+// 8. 판매수량 찾기 
+function sales_count( index ){ console.log( index +'번 버거 선택');
+	let count = 0; // 1. index번째 제품의 누적 판매량수 저장하는 변수
+	// 2. 주문목록에서 index번째 제품 찾기 
+	orderList.forEach( ( order , i ) =>{	// 주문목록 반복문
+		order.itmes.forEach( ( burger , j ) => {  // 주문 마다 버거리스트 반복문
+			console.log(  burger );
+			// 만약에 주문목록내 버거리스트중에서 버거이름과 index 번째  버거 이름과 같으면
+			if( burger.name == burgerList[index].name ){ count++; }
+		})
+	})
+	return count ; // * index번째 제품의 누적 판매량수 변수 반환 
 }
 
 /*
@@ -289,6 +332,25 @@ function order_print(){ // 1. js열렸을때 // 2. 주문[주문하기버튼-6] 
 	2. for( let i = 0 ; i<배열명.length ; i++ ){
 		let 객체 = 배열명[i];
 	}
+	
+	// `` 백틱 에서 삼항연산자 
+	
+	`${ 조건 ? 참 : 거짓 }`
+	
+	`
+		${ 
+			조건 ?
+			 참 : 
+			 	거짓 
+		}`
+		
+	// 함=상자 / 수=숫자
+		 인수 : 매개변수 : 함수 안으로 들어가는 수 
+		 반환 : 결과값 : 함수 밖으로 나가는 수 [ 함수 종료시 함수내 메모리 초기화 ] 
+	function 상자( index ) {						let 반환값 = 상자( i )
+		return 반환값 							if( 반환값 == 1 ){ }
+	}
+	
 
 */
 
