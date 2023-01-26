@@ -10,7 +10,7 @@
 	// 2. 주문객체 
 	let order = { 
 			no : ,
-			itmes :  ,			// 카트배열 ---> 새로운배열 
+			items :  ,			// 카트배열 ---> 새로운배열 
 			time :  ,			// new Date() : 현재 날짜/시간 호출   
 			state :  ,			// true : 일단 주문	// false : 주문완료  
 			complete :  ,		// 아직 주문 완료 되기전 0 // 주문완료시 new Date() 완료시간 대입 
@@ -123,7 +123,7 @@ function order(){
 		// 1. order 객체 만들기 
 		let order = { 
 			no :  no ,				// 고유한 주문번호 [ 인덱스사용X ]
-			itmes : map배열 ,			// 카트배열 ---> 새로운배열 
+			items : map배열 ,			// 카트배열 ---> 새로운배열 
 			time :  new Date() ,	// new Date() : 현재 날짜/시간 호출   
 			state : true ,			// true : 일단 주문	// false : 주문완료  
 			complete : 0 ,			// 아직 주문 완료 되기전 
@@ -246,7 +246,7 @@ function order_print(){ // 1. js열렸을때 // 2. 주문[주문하기버튼-6] 
 					<th width="20%"> 비고 </th>
 				<tr>`
 	orderList.forEach( ( order , i) => { // 주문리스트 회전/반복
-		order.itmes.forEach( ( burger , j ) => {	// 각 주문마다의 버거리스트 회전/반복 
+		order.items.forEach( ( burger , j ) => {	// 각 주문마다의 버거리스트 회전/반복 
 			let time = order.time.getHours()+':'+order.time.getMinutes();
 			if( order.state == false ){ // 만약에 주문완료 이면 / 주문완료시간 존재 하면 완료시간 같이 표기 +=
 				time += ' / ' + order.complete.getHours()+':'+order.complete.getMinutes();
@@ -279,30 +279,44 @@ function sales_print(){	// 1. js열렸을때 // 2. 주문들어왔을때[ 키오
 	let html = `<tr><th width="10%">제품번호</th> <th width="30%">버거이름</th>
 					<th width="10%">판매수량</th> <th width="10%">매출액</th> 	<th width="10%">순위</th>
 				</tr>`
-	burgerList.forEach( ( burger , i ) => { 
+	burgerList.forEach( ( burger , i ) => { // * 현재 등록된 모든 버거 반복중
 		html += `<tr>
 					<th width="10%">${ i+1 }</th> 
 					<th width="30%">${ burger.name }</th>
 					<th width="10%">${ sales_count(i) }</th> 
 					<th width="10%">${ ( sales_count(i) * burger.price ).toLocaleString()  }</th> 	
-					<th width="10%">순위</th>
+					<th width="10%">${ sales_rank(i) }</th>
 				</tr>`
 	})
 	document.querySelector('.salestable').innerHTML = html;
 } // f e 
-// 8. 판매수량 찾기 
-function sales_count( index ){ console.log( index +'번 버거 선택');
+// 8. index번째 버거의 판매수량 찾기 
+function sales_count( index ){ 
 	let count = 0; // 1. index번째 제품의 누적 판매량수 저장하는 변수
 	// 2. 주문목록에서 index번째 제품 찾기 
 	orderList.forEach( ( order , i ) =>{	// 주문목록 반복문
-		order.itmes.forEach( ( burger , j ) => {  // 주문 마다 버거리스트 반복문
+		order.items.forEach( ( burger , j ) => {  // 주문 마다 버거리스트 반복문
 			console.log(  burger );
 			// 만약에 주문목록내 버거리스트중에서 버거이름과 index 번째  버거 이름과 같으면
 			if( burger.name == burgerList[index].name ){ count++; }
 		})
 	})
 	return count ; // * index번째 제품의 누적 판매량수 변수 반환 
-}
+} // f e 
+// 9. 
+function sales_rank( index ){
+	let rank = 1; // 1. index 번째 버거의 순위 저장하는 변수 [  기본값 1등  ]
+	// 2. index 번째 버거의 순위 를 구하기 
+		// 1.  index 번째 버거의 매출액 // 매출액 : 수량 * 금액
+	let total = sales_count(index) * burgerList[index].price ; 
+		// 2. 모든 버거들 마다의 매출액 
+	burgerList.forEach( ( burger , i ) => { 
+		let total2 = sales_count(i) * burger.price;
+		// 3. 비교 [ 만약에 index번째버거의 매출액 보다 현재 반복되는 버거의 i번째 버거의 매출액보다 작으면 rank 증가 ]
+		if( total < total2 ){ rank++; }
+	})
+	return rank;	// * index 번째 버거의 순위 반환 
+} // f e 
 
 /*
 	'숫자' 	: 문자	'10'	: 문자 
