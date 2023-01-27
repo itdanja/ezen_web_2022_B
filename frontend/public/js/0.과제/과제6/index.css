@@ -8,11 +8,12 @@
 	background-size: 110%;
 }
 .userbox{
-	width: 100px;
-	height: 100px;
-	background-color: blue;
-	position: absolute;	/* 절대위치 : 상위요소의 relative 기준 */
+	width: 100px; height: 100px; position: absolute;	/* 절대위치 : 상위요소의 relative 기준 */
 	left: 10px;	top : 430px;
-	background-image: url("img/캐릭터1.png");
+	background-image: url("img/캐릭터1.png"); background-repeat: no-repeat; background-size: 90%;
 }
-
+.monbox{
+	width: 100px; height: 100px; position: absolute;
+	left: 910px; top : 430px;
+	background-color: red;
+}
