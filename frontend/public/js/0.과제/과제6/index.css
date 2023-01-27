@@ -1,0 +1,18 @@
+@charset "UTF-8";
+.wrap{ /* 게임화면 설정 */
+	width: 1000px; height: 600px;
+	margin: 0 auto;
+	position: relative; /* 하위 요소들의 위치 기준점 */
+	background-image: url("img/게임배경.jfif"); /* 배경 이미지 */
+	background-repeat: no-repeat; /* 배경 채우기 제거 */
+	background-size: 110%;
+}
+.userbox{
+	width: 100px;
+	height: 100px;
+	background-color: blue;
+	position: absolute;	/* 절대위치 : 상위요소의 relative 기준 */
+	left: 10px;	top : 430px;
+	background-image: url("img/캐릭터1.png");
+}
+
