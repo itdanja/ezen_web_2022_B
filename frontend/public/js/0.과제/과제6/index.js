@@ -21,9 +21,7 @@ document.addEventListener( 'keydown' , (e)=>{
 		userbox.style.backgroundImage = `url(img/캐릭터2_이동.png)` // 이동 모션 
 		userbox.style.backgroundSize = `110%`;
 	}else if( key == 65 ){ // a키 -> 공격 
-		userbox.style.backgroundImage = `url(img/캐릭터3_공격.png)`// 공격 모션
-		// * 
-		alert('공격')
+		userbox.style.backgroundImage = `url(img/캐릭터2_이동.png)` // 공격 모션
 	}
 	userbox.style.left = `${ u_left }px`	// * 키 입력후에 css : left 변경 
 	// * 현재 좌표를 로그에 출력 
@@ -37,19 +35,17 @@ document.addEventListener( 'keyup' , (e)=>{
 
 // 3. 몬스터 이동 난수[랜덤 -> 1초]
 	// 특정 시간마다 함수 실행해주는 함수 : setInterval( ()=>{} , 밀리초(1000/1초) )
-
-setInterval( mon_moving , 500 );
-
+setInterval( mon_moving , 1000 );
 function mon_moving(){ 
 	// 1. 난수 +-10
-	let rand = parseInt( Math.random()*50+1); // 1~50	// 이동거리
+	let rand = parseInt( Math.random()*100+1); // 1~100	// 이동거리
 	let rand2 = parseInt( Math.random()*2 ); // 0 또는 1  // 이동방향
 	if( rand2 == 1 ) m_left += rand
 	else m_left -= rand
 	// 2. 게임 화면 고정 
 	if( m_left < 0 ) m_left = 0;
 	if( m_left > 910 ) m_left = 910;
-	// 3. 
+	// 3. 몬스터 이동
 	monbox.style.left = `${ m_left }px`
 	// * 현재 좌표를 로그에 출력 
 	logbox2.innerHTML = `<div> 몹 좌표 : ${ m_left }</div>`
