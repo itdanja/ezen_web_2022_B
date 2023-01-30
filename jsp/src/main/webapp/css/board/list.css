@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+table tr td{
+	/* white-space 구역 사이즈 보다 내용이 컸을때 내용이 자동 줄바꿈 */
+	white-space: nowrap ;  /* 자동 줄바꿈 해제 */
+	/* overflow  내용이 사이즈보다 커켰을때 
+		hidden : 넘은 내용물이 있을경우숨기기
+		scroll : 넘은 내용물이 있을경우 scroll 생성
+	*/
+	overflow: hidden; 
+	/*
+		text-overflow : 텍스트가 구역 사이즈보다 커졌을때  
+			text-overflow: ellipsis : 넘친 텍스트를 ... 표현
+	*/
+	text-overflow: ellipsis;
+	max-width: 100px;
+}

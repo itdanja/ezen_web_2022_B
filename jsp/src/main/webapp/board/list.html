@@ -1,10 +1,169 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">	<!-- 한글 인코딩 : UTF-8 -->
+	<title>Ezen Web</title>	<!-- 페이지 제목 -->
+	<!-- 반응형 : 뷰포트 -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- 사용자정의 : css -->
+	<link href="/jsp/css/index.css" rel="stylesheet">
+	
+	<!-- 사용자정의 : css -->
+	<link href="../css/board/list.css" rel="stylesheet">
+	
+	<!-- 부트스트랩 : css -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
+<!-- 헤더 -->
+	<!-- 상단 메뉴 / sticky-top : 반응형 상단고정  bg-white : 배경 흰색 -->
+	<div class="navbar navbar-expand-lg sticky-top bg-white h_top">	<!-- 네비케이션 [ 메뉴 ]  -->
+		<div class="container">							<!-- 구역 -->
+			<div class="collapse navbar-collapse">									<!-- 감추기 -->
+				<ul class="navbar-nav h_topmenu">													<!-- 메뉴 목록 -->
+					<li class="nav-item"> <a class="nav-link" href="/jsp/member/login.html"> 로그인 </a> </li>		<!-- 메뉴 항목 -->
+					<li class="nav-item"> <a class="nav-link" href="/jsp/member/signup.html"> 회원가입 </a> </li>
+					<li class="nav-item"> <a class="nav-link" href="#"> 장바구니 </a> </li>
+					<li class="nav-item"> <a class="nav-link" href="#"> 마이페이지 </a> </li>
+					<li class="nav-item"> <a class="nav-link" href="/jsp/board/list.html"> 커뮤니티 </a> </li>
+					<li class="nav-item"> <a class="nav-link" href="#"> 문의사항 </a> </li>
+					<li class="nav-item"> <a class="nav-link" href="#"> 리뷰 </a> </li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 로고 -->
+	<div class="container logobox">
+		<a class="title" href="/jsp/index.html"> Ezen Web</a>
+	</div>
+	
+	<!-- 하단 메뉴 -->
+	<div class="navbar navbar-expand-lg sticky-top bg-white h_bottom">			<!-- 네비게이션 -->
+		<div class="container">							<!-- 구역 -->
+		
+			<!-- 콜랩스 버튼 : 메뉴가 콜랩스 되었을때 보이는 버튼 / data-bs-target="콜랩스 버튼 클릭시 표시할 구역"  -->
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+		
+			<!-- 콜랩스 적용되는 메뉴 목록 -->
+			<div class="collapse navbar-collapse" id="navContent">			<!-- 숨기기 -->
+				<ul class="navbar-nav h_bottommenu">											<!-- 메뉴 목록 -->
+					<li class="nav-item"><a class="nav-link" href="#"> 1+1 </a> </li> <!-- 메뉴 항목 -->
+					<li class="nav-item"><a class="nav-link" href="#"> 시즌베스트 </a> </li> <!-- 메뉴 항목 -->
+					<li class="nav-item"><a class="nav-link" href="#"> 수트 </a> </li> <!-- 메뉴 항목 -->
+					<li class="nav-item"><a class="nav-link" href="#"> 아우터 </a> </li> <!-- 메뉴 항목 -->
+					<li class="nav-item"><a class="nav-link" href="#"> 상의 </a> </li> <!-- 메뉴 항목 -->
+					<li class="nav-item"><a class="nav-link" href="#"> 니트 </a> </li> <!-- 메뉴 항목 -->
+					<li class="nav-item"><a class="nav-link" href="#"> 셔츠 </a> </li> <!-- 메뉴 항목 -->
+					<li class="nav-item"><a class="nav-link" href="#"> 바지 </a> </li> <!-- 메뉴 항목 -->
+					<li class="nav-item"><a class="nav-link" href="#"> 신발 </a> </li> <!-- 메뉴 항목 -->
+					<li class="nav-item"><a class="nav-link" href="#"> 악세사리 </a> </li> <!-- 메뉴 항목 -->
+					<li class="nav-item"><a class="nav-link" href="#"> ~90% </a> </li> <!-- 메뉴 항목 -->
+				</ul>
+			</div>
+		</div>
+	</div>
+<!-- 헤더 end -->
+	
+<!-- 본문 -->
+	<div class="container"> <!-- 반응형 구역 생성 -->
+	
+		<!-- 제목 -->
+		<h3> 커뮤니티 </h3>
+		
+		<!-- 반응형 테이블  --> 
+		<table class="table text-center">
+			<thead>
+				<tr> 
+					<th width="5%">번호</th><th width="60%">제목</th>
+					<th width="10%">작성자</th><th width="10%">작성일</th>
+					<th width="5%">조회수</th><th width="5%">좋아요</th>
+					<th width="5%">싫어요</th> 
+				</tr>
+			</thead>
+			<tbody>
+				<tr> <td>5</td><td>안녕하세요A</td><td>유재석</td><td>2023-01-30</td><td>325</td><td>9</td><td>1</td> </tr>
+				<tr> 
+					<td>4</td>
+					<td>안녕하세요B1안녕하세요B2안녕하세요B3안녕하세요B4안녕하세요B5안녕하세요B6안녕하세요B7안녕하세요B8안녕하세요B9안녕하세요B10안녕하세요B11안녕하세요B12안녕하세요B13안녕하세요B14</td>
+					<td>강호동</td>
+					<td>2023-01-27</td>
+					<td>123</td>
+					<td>2</td>
+					<td>0</td> 
+				</tr>
+				<tr> <td>3</td><td >안녕하세요C</td><td>신동엽</td><td>2023-01-25</td><td>753</td><td>3</td><td>0</td> </tr>
+				<tr> <td>2</td><td>안녕하세요D</td><td>서장훈</td><td>2023-01-24</td><td>521</td><td>10</td><td>3</td> </tr>
+				<tr> <td>1</td><td>안녕하세요E</td><td>김희철</td><td>2023-01-23</td><td>951</td><td>21</td><td>4</td> </tr>
+			</tbody>
+		</table> <!--  table end  -->
+		
+		<div class="row"> <!-- 하단 구역  -->
+		
+			<div class="col-md-4 offset-md-5 col-12"> <!-- 페이지네이션 구역 -->
+				<ul class="pagination">
+					<li class="page-item"> <a class="page-link" href="#"> < </a> </li>
+					<li class="page-item"> <a class="page-link" href="#"> 1 </a> </li>
+					<li class="page-item"> <a class="page-link" href="#"> 2 </a> </li>
+					<li class="page-item"> <a class="page-link" href="#"> 3 </a> </li>
+					<li class="page-item"> <a class="page-link" href="#"> 4 </a> </li>
+					<li class="page-item"> <a class="page-link" href="#"> 5 </a> </li>
+					<li class="page-item"> <a class="page-link" href="#"> > </a> </li>
+				</ul>
+			</div>
+			<div class="col-md-2 offset-md-1 col-12 "> <!-- 글쓰기 버튼 구역  -->
+				<a href="#"> <button class="form-control" type="button"> 글쓰기 </button> </a>
+			</div>
+			
+		</div> <!--  row end  -->
+		
+		<div class="row"> <!-- 하단 구역2 -->
+			<div class="col-md-5 offset-md-4 row g-0">
+			
+				<div class="col-md-3">
+					<select class="form-select">
+						<option> 키워드 </option> <option> 번호 </option>
+						<option> 제목 </option> <option> 작성자 </option>
+					</select>
+				</div>
+				<div class="col-md-5">
+					<input class="form-control" type="text" placeholder="검색어">
+				</div>
+				<div class="col-md-2">
+					<button class="form-control" type="button"> 검색 </button>
+				</div>
+				
+			</div> <!-- row end  -->
+		</div> <!-- row end  2 -->
+	</div> <!-- container end  -->
+	
+<!-- 본문 end  -->
+	<!-- 부트스트랩 : js   body 하단 작성 -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- 사용자정의 js -->
+	<script src="js/index.js" type="text/javascript"></script>
+	
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
