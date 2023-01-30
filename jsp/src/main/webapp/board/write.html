@@ -68,21 +68,21 @@
 	<div class="container"> <!-- 반응형 구역  -->
 		<h3 class="box_title"> 게시글 작성 </h3>
 		
-		<form> <!-- 입력양식  -->
+		<form class="writeform"> <!-- 입력양식  -->
 		
 			<div class="row my-3"> <!-- 작성자 , 비밀번호 입력 구역  -->
 				<div class="col-md-3">
-					<input class="form-control" type="text" placeholder="작성자">
+					<input class="form-control bwriter "type="text" placeholder="작성자">
 				</div>
 				<div class="col-md-3">
-					<input class="form-control" type="password" placeholder="비밀번호">
+					<input class="form-control bpassword" type="password" placeholder="비밀번호">
 				</div>
 			</div>
 			<!-- col-md-12 인경우 생략경우 form-control 이 width:100%  -->
-			<input class="form-control my-3" type="text" placeholder="제목">
+			<input class="form-control my-3 btitle" type="text" placeholder="제목">
 			
 			<!-- 1.기본 textarea -->
-			<textarea class="form-control my-3" rows="10" cols="" placeholder="내용1"></textarea>
+			<textarea class="form-control my-3 bcontent" rows="10" cols="" placeholder="내용1"></textarea>
 			
 			<!-- 2.썸머노트 textarea -->
 			<textarea id="summernote" class="form-control my-3" rows="10" cols="" placeholder="내용2"></textarea>
@@ -95,7 +95,10 @@
 			
 			<div class="row col-md-4 offset-md-4"> <!-- 버튼 구역  -->
 				<div class="col-md-4"> 
-					<button class="form-control writebtn" type="submit">등록</button>
+					<button 
+						class="form-control writebtn" 
+						onclick="board_wirte()" 
+						type="button">등록</button>
 				</div>
 				<div class="col-md-4" >
 					<button class="form-control resetebtn" type="reset">다시작성</button>
@@ -124,13 +127,10 @@
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 	<!-- 썸머노트 : js -->
-	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.js"></script>
 	<!-- 썸머노트 : 한글 js -->
 	<script src=" https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-ko-KR.min.js"></script>
-	 
-	<!-- 사용자정의 js -->
-	<script src="/jsp/js/index.js" type="text/javascript"></script>
-	
+
 	<!-- 사용자정의 js-->
 	<script src="../js/board/write.js" type="text/javascript"></script>
 
