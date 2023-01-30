@@ -37,7 +37,7 @@
 	font-family: 'RixInooAriDuriR';
 	border-bottom: 2px solid #999999;
 	width: 20%;			/* 박스 가로길이 */
-	margin: 0 auto; 	/* 박스권 가운데정렬 */
+	margin: 3% auto; 	/* 박스권 가운데정렬 */
 	padding-top: 10%;	/* 안쪽 윗 여백 */
 	padding-bottom: 1%;	/* 안쪽 아래 여백 */
 }

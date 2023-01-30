@@ -7,12 +7,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- 사용자정의 : css -->
 	<link href="/jsp/css/index.css" rel="stylesheet">
-	
-	<!-- 사용자정의 : css -->
-	<link href="../css/board/list.css" rel="stylesheet">
-	
 	<!-- 부트스트랩 : css -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- 썸머노트 : css -->
+	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 </head>
 <body>
 
@@ -67,82 +65,93 @@
 		</div>
 	</div>
 <!-- 헤더 end -->
-	
-<!-- 본문 -->
-	<div class="container"> <!-- 반응형 구역 생성 -->
-	
-		<!-- 제목 -->
-		<h3 class="box_title" > 커뮤니티 </h3>
+	<div class="container"> <!-- 반응형 구역  -->
+		<h3 class="box_title"> 게시글 작성 </h3>
 		
-		<!-- 반응형 테이블  --> 
-		<table class="table text-center">
-			<thead>
-				<tr> 
-					<th width="5%">번호</th><th width="60%">제목</th>
-					<th width="10%">작성자</th><th width="10%">작성일</th>
-					<th width="5%">조회수</th><th width="5%">좋아요</th>
-					<th width="5%">싫어요</th> 
-				</tr>
-			</thead>
-			<tbody class="boardlist">
-				<!-- js 에서 데이터 들어오는 자리  -->
-			</tbody>
-		</table> <!--  table end  -->
+		<form> <!-- 입력양식  -->
 		
-		<div class="row"> <!-- 하단 구역  -->
-		
-			<div class="col-md-4 offset-md-5 col-12"> <!-- 페이지네이션 구역 -->
-				<ul class="pagination">
-					<li class="page-item"> <a class="page-link" href="#"> < </a> </li>
-					<li class="page-item"> <a class="page-link" href="#"> 1 </a> </li>
-					<li class="page-item"> <a class="page-link" href="#"> 2 </a> </li>
-					<li class="page-item"> <a class="page-link" href="#"> 3 </a> </li>
-					<li class="page-item"> <a class="page-link" href="#"> 4 </a> </li>
-					<li class="page-item"> <a class="page-link" href="#"> 5 </a> </li>
-					<li class="page-item"> <a class="page-link" href="#"> > </a> </li>
-				</ul>
-			</div>
-			<div class="col-md-2 offset-md-1 col-12 "> <!-- 글쓰기 버튼 구역  -->
-				<a href="write.html"> <button class="form-control" type="button"> 글쓰기 </button> </a>
-			</div>
-			
-		</div> <!--  row end  -->
-		
-		<div class="row"> <!-- 하단 구역2 -->
-			<div class="col-md-5 offset-md-4 row g-0">
-			
+			<div class="row my-3"> <!-- 작성자 , 비밀번호 입력 구역  -->
 				<div class="col-md-3">
-					<select class="keyword form-select">
-						<option> 키워드 </option> 
-						<option value='no'> 번호 </option>
-						<option value='title'> 제목 </option> 
-						<option value='writer'> 작성자 </option>
-					</select>
+					<input class="form-control" type="text" placeholder="작성자">
 				</div>
-				<div class="col-md-5">
-					<input class="key form-control" type="text" placeholder="검색어">
+				<div class="col-md-3">
+					<input class="form-control" type="password" placeholder="비밀번호">
 				</div>
-				<div class="col-md-2">
-					<button class="form-control searbtn" type="button"> 검색 </button>
+			</div>
+			<!-- col-md-12 인경우 생략경우 form-control 이 width:100%  -->
+			<input class="form-control my-3" type="text" placeholder="제목">
+			
+			<!-- 1.기본 textarea -->
+			<textarea class="form-control my-3" rows="10" cols="" placeholder="내용1"></textarea>
+			
+			<!-- 2.썸머노트 textarea -->
+			<textarea id="summernote" class="form-control my-3" rows="10" cols="" placeholder="내용2"></textarea>
+			
+			<div class="row my-3">
+				<div class="col-md-3">
+					<input class="form-control" type="file">
 				</div>
+			</div>
+			
+			<div class="row col-md-4 offset-md-4"> <!-- 버튼 구역  -->
+				<div class="col-md-4"> 
+					<button class="form-control writebtn" type="submit">등록</button>
+				</div>
+				<div class="col-md-4" >
+					<button class="form-control resetebtn" type="reset">다시작성</button>
+				</div>
+				<div class="col-md-4">
+					<a href="list.html"> <button class="form-control backbtn" type="button">목록보기</button> </a>
+				</div>
+			</div>
 				
-			</div> <!-- row end  -->
-		</div> <!-- row end  2 -->
-	</div> <!-- container end  -->
+		</form> <!-- form -->
+	</div> <!--  -->
 	
-<!-- 본문 end  -->
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	
+
 	<!-- 부트스트랩 : js   body 하단 작성 -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+	
+	<!-- jqeury : js api 라이브러리  -->
+	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+	<!-- 썸머노트 : js -->
+	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+	<!-- 썸머노트 : 한글 js -->
+	<script src=" https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-ko-KR.min.js"></script>
+	 
 	<!-- 사용자정의 js -->
 	<script src="/jsp/js/index.js" type="text/javascript"></script>
-	<!-- 사용자정의 js-->
-	<script src="../js/board/list.js" type="text/javascript"></script>
 	
+	<!-- 사용자정의 js-->
+	<script src="../js/board/write.js" type="text/javascript"></script>
+
+
 </body>
 </html>
 
+<!-- 
+	부트스트랩 여백
+		m : margin
+			m-3 : 위아래왼쪽오른쪽
+			my-3 : 위아래
+			mx-3 : 왼쪽오른쪽 
+			mt-3 : 위
+			mb-3 : 아래
+			ms-3 : 왼쪽
+			me-3 : 오른쪽 
+		p : padding 
+			
 
-
+ -->
 
 
 

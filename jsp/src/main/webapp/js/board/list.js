@@ -8,10 +8,10 @@ function board_print( keyword , key ){
 	
 	// 1. JAVA[백엔드]로 부터 데이터 요청  // ~ 추후
 	if( keyword == null && key == null ){ // 1. 검색이 없는경우
-		alert('검색이 없는 게시물 출력 ')
+		//alert('검색이 없는 게시물 출력 ')
 		// JAVA에게 검색[조건] 이 없는 게시물들을 요청 
 	}else{ // 2. 검색이 있는경우 
-		alert('검색이 있는 게시물 출력 ')
+		//alert('검색이 있는 게시물 출력 ')
 		// JAVA에게 keyword , key 보내서 검색[조건] 이 있는 게시물들을 요청
 	}
 	
