@@ -84,20 +84,8 @@
 					<th width="5%">싫어요</th> 
 				</tr>
 			</thead>
-			<tbody>
-				<tr> <td>5</td><td>안녕하세요A</td><td>유재석</td><td>2023-01-30</td><td>325</td><td>9</td><td>1</td> </tr>
-				<tr> 
-					<td>4</td>
-					<td>안녕하세요B1안녕하세요B2안녕하세요B3안녕하세요B4안녕하세요B5안녕하세요B6안녕하세요B7안녕하세요B8안녕하세요B9안녕하세요B10안녕하세요B11안녕하세요B12안녕하세요B13안녕하세요B14</td>
-					<td>강호동</td>
-					<td>2023-01-27</td>
-					<td>123</td>
-					<td>2</td>
-					<td>0</td> 
-				</tr>
-				<tr> <td>3</td><td >안녕하세요C</td><td>신동엽</td><td>2023-01-25</td><td>753</td><td>3</td><td>0</td> </tr>
-				<tr> <td>2</td><td>안녕하세요D</td><td>서장훈</td><td>2023-01-24</td><td>521</td><td>10</td><td>3</td> </tr>
-				<tr> <td>1</td><td>안녕하세요E</td><td>김희철</td><td>2023-01-23</td><td>951</td><td>21</td><td>4</td> </tr>
+			<tbody class="boardlist">
+				<!-- js 에서 데이터 들어오는 자리  -->
 			</tbody>
 		</table> <!--  table end  -->
 		
@@ -124,16 +112,18 @@
 			<div class="col-md-5 offset-md-4 row g-0">
 			
 				<div class="col-md-3">
-					<select class="form-select">
-						<option> 키워드 </option> <option> 번호 </option>
-						<option> 제목 </option> <option> 작성자 </option>
+					<select class="keyword form-select">
+						<option> 키워드 </option> 
+						<option value='no'> 번호 </option>
+						<option value='title'> 제목 </option> 
+						<option value='writer'> 작성자 </option>
 					</select>
 				</div>
 				<div class="col-md-5">
-					<input class="form-control" type="text" placeholder="검색어">
+					<input class="key form-control" type="text" placeholder="검색어">
 				</div>
 				<div class="col-md-2">
-					<button class="form-control" type="button"> 검색 </button>
+					<button class="form-control searbtn" type="button"> 검색 </button>
 				</div>
 				
 			</div> <!-- row end  -->
@@ -144,7 +134,9 @@
 	<!-- 부트스트랩 : js   body 하단 작성 -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- 사용자정의 js -->
-	<script src="js/index.js" type="text/javascript"></script>
+	<script src="/jsp/js/index.js" type="text/javascript"></script>
+	<!-- 사용자정의 js-->
+	<script src="../js/board/list.js" type="text/javascript"></script>
 	
 </body>
 </html>
