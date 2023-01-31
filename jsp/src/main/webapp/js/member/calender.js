@@ -1,9 +1,6 @@
 /* DB  */
-let contents = [ // 일정목록
-	{ date : '20230101' , content : '새해맞이 여행' } ,
-	{ date : '20230103' , content : '친구 만나기' } ,
-	{ date : '20230101' , content : '새해맞이 쇼핑새해맞이 쇼핑새해맞이 쇼핑새해맞이 쇼핑' }
-]
+ // 일정목록
+let contents = [ ]
 
 /* ------------ 전역변수 : 모든 함수{ } 공용으로 사용되는 메모리 [변수] -------------------- */
 // 1. js열렸을때 현재 연도와 월을 구해서 변수에 저장 
@@ -56,11 +53,12 @@ function onDelete( i ){
 	cal_print(); // 3. 캘랜더 재출력[렌더링]
 }
 
-// 8. 등록 버튼 눌렀을때 함수 
+// 8. [ 등록 ] 버튼 눌렀을때 함수 
 document.querySelector('.modal_write').addEventListener( 'click' , (e)=>{
 	let content = { // 1. 입력받은 내용과 선택된 표시된 날짜 가져와서 객체화
 		date : document.querySelector('.modal_date').innerHTML , 
-		content : document.querySelector('.modal_input').value 
+		content : document.querySelector('.modal_input').value ,
+		bg_color : document.querySelector('.modal_color').value 
 	}; console.log( content );
 	// 3. 배열 저장 
 	contents.push( content );
@@ -84,11 +82,14 @@ function openModal( fdate ){
 	// 3. 해당 하는 날짜의 모든 일정 출력 
 		// 1. 기본 html 구성 
 	let html = `<tr> <th width="5%"> # </th> <th> 일정내용 </th> <th width="20%"> 비고 </th> </tr>`
-		// 2. 일정목록 반복문 돌려서 선택된 날짜와 동일한 일정 찾기 
-	contents.forEach( ( o , i )=>{
+		
+		// 2. 일정목록 반복문 돌려서 선택된 날짜와 동일한 일정 찾기
+	let j = 0;	// [출력 용도] j : 동일한 일정의 [객체] 들의 개수
+	contents.forEach( ( o , i )=>{	// [삭제 용도] i : 일정객체들의 인덱스 순서 
 		if( fdate == o.date){ // 만약에 모달클릭시 선택된 날짜와 일정목록에 있는 날짜와 같으면
+			j++;	// 찾은 개수 증가 
 			html += `<tr>
-					<td> ${ i+1 } </td> 
+					<td> ${ j } </td> 
 					<td> ${ o.content } </td> 
 					<td> <button onclick="onDelete( ${ i } )" type="button"> 삭제 </button>
 					</tr>`
@@ -104,7 +105,7 @@ function contents_print( fdate ){ console.log( fdate )
 	let html = ``
 	contents.forEach( (o) => { // 일정목록 반복문
 		if( fdate == o.date ){ // 만약에 인수로 전달된 날짜와 일정목록에서 동일한 날짜가 존재하면 
-			html += `<div class="content">${ o.content }</div>`
+			html += `<div class="content" style="background-color : ${ o.bg_color }">${ o.content }</div>`
 		}
 	}) // for end 
 	return html;
