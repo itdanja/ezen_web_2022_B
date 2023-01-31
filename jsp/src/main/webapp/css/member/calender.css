@@ -30,6 +30,7 @@
 	border: 1px solid #eeeeee;
 	width: 14%; /* 100/7 = 14.2~% */
 	height: 100px;
+	overflow: hidden; /* 내용이 구역보다 사이즈가 커졌을때 숨기기 */
 }
 /* 일정박스*/
 .content{

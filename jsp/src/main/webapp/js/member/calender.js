@@ -46,17 +46,30 @@ function cal_print(){
 	document.querySelector('.cal_day').innerHTML = html;	
 	
 } // f e
-
+// 8. 등록 버튼 눌렀을때 함수 
+document.querySelector('.modal_write').addEventListener( 'click' , (e)=>{
+	let content = { // 1. 입력받은 내용과 선택된 표시된 날짜 가져와서 객체화
+		date : document.querySelector('.modal_date').innerHTML , 
+		content : document.querySelector('.modal_input').value 
+	}; console.log( content );
+	// 3. 배열 저장 
+	contents.push( content );
+	// 4. 화면 업데이트
+		document.querySelector('.modal_input').value = '' // 1. 입력된 데이터 초기화
+		document.querySelector('.modal_wrap').style.display = 'none'; // 2. 모달 닫기
+		cal_print(); // 3. 캘랜더 재출력[렌더링]
+})
 // 7. 모달 닫기 함수 
 document.querySelector('.modal_close').addEventListener('click', (e)=>{
 	// 1. 모달 배경 구역 css 변경해서 모달 숨기기
 	document.querySelector('.modal_wrap').style.display = 'none';
 }) // f e 
-
 // 6. 모달 열기 함수 
 function openModal( fdate ){
 	// 1. 모달 배경 구역 css 변경해서 모달 보이기 
 	document.querySelector('.modal_wrap').style.display ='flex';
+	// 2. 모달에 선택된 날짜 표시 하기 
+	document.querySelector('.modal_date').innerHTML = fdate;
 } // f e 
 
 // 5. 일정 출력 함수 
