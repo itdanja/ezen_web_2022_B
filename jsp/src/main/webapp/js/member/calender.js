@@ -36,13 +36,18 @@ function cal_print(){
 		let date = new Date( year , month-1 , day ); // console.log( date )
 		let fdate = date_format( date ); // console.log( fdate )
 		
-		html += `<div class="day"> ${ day } ${ contents_print( fdate ) } </div>`
+		html += `<div class="day" onclick="openModal( ${ fdate } )"> 
+					${ day } ${ contents_print( fdate ) } 
+				</div>`
+		
 	} // for end 
 	
 	// 3. html 마크업 출력
 	document.querySelector('.cal_day').innerHTML = html;	
 	
 } // f e
+// 6. 모달 열기 함수 
+function openModal( fdate ){ alert( fdate +'의 모달 열기'); }
 
 // 5. 일정 출력 함수 
 function contents_print( fdate ){ console.log( fdate )
