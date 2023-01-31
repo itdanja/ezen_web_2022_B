@@ -1,0 +1,71 @@
+@charset "UTF-8";
+/* 캘린더 구역  */
+.calender{
+	border: 1px solid #eeeeee;  padding: 5%;
+	border-radius: 3%; box-shadow: 0px 0px 3px red;
+}
+/* 캘린더 상단 메뉴 */
+.cal_top{
+	display: flex; justify-content: center; margin: 5% 0%;
+}
+/* 이전달 , 다음달 버튼 */
+.previousbtn , .nextbtn{
+	background-color: white; border: 1px solid #eeeeee;
+	padding: 5px 20px; color: #ffc0cb; /* 연한 분홍색 */
+	font-size: 20px;
+}
+/* 상단 연도/월 */
+.top_date{
+	font-family: 'RixInooAriDuriR';
+	margin: 0% 3%; color: #ffc0cb; /* 연한 분홍색 */
+}
+/* 데이 구역 */
+.cal_day{
+	display: flex; justify-content: flex-start;
+	flex-wrap: wrap; /* 하위 요소의 사이즈 부족할경우 자동 줄바꿈 */
+}
+/* 데이 */
+.day{
+	display: inline-block;	/* width , height  */
+	border: 1px solid #eeeeee;
+	width: 14%; /* 100/7 = 14.2~% */
+	height: 100px;
+}
+/* 일정박스*/
+.content{
+	background-color: #ffc0cb;
+	color: white;
+	margin: 1%; padding: 1%;
+	/* 내용이 구역 사이즈보다 커졌을때 */
+	white-space : nowrap; /* 자동 줄바꿈 해제 */
+	overflow: hidden;	/* 넘쳤을때 숨김 */
+	text-overflow: ellipsis; /* ... 표시 */
+	max-width: 150px;
+}
+/* 요일 구역 */
+.weekday{
+	height: 30px; text-align: center;
+	background-color: #ffc0cb; font-size: 18px;
+}
+/* 일요일 구역 */
+.sunday{ background-color: red; color: white; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
