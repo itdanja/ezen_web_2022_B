@@ -9,6 +9,7 @@
 ###### 글꼴크기6
 
 
-```
-  
+``` java
+  int a = 10;
+  System.out.println( a );
 ```
