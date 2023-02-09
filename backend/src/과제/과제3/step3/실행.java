@@ -33,7 +33,7 @@ public class 실행 {
 				System.out.println("--- 대여 페이지 ---");
 				System.out.print(" 대여할 도서번호 : "); int bno = scanner.nextInt();
 				
-				if( bookList.get( bno ).state == true ) { // 만약에 입력한 도서인덱스의 도서상태가 true 대여 가능한 상태 
+				if( bookList.get( bno ).state == true ) { // 만약에 입력한 도서인덱스의 도서상태가 true 이면 대여 가능한 상태 
 					System.out.println("[알림] 대여완료"); 
 					bookList.get( bno ).state = false;	// 대여중으로 변경 
 				}else {
@@ -44,7 +44,7 @@ public class 실행 {
 			else if( ch == 2 ) { // * 반납
 				System.out.println("--- 반납 페이지 ---");
 				System.out.println(" 반납할 도서번호 : "); int bno = scanner.nextInt();
-				if( bookList.get( bno ).state == false ) { // 만약에 입력한 도서인덱스의 도서상태가 false 반납가능한상태
+				if( bookList.get( bno ).state == false ) { // 만약에 입력한 도서인덱스의 도서상태가 false 이면 반납가능한상태
 					System.out.println("[알림] 반납완료");
 					bookList.get( bno ).state = true ; // 대여가능 으로 변경 
 				}else {
