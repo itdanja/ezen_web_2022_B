@@ -38,12 +38,45 @@ public class Mcontroller {
 		} // for end 
 		return -2; // for문 다 방문했지만 동일한 아이디 없었다.
 	}
-	// 3. 아이디 찾기 로직
+	// 3. 아이디 찾기 로직  // [ 인수 : 이름[String],전화번호[String]  , 반환 : 찾은아이디[String] ]
+	public String findId( String name , String phone ) {
+		// 입력받은 이름과 전화번호와 일치한 회원찾기
+		// 향상된 for( 타입 반복변수명 : 리스트/배열 ) { }
+		for( Member m : memberDb ) {
+			if( m.name.equals(name) && m.phone.equals(phone) ) {
+				return m.id; // 찾은 아이디를 리턴 
+			}
+		}
+		return null; // 아이디 못찾았다.-> null 리턴 
+	}
 	
 	// 4. 비밀번호 찾기 로직 
 	
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

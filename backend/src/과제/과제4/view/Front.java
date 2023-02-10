@@ -12,6 +12,7 @@ public class Front {
 	// 1. 메인페이지 
 	public void index() {
 		while(true) {
+			System.out.println("━━━━━━━━━━━━━━⊱༻ 이젠 커뮤니티 ༺⊰━━━━━━━━━━━━━━");
 			System.out.print("1.회원가입 2.로그인 3.아이디찾기 4.비밀번호찾기 : ");
 			int ch = scanner.nextInt();
 			if( ch == 1 ) { signup(); }
@@ -55,8 +56,18 @@ public class Front {
 		}
 	}
 	
-	// 4. 아이디 찾기 페이지 
-	void findId() {}
+	// 4. 아이디 찾기 페이지
+	void findId() {
+		System.out.print("이름 : "); 		String name = scanner.next();	// 출력->입력->변수저장
+		System.out.print("전화번호 : ");	String phone =scanner.next();
+		String result = mc.findId(name, phone);	// 함수 호출하는데 이름과 전화번호 전달 하고 함수 결과를 result 변수에 저장 
+		if( result == null ) { // 만약에 찾은 아이디가 없으면 
+			System.out.println("[알림] 일치하는 회원정보가 없습니다.");
+		}else { // 만약에 찾은 아이디가 있으면
+			System.out.println("[알림] 회원님의 아이디 : " + result );
+		}
+	} // 
+	
 	// 5. 비밀번호 찾기 페이지 
 	void findPassword() {}
 }
