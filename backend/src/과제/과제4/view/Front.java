@@ -5,7 +5,9 @@ import java.util.Scanner;
 import 과제.과제4.controller.Mcontroller;
 
 public class Front {
+	
 	Scanner scanner = new Scanner(System.in); // * 입력객체 
+	
 	// 1. 메인페이지 
 	public void index() {
 		while(true) {
@@ -18,11 +20,12 @@ public class Front {
 			else { } 
 		}
 	}
+	
 	// 2. 회원가입 페이지
 	void signup() {
-		System.out.print("아이디 : ");			String id= scanner.next();
+		System.out.print("아이디 : ");		String id= scanner.next();
 		System.out.print("비밀번호 : ");		String pwd=scanner.next();
-		System.out.print("비밀번호 확인 : ");		String confirmpwd=scanner.next();
+		System.out.print("비밀번호 확인 : ");	String confirmpwd=scanner.next();
 		System.out.print("이름 : ");			String name = scanner.next();
 		System.out.print("전화번호 : ");		String phone = scanner.next();
 		Mcontroller mc = new Mcontroller();

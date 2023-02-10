@@ -19,7 +19,6 @@ public class Mcontroller {
 		memberDb.add(member);
 		return 0; // 회원가입 성공 0
 	}
-	
 	// 2. 로그인 로직
 	
 	// 3. 아이디 찾기 로직
