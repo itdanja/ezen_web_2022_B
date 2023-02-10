@@ -7,7 +7,7 @@ import 과제.과제4.controller.Mcontroller;
 public class Front {
 	
 	Scanner scanner = new Scanner(System.in); // * 입력객체 
-	
+
 	// 1. 메인페이지 
 	public void index() {
 		while(true) {
@@ -28,9 +28,11 @@ public class Front {
 		System.out.print("비밀번호 확인 : ");	String confirmpwd=scanner.next();
 		System.out.print("이름 : ");			String name = scanner.next();
 		System.out.print("전화번호 : ");		String phone = scanner.next();
+		
 		Mcontroller mc = new Mcontroller();
-		int result = 
-				mc.signup( id , pwd , confirmpwd , name , phone );
+		
+		int result = mc.signup( id , pwd , confirmpwd , name , phone );
+		
 		if( result == 1 ) {
 			System.out.println("[회원가입 실패]");
 		}else if( result == 0 ) {
@@ -38,12 +40,52 @@ public class Front {
 		}
 	}
 	// 3. 로그인 페이지
-	void login() {}
+	void login() {
+		System.out.println("아이디:");
+		String id = scanner.next();
+		System.out.println("비밀번호:");
+		String pwd = scanner.next();
+		
+		Mcontroller mc = new Mcontroller();
+		int result = mc.login(id, pwd);
+		if( result > 0 ) {
+			// 게시판으로 이동
+		}else if( result == -1 ) {
+			System.out.println("[알림] 비밀번호가 다릅니다.");
+		}else if( result == -2 ) {
+			System.out.println("[알림] 없는 회원 입니다.");
+		}
+	}
 	// 4. 아이디 찾기 페이지 
 	void findId() {}
 	// 5. 비밀번호 찾기 페이지 
 	void findPassword() {}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

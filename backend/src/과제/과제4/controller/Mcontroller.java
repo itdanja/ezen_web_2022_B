@@ -6,7 +6,7 @@ import 과제.과제4.model.Member;
 
 // * 처리/제어 담당
 public class Mcontroller {
-	// * DB 대신할 [ 데이터 저장소 ]
+	// * DB 대신할 리스트 [ 데이터 저장소 ]
 	ArrayList<Member> memberDb = new ArrayList<>();
 	
 	// 1. 회원가입 로직 
@@ -20,10 +20,43 @@ public class Mcontroller {
 		return 0; // 회원가입 성공 0
 	}
 	// 2. 로그인 로직
-	
+	public int login( String id , String pwd ) {
+		
+		// * 모든 멤버들중 동일한 아이디/비밀번호 찾기 
+		for( int i = 0 ; i<memberDb.size() ; i++ ) {
+			// 1.만약에 i번째 회원의 아이디와 입력받은 아이디와 같으면
+			if( memberDb.get(i).id.equals( id ) ) {
+				// 2. 만약에 i번째 회원의 비밀번호와 입력받은 비밀번호가 같으면
+				if( memberDb.get(i).pwd.equals(pwd) ) {
+					return i; // 회원 번호[인덱스] 반환 
+				}else {
+					return -1; // 비밀번호가 틀림
+				}
+			}
+		}
+		return -2; // 아이디가 없음 
+	}
 	// 3. 아이디 찾기 로직
 	
 	// 4. 비밀번호 찾기 로직 
 	
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
