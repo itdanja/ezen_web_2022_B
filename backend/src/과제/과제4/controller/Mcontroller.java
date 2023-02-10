@@ -26,15 +26,17 @@ public class Mcontroller {
 		for( int i = 0 ; i<memberDb.size() ; i++ ) {
 			// 1.만약에 i번째 회원의 아이디와 입력받은 아이디와 같으면
 			if( memberDb.get(i).id.equals( id ) ) {
+				
 				// 2. 만약에 i번째 회원의 비밀번호와 입력받은 비밀번호가 같으면
 				if( memberDb.get(i).pwd.equals(pwd) ) {
 					return i; // 회원 번호[인덱스] 반환 
 				}else {
 					return -1; // 비밀번호가 틀림
 				}
-			}
-		}
-		return -2; // 아이디가 없음 
+				
+			} // if end 
+		} // for end 
+		return -2; // for문 다 방문했지만 동일한 아이디 없었다.
 	}
 	// 3. 아이디 찾기 로직
 	
