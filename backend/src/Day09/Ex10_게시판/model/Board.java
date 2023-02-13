@@ -28,8 +28,7 @@ public class Board {
 	// 3. 메소드 
 	@Override
 	public String toString() {
-		return "Board [title=" + title + ", content=" + content + ", writer=" + writer + ", password=" + password
-				+ ", date=" + date + ", view=" + view + "]";
+		return title +"\t"+writer+"\t"+view+"\t"+date;
 	}
 	public String getTitle() {
 		return title;

@@ -31,7 +31,19 @@ public class Bcontroller {
 		// 3. 결과 반환
 		return true;
 	}
+	// 3. 출력 처리 함수 
+	public ArrayList<Board> print() {
+		// 유효성검사 [ 생략 ] 검색,페이징처리 
+		
+		return boardDb;
+	}
 }
+
+
+
+
+
+
 
 
 

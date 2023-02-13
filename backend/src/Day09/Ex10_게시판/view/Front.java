@@ -1,9 +1,11 @@
 package Day09.Ex10_게시판.view;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
 import Day09.Ex10_게시판.controller.Bcontroller;
+import Day09.Ex10_게시판.model.Board;
 
 public class Front {
 	
@@ -19,8 +21,8 @@ public class Front {
 	
 	// 2. index 함수 
 	public void index() {
-		print_page(); // 출력함수 
 		while( true ) {
+			print_page(); // 출력함수 
 			System.out.print(" 1.쓰기 : ");
 			int ch = scanner.nextInt(); // 지역변수 
 			if( ch == 1 ) { write_page(); } // 쓰기함수
@@ -31,14 +33,10 @@ public class Front {
 	private void write_page() {
 		// 1. 입력받기 
 		System.out.println(" --------- 글 쓰기 페이지 ------------");
-		System.out.println("제목 : ");	
-		String title = scanner.next();
-		System.out.println("내용 : ");	
-		String content = scanner.next();
-		System.out.println("작성자 : ");	
-		String writer = scanner.next();
-		System.out.println("비밀번호 : ");	
-		String password = scanner.next();
+		System.out.print("제목 : ");		String title = scanner.next();
+		System.out.print("내용 : ");		String content = scanner.next();
+		System.out.print("작성자 : ");	String writer = scanner.next();
+		System.out.print("비밀번호 : ");	String password = scanner.next();
 		
 		Date date = new Date();	// 현재 날짜/시간 생성 객체
 		int view = 0;	// 조회수는 0부터 시작 
@@ -59,6 +57,13 @@ public class Front {
 	// 4. 출력 페이지 함수 
 	private void print_page() {
 		
+		ArrayList<Board> result
+			= Bcontroller.getInstance().print();
+		
+		System.out.println("번호\t제목\t작성자\t조회수\t작성일");
+		for( int i = 0 ; i< result.size() ; i++ ) {
+			System.out.println( i+"\t" + result.get(i).toString() );
+		}
 	}
 	
 }
