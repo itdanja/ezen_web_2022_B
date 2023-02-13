@@ -1,4 +1,4 @@
-package Day09.Ex9;
+package Day09.Ex9_싱글톤;
 
 public class 실행 {
 	
