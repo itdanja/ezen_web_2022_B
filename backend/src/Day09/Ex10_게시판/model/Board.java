@@ -1,7 +1,6 @@
 package Day09.Ex10_게시판.model;
 
 import java.util.Date;
-
 /*
  	클래스 model 클래스 만들기
  		1. 필드 선정 [ * private 권장 ]
