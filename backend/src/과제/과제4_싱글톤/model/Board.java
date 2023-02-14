@@ -4,6 +4,7 @@ package 과제.과제4_싱글톤.model;
  	model 관계
  		1. 한명의 회원이 글 작성한다.		[ object ]
  		2. 회원은 여러개의 글을 작성할수 있다.[ ArrayList ]
+ 		* 양방향 설정 [ * toString메소드 사용 불가 ]
  */
 
 public class Board {

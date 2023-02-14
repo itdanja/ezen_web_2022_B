@@ -6,6 +6,13 @@ import 과제.과제4_싱글톤.model.Board;
 
 public class Bcontroller {
 	
+	// * 싱글톤 
+	private static Bcontroller bc = new Bcontroller();
+	private Bcontroller() {}
+	public static Bcontroller getInstance() { return bc; }
+	
+	
+	// 필드 
 	private ArrayList<Board> boardDB = new ArrayList<>();
 	
 	// 1. 글쓰기
