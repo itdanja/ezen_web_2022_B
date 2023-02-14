@@ -25,18 +25,22 @@ public class Bcontroller {
 	}
 	// 2. 글출력
 	public ArrayList<Board> getList(){
-		return null;
+		// 추후에 검색처리 , 페이징처리 등등 로직이 들어갈 예정
+		return boardDB;
 	}
 	// 3. 글상세
 	public Board getBoard( int bno ) {
-		return null;
+		return boardDB.get(bno);	// 인수로 전달받은 인덱스[게시물의번호]의 게시물을 반환 
 	}
 	//4. 글삭제 
 	public boolean delete( int bno ) {
+		boardDB.remove( bno );	// 인수로 전달받은 인덱스[게시물번호]의 게시물을 삭제 
 		return true;
 	}
 	// 5.글수정
 	public boolean update( int bno , String title , String content) {
+		boardDB.get(bno).setTitle(title);	// 인수로 전달받은 인덱스[게시물번호]의 게시물 제목 수정 
+		boardDB.get(bno).setContent(content); // 인수로 전달받은 인덱스[게시물번호]의 게시물 내용 수정 
 		return true;
 	}
 }
