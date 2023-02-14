@@ -6,8 +6,21 @@ import 과제.과제4_싱글톤.model.Board;
 
 public class Bcontroller {
 	
+	private ArrayList<Board> boardDB = new ArrayList<>();
+	
 	// 1. 글쓰기
 	public boolean write( String title , String content ) {
+		// 1. 유효성검사한다.[ 로그인이 안되어 있는경우 false ]
+		if( Mcontroller.getInstance().getLogSession() == null ) {
+			return false;
+		}
+		// 2. DB 저장 
+			// 1. 객체화 [ 글작성 : 입력받은 데이터2개 , 초기값 0 , 로그인한 회원 객체 = 글쓴이 ]
+		Board board = new Board( title, content, 0, Mcontroller.getInstance().getLogSession() );
+			// 2. db에 저장
+		boardDB.add(board);
+			// 3. 멤버객체에 내가 쓴글 등록 
+		Mcontroller.getInstance().getLogSession().getBoardlist().add(board);
 		return true;
 	}
 	// 2. 글출력

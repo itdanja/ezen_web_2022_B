@@ -17,7 +17,7 @@ public class Member {
 	private String name;
 	private String phone;
 	// 한명의 회원[객체]가 여러개의 board객체를 가질수 있다.
-	private ArrayList<Board> boardlist;
+	private ArrayList<Board> boardlist ;
 	
 	// 2. 생성자
 	public Member() {}
