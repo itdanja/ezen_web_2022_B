@@ -89,7 +89,7 @@ public class Front {
 				i++;
 			}
 			// 메뉴 
-			System.out.println("1.쓰기 2.글보기 3.로그아웃 ");
+			System.out.print("1.쓰기 2.글보기 3.로그아웃 ");
 			int ch2 = scanner.nextInt();
 			if( ch2 == 1 ) { write_page(); }
 			else if( ch2 == 2 ) { view_page(); }
@@ -114,22 +114,40 @@ public class Front {
 		System.out.println(" 제목 : "+ result.getTitle() );
 		System.out.println(" 작성자 : "+ result.getMember().getId() +" \t 조회수 : " + result.getView());
 		System.out.println(" 내용 : "+ result.getContent()  );
-		System.out.println(" 1.삭제 2.수정 3.뒤로가기 ");
+		System.out.print(" 1.삭제 2.수정 3.뒤로가기 ");
 		int ch3 = scanner.nextInt();
-		if( ch3 == 1 ) {}
-		else if( ch3 == 2 ) {}
+		if( ch3 == 1 ) { delete_page( bno ); }
+		else if( ch3 == 2 ) { update_page( bno );}
 		else if( ch3 == 3 ) { return; }
+	} // end 
+	
+	// 9. 게시물 삭제 페이지 
+	public void delete_page( int bno ) {
+		// 1.유효성검사 [ 해당 글의 작성자 와 현재 로그인된 회원과 같으면 ]
+		if( Bcontroller.getInstance().getBoard(bno).getMember().equals( 
+				Mcontroller.getInstance().getLogSession()  )
+				) {
+			Bcontroller.getInstance().delete(bno);
+			System.out.println(" [알림] 삭제가 되었습니다. ");
+			return;
+		}
+		// 2.
+		System.out.println(" [알림] 삭제 권한이 없습니다. ");
 	}
-	// 9. 게시물 수정 페이지 
-	public void update_page() {}
+	// 10. 게시물 수정 페이지 
+	public void update_page( int bno ) {
+		if( Bcontroller.getInstance().getBoard(bno).getMember().equals(
+				Mcontroller.getInstance().getLogSession() )
+				) {
+			System.out.print(" 새로운 제목 : ");	String title = scanner.next();
+			System.out.print(" 새로운 내용 : ");	String content = scanner.next();
+			Bcontroller.getInstance().update(bno, title, content);
+			System.out.println(" [알림] 수정이 되었습니다. ");
+			return;
+		}
+		System.out.println(" [알림] 수정 권한이 없습니다. ");
+	}
 }
-
-
-
-
-
-
-
 
 
 

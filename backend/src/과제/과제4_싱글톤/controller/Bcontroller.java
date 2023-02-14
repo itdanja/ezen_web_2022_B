@@ -37,6 +37,8 @@ public class Bcontroller {
 	}
 	// 3. 글상세
 	public Board getBoard( int bno ) {
+		boardDB.get(bno).setView( 
+				boardDB.get(bno).getView()+1 ); // 조회수 증가 
 		return boardDB.get(bno);	// 인수로 전달받은 인덱스[게시물의번호]의 게시물을 반환 
 	}
 	//4. 글삭제 
