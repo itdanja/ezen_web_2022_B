@@ -82,6 +82,16 @@ public class Front {
 		while( true ) { // 무한루프 [ 종료조건 : 3 입력시 break; ] 
 			System.out.println("---------- 커뮤니티 -----------");
 			System.out.println("번호\t조회수\t작성자\t제목");
+			
+			// * 내가 쓴글 제목만 출력할경우
+			for( int j = 0 ; 
+					j< Mcontroller.getInstance().getLogSession().getBoardlist().size() ; 
+					j++ ) {
+				Board temp = Mcontroller.getInstance().getLogSession().getBoardlist().get(j);
+				// System.out.println( temp ); 			// 순환참조 걸린다.
+				System.out.println( temp.getTitle() );  // 순환참조 안걸린다.
+			}
+			
 			// 출력부 [ 전체출력 ]
 			int i = 0; // 인덱스 용도 
 			for( Board b : Bcontroller.getInstance().getList() ) { // 컨트롤 누른상태 -> 함수 클릭 
