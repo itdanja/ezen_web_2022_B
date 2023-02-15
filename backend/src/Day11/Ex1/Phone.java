@@ -1,6 +1,6 @@
 package Day11.Ex1;
 
-public class Phone {
+public class Phone{
 	// 클래스 멤버
 		// 1. 인스턴스 멤버 : 객체를 이용한 멤버 
 			// 클래스명 객체명 = new 생성자() ---> 객체명.멤버
@@ -13,7 +13,16 @@ public class Phone {
 	public String color;
 		// 2. 생성자	: 객체 생성시 초기화 담당 [ 지역변수 ]
 			// 접근제한자 클래스명( 매개변수1, 매개변수2 ) { }
-	
+			// * 생성자가 1개도 없을때 기본생성자 자동 추가
+			// * 생성자가 1개 이상이면 기본생성자 직접 추가 
+	public Phone() {
+		
+	}
+	public Phone( String model , String color) {
+		this.model = model;
+		this.color = color;
+		System.out.println("--부모클래스 생성자 실행");
+	}
 		// 3. 메소드 	: 객체의 행위 [ 지역변수 ]
 			// 접근제한자 (static/final) 반환타입 메소드명( 매개변수1, 매개변수2 ) { }
 	

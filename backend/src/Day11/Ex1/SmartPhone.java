@@ -11,8 +11,8 @@ public class SmartPhone extends Phone {
 		// TODO Auto-generated constructor stub
 	}
 	public SmartPhone(String model , String color) {
-		this.model = model;
-		this.color = color;
+		super( model , color ); // 생략 가능( 자동 추가 )
+		System.out.println("--자식클래스 생성자 실행");
 	}
 	
 	// 3. 메소드
