@@ -12,7 +12,6 @@ public class 실행 {
 			child.job ="방송인";
 		
 		// --------- 자동 변환 -------------
-		
 		// 2. 자식 객체를 부모 객체로 이동[타입 변환 ]
 		Parent parent = child;
 		// 3. 
