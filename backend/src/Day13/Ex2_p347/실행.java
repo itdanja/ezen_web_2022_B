@@ -4,6 +4,7 @@ public class 실행 {
 	
 	public static void main(String[] args) {
 		
+		// - 인터페이스 상수 호출 
 		System.out.println("리모콘 최대 볼륨 : " + RemoteControl.MAX_VOLUME );
 		System.out.println("리모콘 최소 볼륨 : " + RemoteControl.MIN_VOLUME );
 		
@@ -28,7 +29,7 @@ public class 실행 {
 		rc.setMute(true);
 		rc.setMute(false);
 		
-		// 5. 정적 메소드 호출 
+		// 5. 인터페이스 정적 메소드 호출 
 		RemoteControl.changeBattery();
 		
 	}
