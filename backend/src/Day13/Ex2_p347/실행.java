@@ -24,6 +24,12 @@ public class 실행 {
 		rc.setVolume( 5 );
 		rc.turnOff();
 		
+		// 4. 디폴트 메소드  호출
+		rc.setMute(true);
+		rc.setMute(false);
+		
+		// 5. 정적 메소드 호출 
+		RemoteControl.changeBattery();
 		
 	}
 

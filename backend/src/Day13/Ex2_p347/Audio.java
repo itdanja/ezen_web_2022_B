@@ -26,4 +26,42 @@ public class Audio implements RemoteControl {
 		}
 		System.out.println("현재 Audio 볼륨 : " + this.volume ); // 현재소음 출력 
 	}
+	
+	// p.355 추가 내용
+	
+	// 필드 
+	private int memoryVolume;	// 추가 필드 선언 
+		// 음소거 하기전에 기존 소음을 저장하는 변수 
+	@Override // 디폴트 메소드 오버라이딩
+	public void setMute(boolean mute) {
+		
+		if( mute ) {
+			this.memoryVolume = this.volume;
+			System.out.println(" 무음 처리 합니다. ");
+			setVolume( RemoteControl.MIN_VOLUME );
+		}else {
+			System.out.println(" 무음 해제 합니다. ");
+			// 기존 소음 가져오기 
+			setVolume( this.memoryVolume );
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
+
+
+
+
+
+
+
+
