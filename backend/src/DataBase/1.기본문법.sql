@@ -201,12 +201,12 @@ drop database jsp;
 			null , '컴퓨터' , null 
 		4. 테이블 확인 
         5. 데이터베이스 삭제 
-    
 */
-
-
-
-
-
-
-
+create database spring;
+use spring;
+create table product( pno int , pname varchar(20) , pprice int );
+insert into product( pno , pname , pprice ) values ( 1 , '냉장고' , 200000) ;
+insert into product values ( 2 , '선풍기' , 300000 );
+insert into product( pname ) values( '컴퓨터');
+select * from product;
+drop database spring;
