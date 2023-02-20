@@ -1,11 +1,12 @@
 package Day06.Ex6_비회원게시판_배열버전;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.Scanner;
 
 public class Step5 { // class s // step5 : 문자열 분리[split]해서 출력하기 
-	public static void main(String[] args) throws Exception { // main s  
+	public static void main(String[] args) throws Exception  { // main s  
 		Scanner scanner = new Scanner(System.in); 
 		while( true ) {
 			FileInputStream fin = new FileInputStream("c:/java/board.txt");
