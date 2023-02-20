@@ -48,12 +48,13 @@ public class Ex5_DB연동2 {
 					 // *
 					 ps.executeUpdate();
 				 }
-				 
 			 }catch ( InputMismatchException e) { // 2. try{} 에서 예외 발생하면 실행되는 코드 
-				System.out.println(" [알수없는] 번호 입니다. ");
+				System.out.println(" [알수없는] 입력 입니다. ");
 				scanner = new Scanner(System.in); // 기존에 입력된 데이터를 제거 
 			 }catch ( SQLException e ) {
 				 System.out.println(" [SQL 오류 : " + e );
+			 }catch ( Exception e) {
+				System.out.println(" [ DB 연결 후 다시 실행 ]");
 			 }
 			 
 		 }
