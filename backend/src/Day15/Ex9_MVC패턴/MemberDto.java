@@ -1,15 +1,15 @@
 package Day15.Ex9_MVC패턴;
 
-public class BoardDto {
+public class MemberDto {
 	// 1. 필드 [ DB 테이블의 필드와 일치화 ]
 	private int mno;
 	private String mid;
 	private String mpw;
 	
 	// 2. 생성자 [ 무조건 : 1.빈생성자 2.풀생성자 ]
-	public BoardDto() { }
+	public MemberDto() { }
 	
-	public BoardDto(int mno, String mid, String mpw) {
+	public MemberDto(int mno, String mid, String mpw) {
 		super();
 		this.mno = mno;
 		this.mid = mid;

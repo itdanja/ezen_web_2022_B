@@ -8,3 +8,7 @@ create table member(
     mid varchar(20),					-- 회원아이디 [ 최대 20글자 저장 ]
     mpw varchar(20)						-- 회원비밀번호 [ 최대 20글자 저장 ]
 );
+
+-- SQL 처리 구문 
+-- 회원가입 
+String sql = "insert into member ( mid , mpw ) values ( ? , ? )";
