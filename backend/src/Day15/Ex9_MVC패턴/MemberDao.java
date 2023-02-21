@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class MemberDao {
 
@@ -47,6 +48,9 @@ public class MemberDao {
 		return false; // try{} 문제가 있으면 실행되는 구역 -> 저장 실패
 	}
 	//////////////////// ------------------------------------- ////////////////////////////////
+	
+	// 2. 모든 회원 출력 [ 인수 : x 		반환 : 여러명[ ArrayList vs 배열 ] 회원정보[Member] ]
+	public ArrayList<MemberDto> list() { return null ; }
 	
 }
 
