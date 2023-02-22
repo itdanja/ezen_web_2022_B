@@ -49,7 +49,24 @@ public class ProductDao {
 		}catch (Exception e) {System.out.println(e);}
 		return null;
 	}
+	// 3. 제품 수정 [ 이름 , 가격 ] 인수 : 제품번호[누구의] , 새로운이름 , 새로운가격 / 반환 : true or false
+	public boolean update( int pno , String pname , int pprice  ) {
+		String sql ="update product set pname = ? , pprice = ? where pno = ?";
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString( 1 , pname );
+			ps.setInt( 2 , pprice );
+			ps.setInt( 3 , pno );
+			ps.executeUpdate();
+			return true;
+		}catch (Exception e) {System.out.println(e);}
+		return false;
+	}// 
+	
 }
+
+
+
 
 
 

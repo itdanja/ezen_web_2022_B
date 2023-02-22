@@ -16,8 +16,12 @@ public class Controller {
 		return result; // 3.결과 리턴 
 	}
 	// 2. 
-	public ArrayList<ProductDto> getProductAll(){
+	public ArrayList<ProductDto> getProductAll(){ 
 		return ProductDao.getInstance().getProductAll();
+	}
+	// 3. 
+	public boolean update( int pno , String pname , int pprice ) {
+		return ProductDao.getInstance().update(pno, pname, pprice);
 	}
 	
 }

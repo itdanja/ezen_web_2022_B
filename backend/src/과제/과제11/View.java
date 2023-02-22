@@ -18,7 +18,7 @@ public class View {
 				int ch = scanner.nextInt();
 				if( ch == 1 ) { regist(); }
 				else if( ch == 2 ) { getProductAll(); }
-				else if( ch == 3 ) {}
+				else if( ch == 3 ) { update(); }
 				else if( ch == 4 ) {}
 				else if( ch == 5 ) {}
 			}catch ( InputMismatchException e) {
@@ -49,6 +49,16 @@ public class View {
 			System.out.printf("%3d \t %10s \t %10d \t %10d \n" , 
 					dto.getPno() , dto.getPname() , dto.getPprice() , dto.getPstock() );
 		}
+	}
+	// 3.
+	public void update() {
+		System.out.println("------ 제품 수정 ------ ");
+		System.out.print(" >> 수정할 제품번호 : ");	int pno = scanner.nextInt();
+		System.out.print(" >> 수정할 제품이름 : ");	String pname = scanner.next();
+		System.out.print(" >> 수정할 제품가격 : ");	int pprice = scanner.nextInt();
+		boolean result=  Controller.getInstance().update(pno, pname, pprice);
+		if( result ) { System.out.println("[수정성공]") ;}
+		else { System.out.println("[수정실패]");}
 	}
 	
 	
