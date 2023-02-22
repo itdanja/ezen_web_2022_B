@@ -6,7 +6,7 @@ public class Controller {
 	// 싱글톤
 	private static Controller con = new Controller();
 	private Controller() {}
-	public static Controller getInController() { return con; }
+	public static Controller getInstance() { return con; }
 	
 	// 1. 회원가입
 	public boolean signup( String mid , String mpw ) {
@@ -26,10 +26,22 @@ public class Controller {
 		return result;
 	}
 	// 3. 비밀번호 수정
-	public boolean update( int mno , String mpw ) { return false; }
-	
-	
+	public boolean update( int mno , String mpw ) { 
+		return MemberDao.getInstance().update(mno, mpw);
+	}
+	// 4. 회원 삭제 
+	public boolean delete( int mno ) { return MemberDao.getInstance().delete(mno); }
 }
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -95,6 +95,18 @@ public class MemberDao {
 		}catch (Exception e) { System.out.println("DB 오류 : " + e); }
 		return false;
 	}
+	
+	// 4. 회원 삭제 [ 인수 : 누구의 회원[mno]을 삭제할껀지 / 반환 : 성공[true] 실패[false]  ]
+	public boolean delete( int mno ) {
+		String sql = "delete from member where mno = ? "; // 1. 
+		try {
+			ps = conn.prepareStatement(sql); // 2.
+			ps.setInt( 1 , mno ); // 3.
+			ps.executeUpdate();	// insert , update , delete  	// 4.
+			return true; 	// 5.
+		}catch (Exception e) { System.out.println("DB 오류 : " + e); }
+		return false;
+	}
 }
 
 
