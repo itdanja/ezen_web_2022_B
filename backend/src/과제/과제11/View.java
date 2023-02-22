@@ -1,5 +1,6 @@
 package 과제.과제11;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -16,7 +17,7 @@ public class View {
 				System.out.print("1.등록[C] 2.출력[R] 3.수정[U] 4.재고수정[U] 5.삭제[D] : ");
 				int ch = scanner.nextInt();
 				if( ch == 1 ) { regist(); }
-				else if( ch == 2 ) {}
+				else if( ch == 2 ) { getProductAll(); }
 				else if( ch == 3 ) {}
 				else if( ch == 4 ) {}
 				else if( ch == 5 ) {}
@@ -29,6 +30,7 @@ public class View {
 		}
 	} // index end 
 	
+	// 1. 
 	public void regist() {
 		System.out.println(" >>>> 제품 등록 페이지 >>>> ");
 		System.out.print(">제품명 : ");	String pname =scanner.next();
@@ -39,6 +41,18 @@ public class View {
 		if( result ) { System.out.println("[[제품등록]]");}
 		else { System.out.println("[[등록실패]]");}
 	}
+	// 2. 
+	public void getProductAll() {
+		System.out.printf("%3s \t %10s \t %10s \t %10s \n" , "번호" , "제품명" , "가격","재고");
+		ArrayList<ProductDto> result = Controller.getInstance().getProductAll(); // 1. 컨트롤에게 모든 제품 요청해서 저장 
+		for( ProductDto dto : result  ){ // 2. 반환된 리스트를 반복문
+			System.out.printf("%3d \t %10s \t %10d \t %10d \n" , 
+					dto.getPno() , dto.getPname() , dto.getPprice() , dto.getPstock() );
+		}
+	}
+	
+	
+	
 	
 }
 

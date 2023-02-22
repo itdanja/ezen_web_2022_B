@@ -1,5 +1,7 @@
 package 과제.과제11;
 
+import java.util.ArrayList;
+
 public class Controller {
 	private static Controller con = new Controller();
 	private Controller() {}
@@ -13,9 +15,16 @@ public class Controller {
 		boolean result = ProductDao.getInstance().regist(dto); //2.DB 요청 과 결과를 저장 
 		return result; // 3.결과 리턴 
 	}
-	
+	// 2. 
+	public ArrayList<ProductDto> getProductAll(){
+		return ProductDao.getInstance().getProductAll();
+	}
 	
 }
+
+
+
+
 
 
 
