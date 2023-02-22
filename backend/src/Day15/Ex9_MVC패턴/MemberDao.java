@@ -49,8 +49,36 @@ public class MemberDao {
 	}
 	//////////////////// ------------------------------------- ////////////////////////////////
 	
-	// 2. 모든 회원 출력 [ 인수 : x 		반환 : 여러명[ ArrayList vs 배열 ] 회원정보[Member] ]
-	public ArrayList<MemberDto> list() { return null ; }
+	// 2. 모든 회원 출력 [ 인수 : x 		반환 : [ 배열 vs ArrayList ] 회원 = dto객체  ]
+	public ArrayList<MemberDto> list() { 
+		// * 여러명의 회원Dto 객체 를 저장하기 위한 리스트 선언 
+		ArrayList<MemberDto> list = new ArrayList<>();
+		// 1. SQL 작성 
+		String sql = "select * from member";
+		// 2. 연결된 DB에 작성된 SQL 대입 [ * 예외처리 
+		try {
+			ps = conn.prepareStatement(sql);
+		// 3. SQL 조작 [ 매개변수 없으면 패스~ ] 
+		// 4. SQL 실행 [ SQL 결과를 rs 인터페이스에 저장 ] 
+			rs = ps.executeQuery(); // 결과 : 검색된 모든 레코드 
+		// 5. SQL 결과 
+			// 레코드 --자바형태--> 객체 DTO // 레코드1개 -> DTO 1개 -> 회원 1개
+			while( rs.next() ) { // rs.next() : 다음 레코드 이동 [ 없으면 false ] // 마지막 레코드까지 무한루프
+				
+				// 레코드 1개 --> 객체화 1개 [ rs.get~~(필드순서번호) ] 
+				MemberDto dto = new MemberDto(
+						rs.getInt(1), rs.getString(2), rs.getString(3) );
+				System.out.println( "회원 마다 : " + dto );
+				// 1개 객체 --> 리스트 담기 
+				list.add(dto);
+			}
+			System.out.println( "회원 목록 : " + list.toString() );
+			return list; 
+			
+		}catch (Exception e) { System.out.println("DB 오류 : " + e); }
+		return null;
+	}
+	
 	
 }
 
