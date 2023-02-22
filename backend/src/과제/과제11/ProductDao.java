@@ -61,7 +61,30 @@ public class ProductDao {
 			return true;
 		}catch (Exception e) {System.out.println(e);}
 		return false;
-	}// 
+	}
+	// 4. 재고 수정 [ 인수 : 제품번호[누구의] , 새로운재고 / 반환 : true or false ]  
+	public boolean stockUpdate( int pno , int pstock) {
+		String sql = "update product set pstock = ? where pno = ?";
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt( 1 , pstock );
+			ps.setInt( 2 , pno );
+			ps.executeUpdate();
+			return true;
+		}catch (Exception e) {System.out.println(e);}
+		return false;
+	}
+	// 5. 제품 삭제 [ 인수 : 제품번호[누구의] / 반환 : true or false ]
+	public boolean delete( int pno ) {
+		String sql = "delete from product where pno = ?";
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt( 1 , pno);
+			ps.executeUpdate();
+			return true;
+		}catch (Exception e) {System.out.println(e);}
+		return false;
+	}
 	
 }
 

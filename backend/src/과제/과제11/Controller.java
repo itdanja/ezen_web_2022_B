@@ -23,6 +23,15 @@ public class Controller {
 	public boolean update( int pno , String pname , int pprice ) {
 		return ProductDao.getInstance().update(pno, pname, pprice);
 	}
+	// 4.
+	public boolean stockUpdate( int pno , int pstock) {
+		return ProductDao.getInstance().stockUpdate(pno, pstock);
+	}
+	// 5.
+	public boolean delete( int pno ) {
+		return ProductDao.getInstance().delete(pno);
+	}
+	
 	
 }
 

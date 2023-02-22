@@ -19,8 +19,8 @@ public class View {
 				if( ch == 1 ) { regist(); }
 				else if( ch == 2 ) { getProductAll(); }
 				else if( ch == 3 ) { update(); }
-				else if( ch == 4 ) {}
-				else if( ch == 5 ) {}
+				else if( ch == 4 ) { stockUpdate();}
+				else if( ch == 5 ) { delete();}
 			}catch ( InputMismatchException e) {
 				System.out.println("잘못된 입력입니다.");
 				scanner = new Scanner(System.in); // 입력값 초기화 
@@ -61,10 +61,46 @@ public class View {
 		else { System.out.println("[수정실패]");}
 	}
 	
+	// 4.
+	public void stockUpdate() {
+		System.out.println("------ 재고 수정 ------ ");
+		System.out.print("제품번호 : ");		int pno =scanner.nextInt();
+		System.out.print("수정할 재고량 : "); 	int pstock = scanner.nextInt();
+		
+		boolean result = Controller.getInstance().stockUpdate(pno, pstock);
+		if( result ) { System.out.println("[재고수정 완료]");} 
+		else { System.out.println("[재고수정 실패]");}
+	}
+	// 5. 
+	public void delete() {
+		System.out.println("------ 제품 삭제 ------ ");
+		System.out.print("제품번호 : ");		int pno = scanner.nextInt();
+		
+		boolean result = Controller.getInstance().delete(pno);
+		if( result ) { System.out.println("[삭제 성공]");}
+		else { System.out.println("[삭제 실패]");}
+		
+	}
 	
 	
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
