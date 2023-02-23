@@ -1,5 +1,6 @@
 package Day17;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -84,6 +85,46 @@ public class Ex2_p532 {
 		System.out.println( "분 차 : " + ( 시작일.until( 종료일, ChronoUnit.MINUTES )) );
 		System.out.println( "초 차 : " + ( 시작일.until( 종료일, ChronoUnit.SECONDS )) );
 		
+		// 6.
+		double num = 1234567.89;
+		DecimalFormat df;
+		// * 천단위 쉼표 만들기
+		df = new DecimalFormat("#,###");
+		System.out.println( df.format(num) );
+		
+		// * 무조건 소수 첫째 자리 표기 [ 없으면 0 ]
+			// 0 : 만일 숫자가 없는 자리면 0 채움
+			// # : 만일 숫자가 없는 자리면 공백
+		df = new DecimalFormat("#,###.0");
+		System.out.println( df.format( 123456.7 ) );
+		System.out.println( df.format( 123456 ));
+		
+		// * 금액의 천단위 쉼표 : #,##0
+		df = new DecimalFormat("#,##0원");
+		System.out.println( df.format( 123456 ));
+		System.out.println( df.format( 3 ) );
+		
+		
+		// 2. SimpleDateFormat( 패턴 )
+		Date date = new Date();
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		System.out.println( dateFormat.format(date) );
+		
+		dateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
+		System.out.println( dateFormat.format(date) );
+		
+		dateFormat = new SimpleDateFormat("yyyy.MM.dd a HH:mm:ss");
+		System.out.println( dateFormat.format(date) );
+		
+		dateFormat = new SimpleDateFormat(" 오늘은 E 요일");
+		System.out.println( dateFormat.format(date) );
+		
+		dateFormat = new SimpleDateFormat("[연] 오늘은 D번째 날");
+		System.out.println( dateFormat.format(date) );
+		
+		dateFormat = new SimpleDateFormat("[월] 오늘은 d번째 날");
+		System.out.println( dateFormat.format(date) ); 
 		
 		
 	}
