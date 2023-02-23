@@ -218,6 +218,26 @@ insert into maddr select mid , maddr from member limit 5;
 select * from maddr;
 select last_insert_id();
 
+-- update 
+	-- update 테이블명 set 필드명 = 수정할값 where 조건식 
+	-- 1. 해당 테이블에서 주소가 서울 이면 'seoul'
+    select * from member;
+    update member set maddr = 'seoul' where maddr = '서울'; 		-- 오류1 [ char(2) : 최대 2글자  ] 
+    -- 오류2 워크벤치에서  update,delete 기본적으로 사용 불가능 
+		-- 메뉴 -> edit -> preferences ->  사이드메뉴 SQL editor 선택 -> 가장 아래 safe updates 체크 해제
+    update member set maddr = 'se' where maddr = '서울';
+	update member set mnumber = mnumber/3;		-- 연산 가능 
+    update member set maddr = '안산';			-- 조건[where] 없을경우 전체 변경 
+
+-- delete 
+	-- delete from 테이블명 where 조건식 
+    -- * 만일 관계테이블 일 경우 다른 테이블에서 fk필드로 사용된 레코드는 삭제 불가능 [ * 제약조건 ]
+    -- 1. 만약에 핑크가 포함된 이름 삭제 
+    delete from member where mname like '%핑크%';	-- ??? 오류 [ 관계가 있는 테이블에서 pk필드가 포함된 레코드 삭제불가능  ]
+    delete from member where mname = '잇지';			-- ??? 성공 [ 관계가 있는 테이블에서 fk필드가 없을 경우 pk필드 삭제 가능 ]
+    
+    
+
 /*
 	연산자
 		1. 산술연산자	:	+더하기	-빼기	*곱하기 	/나누기 	div몫 mod나머지
