@@ -77,5 +77,34 @@ INSERT INTO member VALUES('APN', '에이핑크', 6, '경기', '031', '77777777',
 INSERT INTO member VALUES('SPC', '우주소녀', 13, '서울', '02', '88888888', 162, '2016.02.25');
 INSERT INTO member VALUES('MMU', '마마무', 4, '전남', '061', '99999999', 165, '2014.06.19');
 select * from member;
-
+-- ------------------------------
+drop table if exists buy;
+create table buy(
+	bnum int auto_increment primary key ,	-- 1.구매번호 
+		-- auto_increment : 레코드 추가시 자동번호 부여 [ 무조건 pk 필드만 가능 ]
+	mid char(8) , 						-- 2.구매한 회원     [ 외래키 ]
+    bpname char(6) not null , 			-- 3. 제품 이름
+    bgname char(4) , 					-- 4. 분류명 
+    bprice int not null , 				-- 5. 가격 
+    bamout smallint not null,			-- 6. 수량
+    foreign key( mid ) references member(mid) -- 관계 
+    -- 외래키설정필드( 현재테이블의 필드명 ) 참조하다 PK위한테이블명( PK필드명 )
+    -- foreign key( 외래키 ) :  외래키 설정 
+    -- references : 다른 곳에 참조하다
+);
+select * from buy;
+-- 예제 레코드 추가 
+INSERT INTO buy VALUES(NULL, 'BLK', '지갑', NULL, 30, 2);
+INSERT INTO buy VALUES(NULL, 'BLK', '맥북프로', '디지털', 1000, 1);
+INSERT INTO buy VALUES(NULL, 'APN', '아이폰', '디지털', 200, 1);
+INSERT INTO buy VALUES(NULL, 'MMU', '아이폰', '디지털', 200, 5);
+INSERT INTO buy VALUES(NULL, 'BLK', '청바지', '패션', 50, 3);
+INSERT INTO buy VALUES(NULL, 'MMU', '에어팟', '디지털', 80, 10);
+INSERT INTO buy VALUES(NULL, 'GRL', '혼공SQL', '서적', 15, 5);
+INSERT INTO buy VALUES(NULL, 'APN', '혼공SQL', '서적', 15, 2);
+INSERT INTO buy VALUES(NULL, 'APN', '청바지', '패션', 50, 1);
+INSERT INTO buy VALUES(NULL, 'MMU', '지갑', NULL, 30, 1);
+INSERT INTO buy VALUES(NULL, 'APN', '혼공SQL', '서적', 15, 1);
+INSERT INTO buy VALUES(NULL, 'MMU', '지갑', NULL, 30, 4);
+select * from buy;
 
