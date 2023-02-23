@@ -235,7 +235,14 @@ select last_insert_id();
     -- 1. 만약에 핑크가 포함된 이름 삭제 
     delete from member where mname like '%핑크%';	-- ??? 오류 [ 관계가 있는 테이블에서 pk필드가 포함된 레코드 삭제불가능  ]
     delete from member where mname = '잇지';			-- ??? 성공 [ 관계가 있는 테이블에서 fk필드가 없을 경우 pk필드 삭제 가능 ]
-    
+
+
+
+
+
+
+
+
     
 
 /*
@@ -260,6 +267,43 @@ select last_insert_id();
         count( 필드명 ) 	: 해당 필드내 데이터 수 [null 미포함 ]	
 		count( * ) 		: 레코드 수  [ null 포함 ] 
 */
+
+
+-- 타입 확인 
+drop table if exists testtype;
+create table testtype( 
+	tinyint_col tinyint , 		-- 1바이트 +-128 저장 
+    smallint_col smallint , 	-- 2바이트 +-3만정도 저장 
+    int_col	int	,				-- 4바이트 +-21억정도 저장 
+    int_col2 int unsigned,		-- 4바이트 + 43억정도 저장 [ unsigned : 음수사용x : 음수용량 -> 양수용량증가 ]
+    bigint_col bigint,			-- 8바이트 +-21억이상 저장  
+    char_col char( 10 ),		-- char( 길이 )		: 고정길이 [ 1~255 ] 저장 
+    varchar_col varchar(10),	-- varchar( 길이 )	: 가변길이 [ 1~16383] 저장 *버전 mysql 5.0 이상 
+    text_col text,				-- 1~65535 글자 저장 
+	longtext_col longtext , 	-- 1~ 42억 정도 글자 저장 
+	float_col float	,			-- 소수점 7자리 저장 
+    double_col double ,			-- 소수점 15자리 저장 
+    date_col date ,				-- 날짜 저장 [ yyyy - MM - dd ]
+    time_col time ,				-- 시간 저장 [ hh : mm : ss ]
+    datetime_col datetime		-- 날짜/시간 저장 [ yyyy-MM-dd hh:mm:ss ]
+);
+select * from testtype;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
