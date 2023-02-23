@@ -137,9 +137,86 @@ select * from buy;
     select * from member where mname like '우_'	;		-- '우' 로 시작하는 두글자 찾기 
     select * from member where mname like '__우'	;		-- '우' 로 끝나는 세글자 찾기 
     select * from member where mname like '_우_';		-- 세글자 중 가운데 글자가 '우'인 문자 찾기 
-    select mnumber , mnumber+1 , mnumber-1 , mnumber*2 , mnumber/2 , mnumber div 2 , mnumber mod 2
+    select 	mnumber 원본필드 , mnumber+1 as 더하기 ,  mnumber-1 빼기, 
+			mnumber*2 곱하기 , mnumber/2 나누기 , mnumber div 2 몫 , mnumber mod 2 나머지
     from member;
+    select mnumber * mheight 멤버키점수 from member;
+
+-- 5. select * from 테이블명 order by 정렬기준필드
+	-- select * from 테이블명 where 조건 order by 정렬기준
+    -- 다중정렬 : 앞 정렬 후  동일한 데이터가 있을경우 하위 정렬
+		-- select * from 테이블명 order by 정렬기준필드1 , 정렬기준필드2
+	select * from member order by mdebut asc;	-- 과거순 -오름차순 [ asc 생략가능 ]
+    select * from member order by mdebut desc;	-- 최신순 -내림차순 [ 과거날짜 작다 / 최근날짜 크다 ]
+    select * from member order by mheight desc where mheight >= 164; -- 오류
+    select * from member where mheight >=164 order by mheight; -- 오류 해결 
+    -- 키를 내림차순으로 정렬후 동일한 키가 있을경우 동일한 키 중에서 데뷔날짜 오름차순 
+    select * from member order by mheight desc , mdebut asc ;
+		/*
+			학년 점수		학년 정렬 -> 점수 정렬 		학년	점수
+            1	50								1	50
+            3	20								1 	60
+			1	60								3	20
+        */
+        
+-- 6. select * from 테이블명 limit 레코드수			: 검색 레코드 수 제한 
+	-- select * from 테이블명 limit 시작레코드번호 , 개수 
+	select * from member limit 3;
+	select * from member limit 0 , 3;
+    select * from member order by mheight desc limit 3; -- 키 상위 레코드 3개
     
+-- 7. select distinct 필드명 from 테이블명			: 필드내 데이터 중복 제거 
+	select maddr from member;
+    select distinct maddr from member;
+
+-- 8. select * from 테이블명 group by 그룹기준필드
+	select bamout 		from buy;			-- 판매수량 필드 검색 
+    select sum(bamout) 	from buy; 	-- 판매수량 필드 합계 
+    select avg(bamout) 	from buy;	-- 판매수량 필드 평균 
+    select max(bamout) 	from buy;	-- 판매수량 필드내 최대값 
+    select min(bamout) 	from buy;	-- 판매수량 필드내 최소값 
+	select count( bamout ) from buy;	-- 판매수량 필드의 레코드수	[ null 미포함]
+    select count( * ) 	from buy;			-- 전체 레코드 수 			[ null 포함 ] 
+
+	-- 1. 회원아이디[그룹] 별 로 판매수량 합계 
+    select mid 회원아이디 , sum(bamout) as 구매수량총합  			from buy group by mid;
+    -- 2. 회원아이디[그룹] 별 로 총매출액[ 가격*수량 ] 합계 
+    select mid 회원아이디 , sum( bprice * bamout ) as 총매출액 	from buy group by mid;
+	-- 3. 회원아이디[그룹] 별 로 판매수량 평균 
+    select mid 회원아이디 , avg( bamout ) as 판매수량평균  		from buy group by mid;
+    -- 4. 
+    select mid 회원아이디 , count( * ) as 결제수량 from buy group by mid;
+
+-- 9. select * from 테이블명 group by 그룹기준필드 having 그룹내조건 
+	-- *. 회원아이디[그룹] 별 로 총매출액[ 가격*수량 ] 합계 가 1000 이상 검색 
+	select mid 회원아이디 , sum( bprice * bamout ) as 총매출액
+    from buy 
+    group by mid 
+    having sum( bprice * bamout ) >= 1000;
+    
+    select mid 회원아이디 , sum( bprice * bamout ) as 총매출액
+    from buy 
+    where sum( bprice * bamout ) >= 1000	-- 오류 발생 : sum() 집계함수 이므로 그룹 후에 조건 사용 가능 
+    group by mid;	
+    
+-- 10.[ 전체 ] 
+	-- select * from 테이블명 where 조건 group by 그룹 having 그룹조건 order by 정렬 limit 레코드수 제한
+    
+
+
+
+-- insert 
+	-- 1. 특정필드에 값 삽입 : insert into 테이블명( 필드명1 , 필드명2 ) values( 값1 , 값2 );
+	-- 2. 전체필드에 값 삽입 : insert into 테이블명 values( 값1 , 값2 );
+    -- 3. 다중 레코드 삽입 : insert into 테이블명 values( 값1 , 값2 ) , ( 값1 , 값2 );
+    -- 4. 검색된 결과를 삽입 : insert into 테이블명 select ~
+		-- 검색된 필드와 삽입할 테이블내 필드명과 동일할 경우 
+	-- 5. 마지막으로 추가된 레코드의 자동번호[auto_increment] 확인 : select last_insert_id();
+create table maddr( mid char(8) , maddr char(2) ); 	-- 회원아이디 , 주소 필드를 갖는 테이블 
+select mid , maddr  from member limit 5;	-- 레코드 5개 검색 
+insert into maddr select mid , maddr from member limit 5;
+select * from maddr;
+select last_insert_id();
 
 /*
 	연산자
@@ -154,6 +231,14 @@ select * from buy;
 		5. null관련 연산자
                 필드명 is null		: null 이면 		[ = null [X] ]
                 필드명 is not null	: null 이 아니면 	[ != null [X] ]
+	
+    집계함수
+		sum( 필드명 )		: 해당 필드내 데이터 총합 
+        avg( 필드명 ) 	: 해당 필드내 데이터 평균 
+        max( 필드명 ) 	: 해당 필드내 데이터 최대값
+        min( 필드명 ) 	: 해당 필드내 데이터 최소값 
+        count( 필드명 ) 	: 해당 필드내 데이터 수 [null 미포함 ]	
+		count( * ) 		: 레코드 수  [ null 포함 ] 
 */
 
 
