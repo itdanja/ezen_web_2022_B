@@ -107,4 +107,75 @@ INSERT INTO buy VALUES(NULL, 'MMU', '지갑', NULL, 30, 1);
 INSERT INTO buy VALUES(NULL, 'APN', '혼공SQL', '서적', 15, 1);
 INSERT INTO buy VALUES(NULL, 'MMU', '지갑', NULL, 30, 4);
 select * from buy;
+-- ER 다이어그램 [ 테이블 간 관계 확인 ] 
+	-- 메뉴 -> Database -> reverse enginner -> 로그인 -> DB 선택 -> 다음
+
+-- select : 검색 
+-- 1. select 필드명1 , 필드명2 from 테이블명
+	select mid from member;
+	select mid,mname from member;
+-- 2. select * from 테이블명 
+	-- *(와일드카드) : 모든것 의미 = 모든 필드 뜻
+	select * from member;
+-- 3. select 필드명 as '별칭명' from 테이블명
+	select mid as '회원아이디' from member;
+	select mid '회원아이디' from member;
+-- 4. select 필드명 from 테이블명 where 조건 
+	select * from member where mname = '블랙핑크';	-- 회원명[필드] 이 '블랙핑크' 인 레코드 검색
+    select * from member where mnumber = 4;			-- 멤버수 필드 가 4이면
+	select * from member where mheight <= 162;		-- 키 필드가 162 이하이면 
+    select * from member where mheight >= 165 and mnumber > 6; -- 키 필드가 165 이상 이면서 멤버수 필드가 6 초과이면 
+    select * from member where mheight >= 165 or mnumber > 6; -- 키 필드가 165 이상 이거나 멤버수 필드가 6 초과이면
+	select * from member where mheight >= 163 and mheight <= 165;	-- 키 필드 163~165
+    select * from member where mheight between 163 and 165;			-- 키 필드 163~165
+    select * from member where maddr = '경기' or maddr ='전남' or maddr = '경남';
+    select * from member where maddr in( '경기' ,'전남','경남');	-- 주소가 경기 혹은 전남 혹은 경남 중 하나이면
+    select * from member where mname ='우주소녀';			-- = 같다 [ 모두 동일했을때 ]
+    select * from member where mname like '우%';			-- '우' 로 시작하는 문자 찾기 
+    select * from member where mname like '%우';			-- '우' 로 끝나는 문자 찾기 
+    select * from member where mname like '%우%';		-- '우' 가 포함된 문자 찾기 
+    select * from member where mname like '우_'	;		-- '우' 로 시작하는 두글자 찾기 
+    select * from member where mname like '__우'	;		-- '우' 로 끝나는 세글자 찾기 
+    select * from member where mname like '_우_';		-- 세글자 중 가운데 글자가 '우'인 문자 찾기 
+    select mnumber , mnumber+1 , mnumber-1 , mnumber*2 , mnumber/2 , mnumber div 2 , mnumber mod 2
+    from member;
+    
+
+/*
+	연산자
+		1. 산술연산자	:	+더하기	-빼기	*곱하기 	/나누기 	div몫 mod나머지
+        2. 비교연산자 : >=이상 <=이하 >초과 <미만 =같다 !=같지않다
+        3. 논리연산자 : and이면서 	or이거나		not부정
+        4. 기타연산자 :
+				in( 값1, 값2, 값3 ) 		: 값1~값3 하나라도 존재하면 true [ 값1 or 값2 or 값3 ]
+                값 between 값1 and 값2 	: 값이 값1 부터 값2 사이이면 true [ 값>=값1 and 값<=값2 ]
+                like					: 패턴 검색 
+					% : 모든 문자수 대응 		_ :  _개수만큼 문자수 대응 
+		5. null관련 연산자
+                필드명 is null		: null 이면 		[ = null [X] ]
+                필드명 is not null	: null 이 아니면 	[ != null [X] ]
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
