@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import Day20.gallery.controller.BController;
 import Day20.gallery.controller.MController;
+import Day20.gallery.model.Dto.BoardDto;
 import Day20.gallery.model.Dto.CategortDto;
 import 과제.과제4_싱글톤.controller.Bcontroller;
 
@@ -48,7 +49,6 @@ public class BoardView {
 		else { System.out.println("[등록실패] 관리자에게 문의 ");}
 	}// end 
 	// 3. 모든 카테고리=갤러리[ 갤러리1개 = dto 1개 / 갤러리여러개 = dto 여러개 = 배열 혹은 리스트 ] 호출 
-	
 	public void categoryPrint() {
 		//1. 컨트롤에게 모든 카테고리 요청후 반환된 리스트를 에 담기 
 		ArrayList<CategortDto> clist =  BController.getInstance().categoryPrint();
@@ -65,6 +65,40 @@ public class BoardView {
 		}
 		System.out.println();
 	}
+	// 4. 게시물 쓰기 페이지 
+	public void boardAdd() {
+		System.out.println(" =============== 게시물 쓰기 ============== ");
+		System.out.print(" 제목 : " ); 	String btitle = scanner.next();
+		System.out.print(" 내용 : " );	String bcontent = scanner.next();
+		
+		boolean result = BController.getInstance().boardAdd( btitle, bcontent );
+		if( result ) { System.out.println("[글등록성공]");}
+		else { System.out.println("[글등록실패]");}
+		
+	}
+	// 5. 최신 글 3개 출력 페이지
+	public void boardPrintRecent() {
+		ArrayList< BoardDto > blist = BController.getInstance().boardPrintRecent();
+		System.out.printf("%10s\t%10s\t%10s\t%10s\t%10s\t%10s \n" ,
+							"번호" , "제목" , "작성자" , "작성일" , "갤러리","조회수");
+		for( BoardDto dto : blist  ) {
+			System.out.printf("%10s\t%10s\t%10s\t%10s\t%10s\t%10s \n" ,
+					dto.getBno() , dto.getBtitle() , dto.getMid() ,
+					dto.getBdate() , dto.getCname(),dto.getBview() );
+		}
+	}
+	// 6. 선택한 갤러리의 모든 게시물 페이지 
+	public void boardPrint( int cno ) {
+		ArrayList<BoardDto> blist = BController.getInstance().boardPrint(cno);
+		System.out.printf("%10s\t%10s\t%10s\t%10s\t%10s \n" ,
+						"번호" , "제목" , "작성자" , "작성일" ,"조회수");
+		for( BoardDto dto : blist  ) {
+		System.out.printf("%10s\t%10s\t%10s\t%10s\t%10s\t%10s \n" ,
+				dto.getBno() , dto.getBtitle() , dto.getMid() ,
+				dto.getBdate() , dto.getBview() );
+		}
+	}
+	
 }
 
 

@@ -7,8 +7,8 @@ public class BoardDto {
 	private String bcontent;
 	private String bdate;
 	private int	bview ;
-	private String mid;	
-	private String cname; 
+	private String mid;	// DB 회원번호 대신 회원아이디 출력 하기 위해 
+	private String cname; // DB 카테고리 대신 카테고리이름 출력 하기 위해 
 	
 	public BoardDto() {
 		// TODO Auto-generated constructor stub

@@ -44,3 +44,71 @@ create table reply(
     foreign key( mno_fk ) references member( mno ) on delete set null ,
     foreign key( bno_fk ) references board( bno ) on delete cascade 
 );
+
+-- 1. 아이디 중복체크 [ 해당 아이디 검색 ] 
+	-- 검색후 레코드가 존재하면 이미 존재하는 아이디 / 레코드가 없으면 존재하지 않는 아이디 
+select * from member;	-- 모든 회원 검색 
+select * from member where mid = 'qwe'; -- 특정 회원아이디가 일치하는 회원 검색 
+-- 2. 회원가입 
+insert into member( mid , mpw , mname , mphone ) 
+values( 'qwe' , 'qwe' ,'유재석','010-4444-4444');
+-- 3. 로그인 
+	-- 검색한 결과의 레코드가 존재하면 로그인성공 / 결과 레코드가 존재하지 않으면 로그인 실패 
+select * from member where mid = 'qwe' and mpw ='qwe'; -- 아이디와 비밀번호가 일치한 회원 레코드 찾기 
+
+-- 4.  카테고리 등록 
+insert into category( cname ) values( '국내야구');
+-- 5. 모든 카테고리 출력 
+select * from category;
+
+-- 6. 게시물 등록 	[ 1번회원이 1번 카테고리에 글 쓰기 ]
+insert into board( btitle , bcontent , mno_fk , cno_fk  ) values(  '제목' ,'내용', 1 , 1 );
+
+-- 6. 최신 게시물 3개 출력 
+select * from board; -- 모든 게시물 출력 
+select * from board order by bdate desc; -- 작성일 기준 최근 날짜로 정렬 [ DESC : 현재->과거순  ASC:과거->현재 ]
+select * from board order by bdate desc limit 3;	-- 위에서 3개  [ 최신글 3개 ]
+
+	-- mno --> mid   / cno --> cname  [ join ]
+    -- 1. 필요한 테이블 확인 board, member , category 
+    -- 2. 필요한 테이블 모두 검색 
+    select * from board , member , category;	
+		-- 테이블[레코드수] * 테이블[레코드수] * 테이블[레코드수]
+	-- 3. 연결 테이블간 pk-fk 가 일치한 레코드 검색 
+		-- 테이블 2개 join 
+		select * from board , member ;	-- 결과 : 레코드2개 
+        select * from board , member where board.mno_fk = member.mno ; -- 결과 : 레코드1개 
+        select * from board , member , category;
+        -- 테이블 3개 join 
+			-- 테이블에 별칭 미사용 
+			select * from board , member , category 
+			where board.mno_fk = member.mno and board.cno_fk = category.cno;
+            
+			-- 테이블에 별칭 사용 
+			select * from board b , member m , category c 
+			where b.mno_fk = m.mno and b.cno_fk = c.cno;
+		
+			-- 필요한 필드 추출 
+            select b.bno , b.btitle , b.bcontent , b.bdate , b.bview , m.mid , c.cname
+            from board b , member m , category c 
+            where b.mno_fk = m.mno and b.cno_fk = c.cno;
+            
+            -- 
+			select b.bno , b.btitle , b.bcontent , b.bdate , b.bview , m.mid , c.cname
+			from board b , member m , category c 
+			where b.mno_fk = m.mno and b.cno_fk = c.cno 
+			order by b.bdate desc limit 3;
+        
+-- 6. 해당 카테고리의 모든 게시물 출력  [ 1번 카테고리[국내야구] 게시물 들 ]
+select * from board where cno_fk = 1;
+	--
+    select b.bno , b.btitle , b.bcontent , b.bdate , b.bview , m.mid , c.cname
+	from board b , member m , category c 
+	where b.mno_fk = m.mno and b.cno_fk = c.cno 
+    and b.cno_fk = 1;
+
+-- 6. 게시물 조회	[ 1번 게시물 ]
+select * from board where bno = 1;
+
+
+
