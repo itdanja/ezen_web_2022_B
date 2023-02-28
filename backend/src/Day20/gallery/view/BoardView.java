@@ -21,7 +21,8 @@ public class BoardView {
 	public void index() {
 		while( true ) {
 			System.out.println(" =============== 이젠 갤러리 ============== ");
-			// 최신 게시물 3개 출력
+			
+			boardPrintRecent(); // 최신 게시물 3개 출력
 			
 			categoryPrint(); // 모든 갤러리 출력
 			
@@ -33,7 +34,7 @@ public class BoardView {
 				break;  // while 탈출
 			}
 			else if( ch == 0 ) { categoryAdd(); }
-			else if( ch > 0 ) {}
+			else if( ch > 0 ) { boardPrint( ch ); }
 		}
 	}
 	// 2. 카테고리=갤러리 추가 
@@ -57,6 +58,7 @@ public class BoardView {
 //			System.out.println( clist.get(i).getCno() +" - "+ clist.get(i).getCname() );
 //		}
 		// 2. 출력2 : 향상된 for문 
+		System.out.println(" =============== 갤러리 목록 ============== ");
 		int count = 0;	// 반복횟수 저장하는 함수 
 		for( CategortDto dto : clist ) {
 			System.out.print( dto.getCno() +" - "+ dto.getCname() +"\t" );
@@ -66,36 +68,46 @@ public class BoardView {
 		System.out.println();
 	}
 	// 4. 게시물 쓰기 페이지 
-	public void boardAdd() {
+	public void boardAdd( int cno ) {
 		System.out.println(" =============== 게시물 쓰기 ============== ");
 		System.out.print(" 제목 : " ); 	String btitle = scanner.next();
 		System.out.print(" 내용 : " );	String bcontent = scanner.next();
-		
-		boolean result = BController.getInstance().boardAdd( btitle, bcontent );
+		boolean result = BController.getInstance().boardAdd( btitle, bcontent , cno );
 		if( result ) { System.out.println("[글등록성공]");}
 		else { System.out.println("[글등록실패]");}
 		
 	}
 	// 5. 최신 글 3개 출력 페이지
-	public void boardPrintRecent() {
+	public void boardPrintRecent(  ) {
+		System.out.println(" =============== 최신글 ============== ");
 		ArrayList< BoardDto > blist = BController.getInstance().boardPrintRecent();
 		System.out.printf("%10s\t%10s\t%10s\t%10s\t%10s\t%10s \n" ,
-							"번호" , "제목" , "작성자" , "작성일" , "갤러리","조회수");
+							"번호" , "제목" , "작성자" , "조회수" ,  "갤러리", "작성일");
 		for( BoardDto dto : blist  ) {
 			System.out.printf("%10s\t%10s\t%10s\t%10s\t%10s\t%10s \n" ,
 					dto.getBno() , dto.getBtitle() , dto.getMid() ,
-					dto.getBdate() , dto.getCname(),dto.getBview() );
+					dto.getBview() , dto.getCname() , dto.getBdate() );
 		}
 	}
 	// 6. 선택한 갤러리의 모든 게시물 페이지 
 	public void boardPrint( int cno ) {
+		System.out.println(" =============== 선택한 갤러리 ============== ");
 		ArrayList<BoardDto> blist = BController.getInstance().boardPrint(cno);
 		System.out.printf("%10s\t%10s\t%10s\t%10s\t%10s \n" ,
-						"번호" , "제목" , "작성자" , "작성일" ,"조회수");
+						"번호" , "제목" , "작성자" , "조회수" ,  "작성일" );
 		for( BoardDto dto : blist  ) {
-		System.out.printf("%10s\t%10s\t%10s\t%10s\t%10s\t%10s \n" ,
+		System.out.printf("%10s\t%10s\t%10s\t%10s\t%10s \n" ,
 				dto.getBno() , dto.getBtitle() , dto.getMid() ,
-				dto.getBdate() , dto.getBview() );
+				dto.getBview()  , dto.getBdate() );
+		} // for end 
+		while( true ) {
+			System.out.print("갤러리 메뉴 : 1.뒤로가기 2.게시물쓰기 3.게시물보기 : ");
+			int ch = scanner.nextInt();
+			if( ch == 1 ) { break; }
+			else if( ch == 2 ) { boardAdd( cno ); }
+			else if( ch == 3 ) {  
+				// 미구현
+			}
 		}
 	}
 	

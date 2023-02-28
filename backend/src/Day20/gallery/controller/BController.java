@@ -24,8 +24,11 @@ public class BController {
 	}
 	
 	// 3. 
-	public boolean boardAdd( String btitle , String bcontent , int mno  , int cno ) {
-		return BoardDao.getInstance().boardAdd(btitle, bcontent, mno, cno);
+	public boolean boardAdd( String btitle , String bcontent , int cno ) {
+		return BoardDao.getInstance().boardAdd(
+				btitle, bcontent, 
+				MController.getInstance().getLoginSession()
+				, cno );
 	}
 	
 	// 4. 

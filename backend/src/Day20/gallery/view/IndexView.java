@@ -22,7 +22,7 @@ public class IndexView {
 				if( ch == 1 ) { login(); }
 				else if( ch == 2 ) { singup(); }
 			}catch ( Exception e) { 
-				System.err.println(">> [알림] 잘못된 입력입니다.");
+				System.err.println(">> [알림] 잘못된 입력입니다."+e);
 				scanner = new Scanner(System.in);
 			}
 		}
