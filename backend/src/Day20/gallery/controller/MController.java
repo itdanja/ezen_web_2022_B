@@ -8,7 +8,10 @@ public class MController {
 	private static MController mController = new MController();
 	private MController() {}
 	public static MController getInstance() { return mController;}
-
+	// 0. 로그인 세션 
+	private int loginSession = 0; // 로그인된 회원번호 담기
+	public int getLoginSession() { return loginSession; }
+	public void setLoginSession(int loginSession) { this.loginSession = loginSession; }
 	
 	// 1. 회원가입 처리 [ 아이디중복체크 ] 
 	public int signup( String mid , String mpw , 
@@ -24,16 +27,9 @@ public class MController {
 		return MemberDao.getInstance().signup(dto);
 	}
 	
-	private int loginSession = 0; // 로그인된 회원번호 담기
-	public int getLoginSession() { return loginSession; }
-	
-	// 2. 
+	// 2. 로그인 처리 
 	public boolean login( String mid , String mpw  ) {
-		// 1. 유효성검사 
-		// 2. 
-		int result = 
-		MemberDao.getInstance().login(mid, mpw);
-		
+		int result =  	MemberDao.getInstance().login(mid, mpw);
 		// 3. 로그인 성공 증거 [ 로그인 정보 저장소 = 세션 ]
 		if( result == 0 ) { return false; }
 		else {
