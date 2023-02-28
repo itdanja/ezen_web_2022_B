@@ -19,7 +19,7 @@ public class IndexView {
 			System.out.print(" 메뉴 1.로그인 2.회원가입 : ");
 			try {
 				int ch = scanner.nextInt();
-				if( ch == 1 ) {  }
+				if( ch == 1 ) { login(); }
 				else if( ch == 2 ) { singup(); }
 			}catch ( Exception e) { 
 				System.err.println(">> [알림] 잘못된 입력입니다.");
@@ -40,7 +40,44 @@ public class IndexView {
 		else if( result == 2 ) { System.out.println("[실패] 사용중인 아이디 입니다.");}
 		else if( result == 3 ) { System.out.println("[실패] 시스템 오류 : 관리자에게 문의 ");}
 	}
+	// 3. 로그인 페이지 
+	public void login() {
+		System.out.println(" =============== 로그인 ============== ");
+		System.out.print(" 아이디 : ");		String mid = scanner.next();
+		System.out.print(" 비밀번호 : ");		String mpw = scanner.next();
+		
+		boolean result = 
+				MController.getInstance().login( mid , mpw );
+		if( result == true ) {
+			System.out.println("[로그인성공]");
+			// 게시물 초기메뉴로 이동 
+		}
+		else { System.out.println("[로그인실패]");}
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

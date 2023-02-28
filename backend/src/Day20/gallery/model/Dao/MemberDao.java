@@ -40,6 +40,60 @@ public class MemberDao extends Dao {
 		return 3; // db오류 
 	}
 	
+	// 3. 로그인 [ 반환 : 로그인 성공한 회원번호 반환 ]
+		// - 로그인[로그인 되어있는 동안 저장되는] 세션 : 1.회원번호 2. Logindto[ 회원번호 , 포인트 , 등급 ]
+	public int login(   String mid , String mpw  ) {
+		String sql = "select * from member where mid = ? and mpw = ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString( 1 , mid );
+			ps.setString( 2 , mpw );
+			rs = ps.executeQuery();
+			if( rs.next() ) {
+				// 만약에 다음 레코드가 존재하면 [ 로그인 성공 ]
+				return rs.getInt( 1 );	// 검색된 레코드에서 첫번째 필드[회원번호] 반환 
+			}else {
+				// 다음 레코드가 존재하지 않으면 [ 로그인 실패 ] 
+				return 0; 
+			}
+		}catch (Exception e) {System.out.println(e);}
+		return 0;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
 
