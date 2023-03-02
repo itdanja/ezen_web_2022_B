@@ -1,15 +1,15 @@
 
 // JS 함수 
 // function 함수명 ( 매개변수 ){ 실행코드 }
-function 예제1( ){
+function Ex1( ){
 	let data = document.querySelector('.inputdata').value;
 	console.log( data );
 	
 	$.ajax({
-		url : "http://localhost:8080/jspweb/Indextest" ,		// 통신할 서블릿 주소 
-		method : "post" , 				// HTTP 메소드 
-		data : { "data" : data } , 		// 데이터 보내기 
-		success : function(result){   	// 데이터 받기 
+		url : "http://localhost:8080/jspweb/Ex1" ,		// 통신할 서블릿 주소 
+		method : "post" , 								// HTTP 메소드 
+		data : { "data" : data } , 						// 데이터 보내기 
+		success : function(result){   					// 데이터 받기 
 			console.log( result );
 		}
 	});
