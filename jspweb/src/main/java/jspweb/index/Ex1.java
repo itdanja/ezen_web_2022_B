@@ -1,6 +1,8 @@
 package jspweb.index;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,22 +30,14 @@ public class Ex1 extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		// 1. HTTP 객체 [ request : JS에게 요청 , response : JS에게 응답 ]
-			// 0. 한글 인코딩 
-				// 요청 인코딩 변경 : request.setCharacterEncoding("UTF-8");
-				// 응답 인코딩 변경 : response.setCharacterEncoding("UTF-8");
-		
-			// 1. request.getParameter("매개변수명");
-			// 2. response..getWriter().print( 데이터 );
-		request.setCharacterEncoding("UTF-8");
+		// 한글 인코딩 
 		response.setCharacterEncoding("UTF-8");
-		
-		String data = request.getParameter("data"); // ajax( data : { "매개변수명" : 데이터  } )
-		System.out.println(" JS GET방식으로 받은 데이터 : " + data );
-		
-		response.getWriter().print(" GET 메소드 방식으로 잘받았습니다.");
-		
+		// 1. DAO 실행해서 데이터 호출 
+		ArrayList<String> result = Dao.getInstance().getData();
+		// 2. 확인 
+		System.out.println("확인 : "+result);
+		// 3. JS 에게 응답 
+		response.getWriter().print( result );
 	}
 
 	/**
@@ -64,6 +58,15 @@ public class Ex1 extends HttpServlet {
 	
 	}
 	
+	
+	
+	// 1. HTTP 객체 [ request : JS에게 요청 , response : JS에게 응답 ]
+		// 0. 한글 인코딩 
+			// 요청 인코딩 변경 : request.setCharacterEncoding("UTF-8");
+			// 응답 인코딩 변경 : response.setCharacterEncoding("UTF-8");
+	
+		// 1. request.getParameter("매개변수명");
+		// 2. response..getWriter().print( 데이터 );
 	
 	
 	

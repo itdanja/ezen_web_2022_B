@@ -11,8 +11,24 @@ function Ex1( ){
 		data : { "data" : data } , 						// 데이터 보내기 
 		success : function(result){   					// 데이터 받기 
 			console.log( result );
+			Ex2();
 		}
 	});
+}
+//
+Ex2( ); // 페이지 열리면 데이터호출 
+function Ex2(){
+	$.ajax({
+		url : 'http://localhost:8080/jspweb/Ex1' ,
+		method: "get" , 
+		// data : { } , 
+		success : function(result){
+			console.log( result );
+			document.querySelector('.ex2box').innerHTML = result;
+		}
+	 });
+}
+
 	
 	// JS --> 서블릿 이동 
 	// 0. $ : jqeury 표현식 [ jqery 라이브러리 필요 ]
@@ -50,7 +66,7 @@ function Ex1( ){
 		});
 	*/
 	
-}
+	
 
 	// document : 미리 만들어진 DOM객체
 		// 1. querySelector( 식별자 ) : tag 1개  -> 변수/객체 에 저장 
