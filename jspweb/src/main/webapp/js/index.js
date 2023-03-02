@@ -6,7 +6,7 @@ function Ex1( ){
 	console.log( data );
 	
 	$.ajax({
-		url : "http://localhost:8080/jspweb/Ex1" ,		// 통신할 서블릿 주소 
+		url : "/jspweb/Ex1" ,		// 통신할 서블릿 주소 
 		method : "post" , 								// HTTP 메소드 
 		data : { "data" : data } , 						// 데이터 보내기 
 		success : function(result){   					// 데이터 받기 
@@ -19,7 +19,7 @@ function Ex1( ){
 Ex2( ); // 페이지 열리면 데이터호출 
 function Ex2(){
 	$.ajax({
-		url : 'http://localhost:8080/jspweb/Ex1' ,
+		url : '/jspweb/Ex1' ,
 		method: "get" , 
 		// data : { } , 
 		success : function(result){
