@@ -4,7 +4,7 @@
 
 // 2. 특정 행동[이벤트] 있을때 코드집합소[함수] 실행
 function ex1(){	// 함수 정의
-
+	
 	// 변수10개 --------> 객체 { 필드명 : 값 , 필드명 : 값 , 필드명 : 값 } 1개
 	let info = {
 		data1 : document.querySelector('.data1').value ,
@@ -20,11 +20,15 @@ function ex1(){	// 함수 정의
 	}
 	console.log( info ) // dada8 외 모두 문자열 임.... [ 추후 형 변환 ]
 	
-	$.ajax({
-		url : "",
-		method : "",
-		data : {} ,
-		success : function(result){}
+	$.ajax({							// *. jquery 라이브러리 필수!!
+		url : "/jspweb/Ex2",			// 1. 서블릿 주소 [ /프로젝트명/서블릿주소(@WebServlet("/서블릿주소") ) ]
+		method : "post",				// 2. 메소드 방식 [ doGet vs doPost ]
+		data : info ,					// 3. 보낼 데이터 [ 객체 vs { } ]
+		success : function(result){
+			console.log( result );
+			if( result == 'true' ){ alert('등록성공');}
+			else{ alert('등록실패');}
+		} // 4.받을 데이터 
 	})
 	
 	
