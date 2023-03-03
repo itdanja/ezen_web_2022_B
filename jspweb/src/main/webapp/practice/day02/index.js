@@ -24,7 +24,7 @@ function ex1(){	// 함수 정의
 		url : "/jspweb/Ex2",			// 1. 서블릿 주소 [ /프로젝트명/서블릿주소(@WebServlet("/서블릿주소") ) ]
 		method : "post",				// 2. 메소드 방식 [ doGet vs doPost ]
 		data : info ,					// 3. 보낼 데이터 [ 객체 vs { } ]
-		success : function(result){
+		success : function( result ){
 			console.log( result );
 			if( result == 'true' ){ alert('등록성공'); getData(); }
 			else{ alert('등록실패');}
@@ -38,8 +38,31 @@ function getData(){
 		url : "/jspweb/Ex2" ,
 		method : "get" ,
 		success : function( result ){
-			console.log( result );
-			document.querySelector(".ex1_box").innerHTML = result;
+			//console.log( result );
+			let html = `
+						<table border="1">
+							<tr>
+								<th> data1 </th> <th> data2 </th> <th> data3 </th> <th> data4 </th>
+								<th> data5 </th> <th> data6 </th> <th> data7 </th> <th> data8 </th>
+								<th> data9 </th> <th> data10 </th> 
+							</tr>
+						`
+						
+			result.forEach( (o,i) => {	// 객체명.forEach( (반복변수,반복인덱스) => { 실행문 })
+				
+				html += `
+							<tr>
+								<th> ${ o.data1 } </th> <th> ${ o.data2 } </th> <th> ${ o.data3 } </th> 
+								<th> ${ o.data4 } </th>	<th> ${ o.data5 } </th> <th> ${ o.data6 } </th> 
+								<th> ${ o.data7 } </th> <th> ${ o.data8 } </th>	<th> ${ o.data9 } </th> 
+								<th> ${ o.data10 } </th> 
+							</tr>
+						`
+			}) // for end 
+			html += `</table>`
+			document.querySelector(".ex1_box").innerHTML = html;
+			
+			
 		}
 	})
 }
