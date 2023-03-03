@@ -30,6 +30,34 @@
 	<h3> 예1) [R] dao --메소드--> servlet -- AJAX/JACKSON --> JS -- document.querySeletor --> HTML </h3>
 	<div class="ex1_box"></div>
 	
+	
+	<!-- 
+	과제2
+		조건 
+		1. 학생 명단 등록 
+		2. [C] , [R]
+			1. [C]
+				이름[문자열]
+				전화번호[문자열]
+				키[실수]
+				나이[정수]
+				등록일[날짜]
+				성별[남/여]
+				개인정보동의[TRUE/FALSE]
+				사는지역[안산,안양,수원 선택]
+				자기소개
+			2. [R]
+			TABLE 
+			
+			이름	전화번호		키	나이	등록일		성별	동의	지역	소개
+			유재석	010-4444-4444	177.7	38	2023-03-03	남	true	안산	안녕하세요
+			
+	
+		3. DTO클래스 , DB테이블 생성 	
+	
+			
+	 -->
+	
 	<!-- 1. JQUERY( ajax 사용하기 위해 ) -->
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	
