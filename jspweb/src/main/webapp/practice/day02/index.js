@@ -26,13 +26,24 @@ function ex1(){	// 함수 정의
 		data : info ,					// 3. 보낼 데이터 [ 객체 vs { } ]
 		success : function(result){
 			console.log( result );
-			if( result == 'true' ){ alert('등록성공');}
+			if( result == 'true' ){ alert('등록성공'); getData(); }
 			else{ alert('등록실패');}
 		} // 4.받을 데이터 
 	})
 	
-	
+} // end 
+getData();
+function getData(){
+	$.ajax({
+		url : "/jspweb/Ex2" ,
+		method : "get" ,
+		success : function( result ){
+			console.log( result );
+			document.querySelector(".ex1_box").innerHTML = result;
+		}
+	})
 }
+
 
 
 
