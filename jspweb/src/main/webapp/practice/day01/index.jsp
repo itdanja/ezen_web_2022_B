@@ -44,17 +44,11 @@
 	 -->
 	
 	
-	
-	
-	
-	
-	
-	
 	<!-- 최신 jquery[ js 라이브러리 ] 가져오기  -->
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 	
 	<!-- 사용자정의 JS 가져오기 [ 경로 : /프로젝트명/[webapp폴더생략]/폴더/파일명 ] -->
-	<script src="/jspweb/js/index.js" type="text/javascript"></script>
+	<script src="index.js" type="text/javascript"></script>
 	<!-- <script src="js/index.js" type="text/javascript"></script> -->
 	
 

@@ -1,4 +1,4 @@
-package jspweb.index;
+package practice.day01;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,8 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import jspweb.model.Dao;
 
 /**
  * Servlet implementation class Indextest
