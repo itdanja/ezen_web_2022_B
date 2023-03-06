@@ -1,11 +1,15 @@
 package practice.day03;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * Servlet implementation class Board
@@ -18,9 +22,6 @@ public class Board extends HttpServlet {
         super();
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
 	// 1. 등록 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 요청시 한글 인코딩 
@@ -35,6 +36,21 @@ public class Board extends HttpServlet {
 		// 5. Dao 결과인 true , false 데이터를 response 객체 이용한 응답
 			// 'true' vs '{ true }'
 		response.getWriter().print(result);
+	}
+    // 2. 모든 게시물 조회 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// 1. 응답 매개변수 한글 인코딩 
+		response.setCharacterEncoding("UTF-8");
+		// 2. DAO 호출해서 모든 게시물를 반환 해서 저장 
+		ArrayList<BoardDto> result = BoardDao.getInstance().onlist();	System.out.println(" DAO LIST : "+ result);
+		// 3. JSON[JS객체] 형식의 문자열로 변환
+		ObjectMapper mapper = new ObjectMapper(); 					// 1. JACKSON 라이브러리에서 제공하는 클래스 
+		String jsonArray = mapper.writeValueAsString( result );		// 2. DAO로 부터 받은 리스트를 json형식의 문자열 변환 
+			System.out.println(" jsonArray : " + jsonArray );
+		// 4. 응답
+		response.setContentType("application/json");
+		response.getWriter().print(jsonArray);
 	}
 
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

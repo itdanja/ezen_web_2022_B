@@ -19,6 +19,10 @@
 	작성자 : <input type="text"	class="writer">		<br>
 	<button onclick="onwrite() " type="button"> 방문록 등록 </button>
 	
+	<table class="boardtable" border="1">
+		<!-- js 데이터 자리  -->
+	</table>
+	
 	
 	<!--  -->
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
