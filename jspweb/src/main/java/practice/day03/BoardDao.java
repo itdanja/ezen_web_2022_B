@@ -8,6 +8,20 @@ import java.util.ArrayList;
 
 public class BoardDao {
 	
+	/*
+	 
+	 drop table ex3;
+	create table ex3(
+		bno 	int 			auto_increment		primary key ,
+	    bcontent	varchar(1000)	,
+	    bwriter	varchar(100)	,
+	    bdate 	datetime		default now()
+	);
+	select * from ex3;
+
+	  
+	 */
+	
 	private static BoardDao dao = new BoardDao();
 	public static BoardDao getInstance() { 	return dao; }
 
