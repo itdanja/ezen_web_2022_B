@@ -63,7 +63,7 @@ function onwrite(){
 } // 등록 end 
 
 
-// 2. 모든 게시물출력 [ 1.js열릴때 2.글작성할때마다 ]
+// 2. 모든 게시물출력 [ 1.js열릴때 [랜더링=새로고침]2.글작성할때마다 3.삭제할때마다 4.수정할때마다 ]
 onlist();
 function onlist(){
 	
@@ -109,6 +109,8 @@ function ondelete( bno ) {
 		data : { "bno" : bno } ,
 		success : ( r ) => { 
 			console.log( 'delete 응답 성공' ); console.log( r );
+			if( r == 'true'){ alert('삭제성공'); onlist(); }
+			else{ alert('삭제실패');}
 		}
 	})
 } // ondelete end 
@@ -123,6 +125,8 @@ function onupdate( bno ){
 		data : { "bno" : bno , "newContent" : newContent } ,
 		success : (r) => {
 			console.log( 'put 응답 성공'); console.log( r );
+			if( r == 'true'){ alert('수정성공'); onlist(); }
+			else{ alert('수정실패');}
 		}
 	})
 }
