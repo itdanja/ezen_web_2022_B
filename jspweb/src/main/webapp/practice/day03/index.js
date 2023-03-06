@@ -52,6 +52,8 @@ function onwrite(){
 		data :  info , 
 		success : ( r )=> {
 			console.log( 'post 응답성공');
+			if( r == 'true' ){ alert('등록성공'); }
+			else{ alert('등록실패');}
 		} 
 	})
 	
