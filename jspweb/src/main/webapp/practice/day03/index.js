@@ -87,18 +87,45 @@ function onlist(){
 							<td> ${ o.bno } </td>
 							<td> ${ o.bcontent }</td>
 							<td> ${ o.bwriter } </td>
-							<td> 수정/삭제 </td>
+							<td> 
+								<button onclick="ondelete(${o.bno})" type="button" > 삭제 </button>
+								<button onclick="onupdate(${o.bno})" type="button" > 수정 </button>
+							</td>
 						</tr>`;
 				
 			});
 			// 3. 구성된 html 대입 
-			document.querySelector('.boardtable').innerHTML = html;
-					
+			document.querySelector('.boardtable').innerHTML = html;			
 		}
 	})
-	
-}
+} //  onlist end 
 
+// 3. 특정 게시물 삭제
+function ondelete( bno ) { 
+	console.log( "ondelete() 열림" + bno ); 
+	$.ajax({
+		url : "/jspweb/Ex3/Board" ,
+		method : "delete" , 
+		data : { "bno" : bno } ,
+		success : ( r ) => { 
+			console.log( 'delete 응답 성공' ); console.log( r );
+		}
+	})
+} // ondelete end 
+
+// 4. 특정 게시물 수정 
+function onupdate( bno ){
+	console.log( "onupdate() 열림" + bno );
+	let newContent = prompt('수정할 내용 입력');
+	$.ajax({
+		url : "/jspweb/Ex3/Board" , 
+		method : "put" ,
+		data : { "bno" : bno , "newContent" : newContent } ,
+		success : (r) => {
+			console.log( 'put 응답 성공'); console.log( r );
+		}
+	})
+}
 
 
 

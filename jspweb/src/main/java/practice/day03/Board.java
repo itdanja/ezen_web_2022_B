@@ -52,16 +52,53 @@ public class Board extends HttpServlet {
 		response.setContentType("application/json");
 		response.getWriter().print(jsonArray);
 	}
-
-	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
-
+	
+	// 3. 
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 1. 삭제할 게시물번호 요청 [ ????? 매개변수 null ]
+		int bno = Integer.parseInt( request.getParameter("bno") );	
+			System.out.println("삭제할번호요청 : "+bno);
 		
 	}
-
+	// 4.
+	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		// 1. 수정할 게시물번호 요청 
+		int bno = Integer.parseInt( request.getParameter("bno") );
+			System.out.println("수정할번호요청 : " +bno );
+		// 2. 수정할 게시물 내용 요청 
+		String newContent = request.getParameter("newContent");
+			System.out.println("수정할내용요청 : " +newContent);
+		
+	}
 }
+	/*
+	 
+	 	JSP 서블릿 에서 HTTP 메소드 put , delete 사용시 필수 설정
+	 	 	* 기본값 : 매개변수 요청 차단 
+	 	1. Servers 폴더 클릭 
+	 	2. server.xml 더블클릭 
+	  	3. 하단 Source 탭 클릭 
+	  	4. 대략 60번대 줄
+	  		 원본 : <Connector connectionTimeout="20000" port="8080" protocol="HTTP/1.1" redirectPort="8443" />
+	  		 수정 : <Connector connectionTimeout="20000" port="8080" protocol="HTTP/1.1" redirectPort="8443" parseBodyMethods="POST,PUT,DELETE" URIEncoding="UTF-8" />
+	 */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
