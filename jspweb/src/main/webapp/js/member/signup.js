@@ -11,7 +11,6 @@ function signup(){
 		// 2. form 안에 있는 data 객체 호출  [ js api 클래스 = FormData ]
 	let signupFormData = new FormData( signupForm );
 		console.log( signupFormData )
-	
 	// 2. [ 첨부파일 있을때 ] ajax 
 	$.ajax({
 		url : "/jspweb/member",				// 서블릿 주소 
@@ -20,16 +19,15 @@ function signup(){
 		// 첨부파일 있을때 추가되는 속성 
 		contentType : false ,			
 		processData : false ,			
-					// true : 매개변수형식의 문자열타입 [ 기본값 ] 
-							// application/x-www-form-urlencoded 형식 으로 전송 
-					// false : 해제
-							// multipart/form 형식 으로 전송 		
 		success : (r)=>{
 			console.log( 'ajax 응답');
 			console.log( r );
+			if( r == 'true'){
+				alert('회원가입성공');
+				location.href="/jspweb/index.jsp"; // 해당 페이지 이동 
+			}else{ alert('회원가입실패') }
 		}
 	})
-	
 }
 
 	
