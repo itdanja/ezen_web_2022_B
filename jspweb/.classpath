@@ -12,5 +12,6 @@
 	<classpathentry kind="lib" path="C:/jackson-annotations-2.14.2.jar"/>
 	<classpathentry kind="lib" path="C:/jackson-core-2.14.2.jar"/>
 	<classpathentry kind="lib" path="C:/jackson-databind-2.14.2.jar"/>
+	<classpathentry kind="lib" path="C:/cos.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
