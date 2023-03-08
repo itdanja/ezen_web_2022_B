@@ -14,7 +14,7 @@ public class Dao {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/jswpeb",
+					"jdbc:mysql://localhost:3306/jspweb",
 					"root",
 					"1234");
 			System.out.println("[연동성공]");
