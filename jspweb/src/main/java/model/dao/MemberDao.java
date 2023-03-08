@@ -40,6 +40,21 @@ public class MemberDao extends Dao {
 		}catch (Exception e) {System.out.println(e);}
 		return list;									// 7. 리스트 반환
 	}
+	
+	// 3. 아이디 중복검사 
+	public boolean idCheck( String mid ) {
+												// 문자열 ' ' 필수 vs 정수/실수 ' ' 생략 
+		// String sql = "select * from member where mid = '"+mid+"'";
+		String sql = "select * from member where mid = ? ";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString( 1 , mid );	// ? 와일드 사용시
+			rs = ps.executeQuery();
+			// 만약에 검색 결과 레코드가 존재하면 중복 아이디 입니다. 
+			if( rs.next() ) { return true; }
+		}catch (Exception e) {System.out.println(e);}
+		return false;  // 없으면 중복 아이디 아닙니다.
+	}
 }
 
 

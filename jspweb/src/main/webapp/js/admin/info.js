@@ -22,7 +22,7 @@ function getMemberList(){
 						</tr>`
 			r.forEach( (o,i) =>{
 				// 2. 테이블 내용물 추가 구성 
-					// 만약에 회원 mimg 프로필이미지가 null 이면 기본프로필 사용 / 아니면 mimg 사용 
+												// 만약에 회원 mimg 프로필이미지가 null 이면 기본프로필 사용 / 아니면 mimg 사용 
 				html +=	`<tr>
 							<td> ${ o.mno } </td>
 							<td> <img src="/jspweb/member/pimg/${ o.mimg == null ? 'default.webp' : o.mimg }" width="100%">  </td>
