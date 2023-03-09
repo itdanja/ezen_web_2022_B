@@ -47,6 +47,28 @@ console.log( 'js 열림');
 			/^[a-z]$/.test( QWE )	--> false
 */
 
+//* 첨부파일 이미지 미리보기  [ 업로드 와 상관없음 ]
+	// 정책 : 사용자[클라이언트JS]에 운영체제[폴더경로] 접근 불가 
+function premimg( object ){	//  object : 해당 함수를 실행시킨 태그객체
+	console.log( '첨부파일 바뀜'+object );
+	console.log( object.files[0] );	// 현재 이벤트를 실행한 input의 등록한 파일명 호출 
+	// 해당 class의 input 에 등록한 파일명 호출 
+	console.log( document.querySelector('.mimg').files[0] )
+	
+	// 1. JS 파일클래스 선언  
+	let file = new FileReader();	// 파일 읽기 클래스 
+	// 2. 해당 첨부된 파일 읽어오기 ( file.readAsDataURL(첨부파일)  )
+	file.readAsDataURL( object.files[0] )	// 해당 파일 읽어오기   / files[0] : 첨부파일 1개
+	// 3. 읽어온 파일 꺼내기 바이트단위
+	file.onload = (e)=>{ 
+		console.log( e.target.result )	
+		// e.target -> file.onload	: 읽어온 파일 
+		// e.target.result		  	: 읽어온 파일의 바이트 결과 
+		// 4. 이미지 태그의 src 이미지 바이트 대입 
+		document.querySelector('.premimg').src = e.target.result;
+	}
+}
+
 // * checkconfirm span 모두 가져오기 --> 여러개의 span이 배열/리스트 객체에 대입
 let checkconfirm = document.querySelectorAll('.checkconfirm')	
 
@@ -113,7 +135,8 @@ function pwedconfromcheck(){
 		}
 	}else{ checkconfirm[1].innerHTML = '영대소문자+숫자 조합 5~20 글자' }
 } // f end
- 
+
+// 5. 이메일 형식 확인 유효성검사 
 function emailcheck(){
 		console.log( 'emailcheck() 함수 열림');
 	let memail = document.querySelector('.memail').value;
