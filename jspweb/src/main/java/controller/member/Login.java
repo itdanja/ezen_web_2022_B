@@ -7,7 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import model.dao.MemberDao;
+import model.dto.MemberDto;
 
 /**
  * Servlet implementation class Login
@@ -21,6 +24,20 @@ public class Login extends HttpServlet {
        
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		// 1. 세션[Object]에 담겨진 회원아이디 호출 
+		String mid = (String)request.getSession().getAttribute("login");
+		// 2. 로그인한 회원의 정보 호출 [ 비밀번호 빼고 ] 
+		MemberDto result =  MemberDao.getInstance().getMember( mid );
+			System.out.println( " result : " + request );
+			// JAVA객체 --> JS 객체 변환 
+		ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writeValueAsString(result);
+			System.out.println( " json : " + json );
+		// 3. 응답
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("application/json");
+		response.getWriter().print( json );
 		
 	}
 

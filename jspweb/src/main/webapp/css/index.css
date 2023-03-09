@@ -1,1 +1,16 @@
 @charset "UTF-8";
+
+/* 헤더 css */
+
+
+/* 헤더 로그인 프로필 */
+.hpimg{
+	width: 50px;
+	height: 50px;
+	border: solid 1px #e8e8e8;
+	border-radius: 50%; /*둥근모서리*/
+}
+
+
+
+
