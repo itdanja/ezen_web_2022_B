@@ -49,7 +49,7 @@ console.log( 'js 열림');
 
 //* 첨부파일 이미지 미리보기  [ 업로드 와 상관없음 ]
 	// 정책 : 사용자[클라이언트JS]에 운영체제[폴더경로] 접근 불가 
-function premimg( object ){	//  object : 해당 함수를 실행시킨 태그객체
+function premimg( object ){	//  object : 해당 함수를 실행시킨 태그의 객체
 	console.log( '첨부파일 바뀜'+object );
 	console.log( object.files[0] );	// 현재 이벤트를 실행한 input의 등록한 파일명 호출 
 	// 해당 class의 input 에 등록한 파일명 호출 

@@ -15,7 +15,7 @@
 	<!-- 모든페이지 공통 메뉴 -->
 	<a href="/jspweb/index.jsp"> 홈 </a>
 	<a href="/jspweb/member/signup.jsp">회원가입</a>
-	<a href="/jspweb/member/signup.jsp">로그인</a>
+	<a href="/jspweb/member/login.jsp">로그인</a>
 	<a href="/jspweb/admin/info.jsp">관리자페이지</a>
 	
 	<!-- 모든페이지 공통 js -->

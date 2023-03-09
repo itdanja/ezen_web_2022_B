@@ -55,6 +55,19 @@ public class MemberDao extends Dao {
 		}catch (Exception e) {System.out.println(e);}
 		return false;  // 없으면 중복 아이디 아닙니다.
 	}
+	// 4. 아이디,비밀번호 검증   [ 로그인 ]
+	public boolean login( String mid , String mpwd ) {
+		String sql = "select * from member where mid = ? and mpwd = ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString( 1 , mid );
+			ps.setString( 2 , mpwd );
+			rs = ps.executeQuery();
+			if( rs.next() ) {  return true; } // 만약에 조건에 충족한 레코드가 존재하면 
+		}catch (Exception e) {System.out.println(e);} return false;
+	}
+	// 
+	
 }
 
 
