@@ -13,6 +13,9 @@ console.log( 'js 열림');
 			+ : 앞 에 있는 패턴 1개 이상 반복 
 			? : 앞 에 있는 패턴 0개 혹은 1개 이상 반복
 			* : 앞 에 있는 패턴 0개 반복
+			
+			\ : 이스케이프 문자
+			
 			----
 			[a-zA-Z] 		: 영문 입력
 			[a-zA-Z0-9] 	: 영문 + 숫자 입력
@@ -24,6 +27,18 @@ console.log( 'js 열림');
 			(?=.*[A-Z])	: 		대문자 한개 이상 입력 
 			(?=.*[0-9])	:		숫자 한개 이상 입력 
 			(?=.*[!@#$%^&*]):	해당 하는 특수문자 한개 이상 입력
+			----
+			/^ (?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,20} $/
+			1. (?=.*[A-Za-z])					: 영대소문자 한개 이상 입력 
+			2. (?=.*\d) vs (?=.*[0-9])			: 숫자 한개 이상 입력 
+			3. [ A-Za-z\d ] vs [ A-Za-z0-9 ]	: 영문+숫자 
+			--> 영문1개 + 숫자1개 필수로 갖는 5~20글자 사이
+			
+			/^ (?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])[A-Za-z0-9]{5,20} $/
+			--> 영대문자1개 + 영소문자1개 + 숫자1개 필수로 갖는 5~20글자 사이 
+			
+			/^ (?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{5,20} $/
+			--> 영대문자1개 + 영소문자1개 + 숫자1개 + 특정특수문자 1개 필수로 갖는  5~20글자 사이
 		
 		-- 패턴 검사 함수 
 			정규표현식.test( 데이터 )	: 패턴이 적합하면 true / 아니면 false 
@@ -81,7 +96,7 @@ function pwdcheck(){
 	}else{
 		checkconfirm[1].innerHTML = '영대소문자+숫자 조합 5~20 글자'
 	}
-}
+} // end 
 // 4. 비밀번호 확인 유효성검사 
 function pwedconfromcheck(){
 	let mpwd = document.querySelector('.mpwd').value;
@@ -96,13 +111,29 @@ function pwedconfromcheck(){
 		}else{ // 같으면
 			checkconfirm[1].innerHTML = 'O'
 		}
-	}else{
-		checkconfirm[1].innerHTML = '영대소문자+숫자 조합 5~20 글자'
-	}
-}
+	}else{ checkconfirm[1].innerHTML = '영대소문자+숫자 조합 5~20 글자' }
+} // f end
+ 
+function emailcheck(){
+		console.log( 'emailcheck() 함수 열림');
+	let memail = document.querySelector('.memail').value;
+		console.log( 'memail : ' + memail);
+	let memailj = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+$/
+		console.log( memailj.test(memail) );
+	if( memailj.test(memail) ){ checkconfirm[2].innerHTML = 'O' }
+	else{ checkconfirm[2].innerHTML = '이메일 형식으로 입력해주세요' }
+} // f end 
 
 // 1. 회원가입 
 function signup(){
+	// * 유효성검사에 대한 체크 
+	let count = 0 ;
+	for( let i = 0 ; i<checkconfirm.length ; i++ ){
+		if( checkconfirm[i].innerHTML == 'O' ){ count++ }
+	} // for end 
+	if( count != 3 ){ alert('정상적으로 입력되지 않는 데이터가 있습니다.'); return; } 
+	// 
+	
 	console.log( 'signup 함수 열림');
 	// 1. [ 첨부파일 있을때 ] html 에 file input 직접적으로 조작 불가능 
 		// document.querySelector(".mimg").value ,  -- 불가능 

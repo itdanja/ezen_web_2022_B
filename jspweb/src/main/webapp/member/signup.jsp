@@ -20,7 +20,7 @@
 		비밀번호 확인 :  	<input onkeyup="pwedconfromcheck()" maxlength="20"	type="password" name="mpwdconfirm" 	class="mpwdconfirm">	
 			<span class="checkconfirm">x</span> <br/>
 		
-		이메일 :			<input type="text" name="memail" 		class="memail">	
+		이메일 :			<input onkeyup="emailcheck()" type="text" name="memail" 		class="memail">	
 			<span class="checkconfirm">x</span> <br/>
 		프로필 : 			<input type="file" name="mimg"	 		class="mimg">		<br/>
 		<button onclick="signup()" type="button"> 가입 </button>
