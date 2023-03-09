@@ -7,14 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%@ include file="/header.jsp" %>
-	<h3> 모든 회원 명단 </h3>
-	
-	<table class="mListTable" border="1">
 
-	</table>
-	
-	<script src="/jspweb/js/admin/info.js" type="text/javascript"></script>
-	
+	<h3> 푸터 입니다.</h3>
+
 </body>
 </html>

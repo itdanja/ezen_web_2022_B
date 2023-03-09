@@ -46,9 +46,12 @@ function idcheck(){ // onkeyup : 키 누르고 떼었때
 				}else{
 					document.querySelector('.idcheckconfirm').innerHTML = '사용 가능한 아이디';
 				}
+	
+				
+				
 			}
 		}) // ajax end 
-	
+		
 	}else{ // 정규표현식 패턴이 false 이면 
 		document.querySelector('.idcheckconfirm').innerHTML = '영소문자+숫자 조합 5~30사이로 입력해주세요';
 	}
