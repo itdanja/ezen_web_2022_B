@@ -155,6 +155,17 @@ function emailcheck(){
 
 // 6. 이메일 인증 함수 
 function getauth(){	console.log('getauth()함수 실행')
+	// * ajax가 JAVA에게 이메일 전송후 인증코드 받기;
+	$.ajax({
+		url : "/jspweb/email" , 
+		method :"post",
+		data : { "memail" : document.querySelector('.memail').value } ,
+		success : (r)=>{ 
+			console.log('통신'); console.log(r);
+		} // success end 
+	}) // ajax end 
+	
+	
 	// 1. 인증 구역 html 구성 
 	let html =  `
 				<div class="timebox"> 02 : 00</div>
