@@ -33,13 +33,12 @@
 			<div class="title" >이메일</div>
 			<div class="emailbox">
 				<input onkeyup="emailcheck()" type="text" name="memail" 	class="memail">	
-				<button type="button"> 인증 </button>
+				<button onclick="getauth()" class="authbtn" type="button" disabled > 인증 </button>
 			</div>
+			
 			<!-- 인증코드 입력 구역  -->
 			<div class="authbox">
-				<div class="timebox"> 03:00</div>
-				<input type="text" class="authinput" placeholder="인증코드">
-				<button type="button">확인</button>
+				<!-- js 들어가는 자리 -->
 			</div>
 			<div class="checkconfirm"></div>
 			
