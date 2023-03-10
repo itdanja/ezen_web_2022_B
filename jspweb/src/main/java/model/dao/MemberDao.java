@@ -66,7 +66,7 @@ public class MemberDao extends Dao {
 			if( rs.next() ) {  return true; } // 만약에 조건에 충족한 레코드가 존재하면 
 		}catch (Exception e) {System.out.println(e);} return false;
 	}
-	// 5. 
+	// 5. 특정 회원1명 찾기 
 	public MemberDto getMember( String mid ) {
 		String sql = "select * from member where mid = ? ";
 		try {
@@ -81,7 +81,29 @@ public class MemberDao extends Dao {
 		}catch (Exception e) {System.out.println(e);} 
 		return null; // 없다.
 	}
-	
+	// 6. 아이디찾기 
+	public String findid( String memail ) {
+		String sql = "select mid from member where memail = ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString( 1 , memail );
+			rs = ps.executeQuery();
+			if( rs.next() ) { return rs.getString( 1 ); } // 찾은 아이디 반환
+		}catch (Exception e) {System.out.println(e);} 
+		return "false"; // 없으면 false 
+	}
+	// 7. 비밀번호찾기 
+	public String findpwd( String mid , String memail ) {
+		String sql = "select mpwd from member where mid = ? and memail = ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString( 1 , mid );
+			ps.setString( 2 , memail);
+			rs = ps.executeQuery();
+			if( rs.next() ) { return rs.getString(1); }
+		}catch (Exception e) {System.out.println(e);} 
+		return "false";
+	}
 }
 
 

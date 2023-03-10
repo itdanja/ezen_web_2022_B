@@ -155,27 +155,37 @@ function emailcheck(){
 
 // 6. 이메일 인증 함수 
 function getauth(){	console.log('getauth()함수 실행')
+	// ------------------ 1. 메일 전송 테스트 할 경우 ---------------- //
 	// * ajax가 JAVA에게 이메일 전송후 인증코드 받기;
+	/*
 	$.ajax({
 		url : "/jspweb/email" , 
 		method :"post",
 		data : { "memail" : document.querySelector('.memail').value } ,
 		success : (r)=>{ 
 			console.log('통신'); console.log(r);
+			let html =  `<div class="timebox"> 02 : 00</div>
+			<input type="text" class="authinput" placeholder="인증코드">
+			<button onclick="authconfirm()" type="button">확인</button>`
+			// 2. html 대입 
+			document.querySelector('.authbox').innerHTML = html;
+			// 3. 타이머 함수 실행 
+			auth = r;		//  *** 이메일 에게 보낸 난수 대입  ** 
+			timer = 120;	// 인증 시간 대입 
+			settimer();		// 타이머 함수 실행 
 		} // success end 
 	}) // ajax end 
-	
-	
+	*/
+	// ------------------ 2. 메일 전송 테스트 안되는 경우 임시 테스트 ---------------- //
 	// 1. 인증 구역 html 구성 
-	let html =  `
-				<div class="timebox"> 02 : 00</div>
+	let html =  `<div class="timebox"> 02 : 00</div>
 				<input type="text" class="authinput" placeholder="인증코드">
 				<button onclick="authconfirm()" type="button">확인</button>`
 	// 2. html 대입 
 	document.querySelector('.authbox').innerHTML = html;
 	// 3. 타이머 함수 실행 
-	auth = 1234;	// 인증 코드 대입	[ 이메일 에게 보낸 난수 대입 ]
-	timer = 120;		// 인증 시간 대입 
+	auth = 1234;	// **인증 임시 코드 대입	[ 이메일 에게 보낸 난수 대입 ]
+	timer = 120;	// 인증 시간 대입 
 	settimer();		// 타이머 함수 실행 
 	
 } // end 
