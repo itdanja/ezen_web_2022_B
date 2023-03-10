@@ -93,14 +93,27 @@ public class MemberDao extends Dao {
 		return "false"; // 없으면 false 
 	}
 	// 7. 비밀번호찾기 
-	public String findpwd( String mid , String memail ) {
-		String sql = "select mpwd from member where mid = ? and memail = ?";
+	public String findpwd( String mid , String memail , String updatePwd ) {
+		String sql = "select mno from member where mid = ? and memail = ?";
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setString( 1 , mid );
 			ps.setString( 2 , memail);
 			rs = ps.executeQuery();
-			if( rs.next() ) { return rs.getString(1); }
+			if( rs.next() ) {  // 만약에 동일한 아이디와 이메일 일치한 레코드가 있으면 [ 찾았다. ]
+				sql = "update member set mpwd = ? where mno = ?";
+				ps = con.prepareStatement(sql);
+				ps.setString( 1 , updatePwd );		// 임시비밀번호로 업데이트
+				ps.setInt( 2 ,  rs.getInt( 1 ) );	// select 에서 찾은 레코드의 회원번호 
+				int result = ps.executeUpdate();	// 업데이트한 레코드 개수 반환
+				if( result == 1 ) { // 업데이트한 레코드가 1개 이면 
+					// -- 이메일전송 테스트 되는경우 만 -- //
+					//new MemberDto().sendEmail( memail, updatePwd ); // 임시비밀번호를 이메일로 보내기 
+					//return "true";
+					// -- 이메일전송 테스트 안되는 경우 -- //
+					return updatePwd;
+				}
+			}
 		}catch (Exception e) {System.out.println(e);} 
 		return "false";
 	}

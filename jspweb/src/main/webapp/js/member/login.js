@@ -34,7 +34,25 @@ function findid(){	console.log( "findid()함수");
 			else{ document.querySelector('.checkconfirm').innerHTML= '회원님 ID : '+r; }
 		}
 	})	
-}
+} // end 
+// 3. 비밀번호찾기 
+function findpwd(){	console.log( "findpwd()함수");
+	let info = {
+		type : 2 , // "type" : 2 비밀번호찾기
+		mid  : document.querySelector('.mid').value ,
+		memail : document.querySelector('.memail').value
+	}; console.log( info );
+	$.ajax({
+		url : "/jspweb/find",
+		method : "get",
+		data : info , 
+		success : (r) => {	console.log('통신'); console.log(r);
+			if( r == 'false'){ document.querySelector('.checkconfirm').innerHTML= '동일한 회원정보가 없습니다.'; }
+			else{ document.querySelector('.checkconfirm').innerHTML= '임시비밀번호를 이메일로 전송했습니다.'; }
+		} // success end 
+	}) // ajax end 
+} // end 
+
 
 
 
