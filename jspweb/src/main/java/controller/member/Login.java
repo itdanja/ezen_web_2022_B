@@ -52,7 +52,7 @@ public class Login extends HttpServlet {
 				// request.getSession() : 서버[톰캣] 내 세션 객체 호출 
 				// setAttribute( "key" , value );	// 서버[톰캣] 내 세션객체에 속성[데이터] 추가 
 			// 세션객체 에 'login' 이름으로 로그인 성공한 데이터 저장 
-			request.getSession().setAttribute( "login", mid );
+			request.getSession().setAttribute( "login", result2 );
 		}
 		// 3. Dao 받은 결과를 AJAX에게 전달 
 		response.getWriter().print(result);
