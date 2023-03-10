@@ -1,9 +1,47 @@
 @charset "UTF-8";
-
+*{ /* 전체 기본 css */
+	margin: 0px; padding: 0px;
+	list-style-type: none;
+}
+a{ color: black; text-decoration: none; }
+@font-face { /* 외부 폰트 */
+    font-family: 'KCC-Ganpan';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/KCC-Ganpan.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
 /* ----------- 헤더 css ------------- */
+.header{	/* 헤더 구역 */
+	display: flex;	/* 레이아웃 */
+    align-items: center; /* 세로 가운데 */
+    justify-content: space-between; /* 가로 균등배치 */
+    margin : 20px 0px;
+}
+.mainlogo{ width: 10%; } /* 로고 박스 구역 */ 
+.mainlogo img { width: 100%; } /* 로고 이미지 */
+.mainmenu{  /* 메인 메뉴 구역 */
+	width: 70%; 
+	display: flex;
+    justify-content: center;
+    margin: 0px !important;	/* 부트스트랩 여백 제거 */
+    font-family: 'KCC-Ganpan';
+    font-size: 20px;
+} 
+.mainmenu li{ margin: 0px 10px; }
+.submenu{   /* 서브 메뉴 구역 */
+	width: 20%; 
+	display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.submenu a{ margin-left: 15px; font-size: 13px; }
 
-/* 1. 헤더 로그인 프로필 */
-.hpimg{
+ /* 1. 헤더 프로필 드롭다운 버튼 */
+.hpimghtn{
+	border: none ;
+    background-color: transparent;
+}
+.hpimg{ /* 2. 헤더 로그인 프로필 */
 	width: 50px;
 	height: 50px;
 	border: solid 1px #e8e8e8;

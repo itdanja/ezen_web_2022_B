@@ -12,7 +12,6 @@
 	<!-- 모든페이지 공통 css -->
 	<link href="/jspweb/css/index.css" rel="stylesheet">
 	
-
 </head>
 <body>
 	
@@ -34,7 +33,7 @@
 			</ul>
 			<!-- 서브메뉴 -->
 			<div class="submenu">
-				
+				<!-- js가 들어가는 자리  -->
 			</div>
 		</div>
 		
