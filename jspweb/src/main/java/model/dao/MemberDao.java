@@ -153,12 +153,12 @@ public class MemberDao extends Dao {
 		}catch (Exception e) {System.out.println(e);} return false;
 	} // 
 	
-	// 9. 회원탈퇴 [ 인수 : mid  			반환 : 성공실패 ]
-	public boolean delete( String mid ) {
-		String sql = "delete from member where mid = ?";
+	// 9. 회원탈퇴 [ 인수 : mid , mpwd  			반환 : 성공실패 ]
+	public boolean delete( String mid , String mpwd ) {
+		String sql = "delete from member where mid = ? and mpwd = ?";
 		try {
 			ps = con.prepareStatement(sql);
-			ps.setString( 1 , mid );
+			ps.setString( 1 , mid );	ps.setString( 2 , mpwd );
 			int count = ps.executeUpdate();	// 삭제된 레코드 수 반환	// executeUpdate() 조작된 sql 레코드 수 반환
 			if( count == 1 ) { return true; }	// 레코드 1개 삭제 성공시 true 
 			

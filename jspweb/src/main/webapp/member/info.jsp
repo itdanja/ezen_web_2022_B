@@ -32,25 +32,25 @@
 				<div class="mpoint"> 3000 </div>
 			</div>
 			
-			<button type="button">회원수정</button>
-			<button onclick="onpenModal()" type="button">회원탈퇴</button>
+			<a href="/jspweb/member/update.jsp"><button type="button">회원수정</button></a>
+			<button onclick="onpenModal()" type="button"> 회원탈퇴 </button>
 		</div>
-		
 	</div>
 	
-	<button onclick="onpenModal()" type="button">모달버튼</button>
 	<!-- 모달 HTML -->
 	<div class="modal_wrap">
 		<div class="modal_box">
 			<h3 class="modal_title">
-				<!-- 제목이 들어가는 자리  -->
+				회원탈퇴
 			</h3>
 			<div class="modal_content">
-				<!-- 내용이 들어가는 자리  -->
+				정말 회원탈퇴 하시겠습니까? 
+				<br>
+				비밀번호 : <input type="password" class="mpwd" >
 			</div>
 			<div class="modal_btns">
-				<button class="modal_check" 	type="button">확인</button>
-				<button onclick="closeModal()" class="modal_cencel" type="button">닫기</button>
+				<button onclick="setDelete()" class="modal_check" 	type="button">탈퇴하기</button>
+				<button onclick="closeModal()" class="modal_cencel" type="button">취소</button>
 			</div>
 		</div>
 	</div>

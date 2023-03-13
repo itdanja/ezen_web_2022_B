@@ -18,6 +18,7 @@
 	width: 30%;	padding: 5%;
 	border: 3px solid #1b11de;
 	border-radius: 50px;
+	position: relative;
 }
 /* 모달 버튼 꾸미기 */
 .modal_btns button{
@@ -26,4 +27,11 @@
     color: white;
     padding: 10px;
     border-radius: 10px;
+}
+/* 모달 버튼 위치 고정 */
+.modal_btns {
+	position: absolute;
+    right: 0px;
+    bottom: 0px;
+    margin: 20px;
 }

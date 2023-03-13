@@ -19,13 +19,12 @@ function setDelete(){
 	$.ajax({
 		url : "/jspweb/member" , 
 		method : "delete" , 
+		data : { "mpwd" : document.querySelector('.mpwd').value } ,
 		success : (r)=>{	console.log( '통신' ); console.log(r);
 			if( r == 'true'){
 				alert('회원탈퇴성공');
 				location.href="/jspweb/member/logout.jsp"; // 로그아웃 처리 
-			}else{
-				alert('회원탈퇴실패[관리자에게문의]');
-			}
+			}else{ alert('탈퇴할 계정의 비밀번호가 다릅니다.'); }
 		}
 	})
 }
