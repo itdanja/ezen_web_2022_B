@@ -75,7 +75,7 @@ public class MemberDao extends Dao {
 			rs = ps.executeQuery();
 			if( rs.next() ) {	// 비밀번호 제외한 검색된 레코드1개를 dto 1개 만들기 
 				MemberDto dto = new MemberDto( 	rs.getInt(1), rs.getString(2), null, 
-						rs.getString(4), rs.getString(3) );
+						rs.getString(4), rs.getString(5) );
 				return dto;	// 레코드1개 --> 회원1명 --> 회원dto 반환 
 			}
 		}catch (Exception e) {System.out.println(e);} 
