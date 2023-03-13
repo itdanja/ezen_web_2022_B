@@ -105,13 +105,28 @@ public class Info extends HttpServlet {
 		response.getWriter().print(jsonArray);			// 응답 데이터 보내기
 	}
 
-	// 3. 회원 정보 수정 
-	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
 	// 4. 회원탈퇴
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		// 1. 로그인된 회원탈퇴
+			// 1. 로그인된 회원아이디 가져오기 [ 세션(object) ]
+		String mid =(String)request.getSession().getAttribute("login");		System.out.println( "mid:"+mid );
+			// 2. Dao에게 요청후 결과 받기 
+		boolean result = MemberDao.getInstance().delete(mid);				System.out.println( "result : " + request );
+			// 3. 결과 ajax에게 보내기 
+		response.getWriter().print(result);
+	}
+	
+	// 3. 회원 정보 수정 
+	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 1. 로그인된 회원수정 
+			// 1. 필요한 데이터 요청 
+		String mid = (String)request.getSession().getAttribute("login");	System.out.println( "mid:"+mid);
+		String mpwd = request.getParameter("mpwd");							System.out.println( "mpwd:"+mpwd);
+		String memail = request.getParameter("memail");						System.out.println( "memail:"+memail);
+			// 2. 
+		boolean result = MemberDao.getInstance().update(mid, mpwd, memail);
+			// 3. 
+		response.getWriter().print(result);
 	}
 
 }

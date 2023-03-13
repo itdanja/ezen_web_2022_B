@@ -159,7 +159,7 @@ public class MemberDao extends Dao {
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setString( 1 , mid );
-			int count = ps.executeUpdate();	// 삭제된 레코드 수 반환
+			int count = ps.executeUpdate();	// 삭제된 레코드 수 반환	// executeUpdate() 조작된 sql 레코드 수 반환
 			if( count == 1 ) { return true; }	// 레코드 1개 삭제 성공시 true 
 			
 		}catch (Exception e) {System.out.println(e);} return false;

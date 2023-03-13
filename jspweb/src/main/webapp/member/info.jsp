@@ -31,7 +31,7 @@
 			</div>
 			
 			<button type="button">회원수정</button>
-			<button type="button">회원탈퇴</button>
+			<button onclick="setDelete()" type="button">회원탈퇴</button>
 		</div>
 		
 	</div>
