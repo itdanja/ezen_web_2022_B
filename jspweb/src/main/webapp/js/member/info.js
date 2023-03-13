@@ -5,3 +5,4 @@ console.log( memberInfo );
 document.querySelector('.mid').innerHTML = memberInfo.mid;
 document.querySelector('.memail').innerHTML = memberInfo.memail;
 document.querySelector('.mimg').src='/jspweb/member/pimg/'+memberInfo.mimg;
+document.querySelector('.mpoint').innerHTML = memberInfo.mpoint;

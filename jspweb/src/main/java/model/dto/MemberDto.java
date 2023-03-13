@@ -16,7 +16,16 @@ public class MemberDto {
 	private String mpwd	;
 	private String mimg	;
 	private String memail;
+	private int mpoint; // 보유포인트 : db테이블에 존재하지 않는 필드[통계]
 	
+	public int getMpoint() {
+		return mpoint;
+	}
+
+	public void setMpoint(int mpoint) {
+		this.mpoint = mpoint;
+	}
+
 	// 1. 이메일 전송 메소드 [ 받는사람이메일 , 받는내용 HTML ] 
 	public boolean sendEmail( String toEmail , String contentHTML ) {
 		// 1.보내는 사람의 정보 

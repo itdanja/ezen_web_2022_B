@@ -15,7 +15,7 @@
 		<h3> 회원정보 </h3>
 		<div>
 			<div>
-				<img class="mimg" alt="" src="/jspweb/member/pimg/default.webp">
+				<img width="20%" class="mimg" alt="" src="/jspweb/member/pimg/default.webp">
 			</div>
 			<div>
 				<div> 아이디 </div>

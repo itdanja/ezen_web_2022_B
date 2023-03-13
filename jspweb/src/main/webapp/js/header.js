@@ -14,11 +14,9 @@ function getLogin(){
 			console.log('통신성공');	console.log( r );	// Dto1개회원 --> r객체1개 회원
 			
 			let html = '';	// 1. html 구성 
-			if( r == null ){	// 2. 로그인 안했으면 
-			
+			if( r.mid == null ){	// 2. 로그인 안했으면 
 				html += `<a href="/jspweb/member/signup.jsp">회원가입</a>`;
 				html += `<a href="/jspweb/member/login.jsp">로그인</a>`;
-				
 			}else{	// 3.로그인 했으면
 			
 				html += 
@@ -35,10 +33,9 @@ function getLogin(){
 						</div>	<!-- 드롭다운 end  -->
 						${r.mid}님
 						<a href="#"> 쪽지함 </a>
-						<a href="#"> 포인트 </a>
+						<a href="#"> ${ r.mpoint }포인트 </a>
 						`
-			
-			
+		
 				if( r.mid == 'admin'){ // 관리자이면 
 					html += `<a href="/jspweb/admin/info.jsp">관리자</a>`
 				}

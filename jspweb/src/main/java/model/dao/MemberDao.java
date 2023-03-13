@@ -66,16 +66,20 @@ public class MemberDao extends Dao {
 			if( rs.next() ) {  return true; } // 만약에 조건에 충족한 레코드가 존재하면 
 		}catch (Exception e) {System.out.println(e);} return false;
 	}
-	// 5. 특정 회원1명 찾기 
+	// 5. 특정 회원1명 찾기 [ + 보유포인트 ]
 	public MemberDto getMember( String mid ) {
-		String sql = "select * from member where mid = ? ";
+		String sql = "select m.mno , m.mid , m.mimg , m.memail , sum( p.mpamount ) as  mpoint "
+				+ "from member m , mpoint p "
+				+ "where m.mno = p.mno and m.mid = ?";
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setString( 1 , mid );
 			rs = ps.executeQuery();
-			if( rs.next() ) {	// 비밀번호 제외한 검색된 레코드1개를 dto 1개 만들기 
+			if( rs.next() ) {
+				// 결과 필드 : mno[1] , mid[2] , mimg[3] , memail[4] , mpoint[5]
 				MemberDto dto = new MemberDto( 	rs.getInt(1), rs.getString(2), null, 
-						rs.getString(4), rs.getString(5) );
+						rs.getString(3), rs.getString(4) );
+				dto.setMpoint( rs.getInt(5) );
 				return dto;	// 레코드1개 --> 회원1명 --> 회원dto 반환 
 			}
 		}catch (Exception e) {System.out.println(e);} 
