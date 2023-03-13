@@ -119,19 +119,50 @@ public class Info extends HttpServlet {
 	
 	// 3. 회원 정보 수정 
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 1. 로그인된 회원수정 
-			// 1. 필요한 데이터 요청 
+		// 1. 업로드 코드 구현 
+			// 1. 업로드 한 파일을 해당 서버 경로로 업로드 
+		String path = request.getSession().getServletContext().getRealPath("/member/pimg");
+			// 2. MultipartRequest 객체
+		MultipartRequest multi = new MultipartRequest(
+				request, path ,  1024*1024*10 , "UTF-8" ,new DefaultFileRenamePolicy() );
+		// 2. 
 		String mid = (String)request.getSession().getAttribute("login");	System.out.println( "mid:"+mid);
-		String mpwd = request.getParameter("mpwd");							System.out.println( "mpwd:"+mpwd);
-		String memail = request.getParameter("memail");						System.out.println( "memail:"+memail);
-			// 2. 
-		boolean result = MemberDao.getInstance().update(mid, mpwd, memail);
-			// 3. 
+		String mpwd = multi.getParameter("mpwd");							System.out.println( "mpwd:"+mpwd);
+		String newmpwd = multi.getParameter("newmpwd");						System.out.println( "newmpwd:"+newmpwd);
+		String memail = multi.getParameter("memail");						System.out.println( "memail:"+memail);
+		String newmimg = multi.getFilesystemName("newmimg");				System.out.println( "newmimg:"+newmimg);
+		String defaultimg = multi.getParameter("defaultimg");				System.out.println( "defaultimg:"+defaultimg);
+		
+		// 3. 만약에 새로운 첨부파일이 없으면 
+		if( newmimg == null ) { // 기존 이미지 파일 그대로 사용 
+			newmimg = MemberDao.getInstance().getMember( mid ).getMimg();
+		}
+		// 3. 만약에 기본프로필 사용체크 했으면
+		if(  defaultimg.equals( "true" ) ) { // 기본프로필 사용 
+			newmimg = null;
+		}
+		// *추후: 프로필 변경시 기존프로필 실제파일을 서버에서 삭제
+		
+		boolean result =  MemberDao.getInstance().update(mid, mpwd, newmpwd, memail, newmimg);
 		response.getWriter().print(result);
 	}
 
 }
 
+/*
+ 
+ 		// 1. 로그인된 회원수정 
+			// 1. 필요한 데이터 요청 
+		String mid = (String)request.getSession().getAttribute("login");	System.out.println( "mid:"+mid);
+		String mpwd = request.getParameter("mpwd");							System.out.println( "mpwd:"+mpwd);
+		String newmpwd = request.getParameter("newmpwd");					System.out.println( "mpwd:"+newmpwd);
+		String memail = request.getParameter("memail");						System.out.println( "memail:"+memail);
+			// 2. 
+		boolean result = MemberDao.getInstance().update( mid, mpwd,  newmpwd , memail  );
+			// 3. 
+		response.getWriter().print(result);
+  
+ */
 
 
 

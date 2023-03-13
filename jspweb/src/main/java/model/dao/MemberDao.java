@@ -165,14 +165,13 @@ public class MemberDao extends Dao {
 		}catch (Exception e) {System.out.println(e);} return false;
 	} // 
 	
-	// 10. 회원수정[ 인수 : mid , mpwd	, memail 	반환 : 성공실패]
-	public boolean update( String mid , String mpwd , String memail ) {
-		String sql = "update member set mpwd = ? , memail = ? where mid = ?";
+	// 10. 회원수정[ 인수 : mid , mpwd	, memail , newmimg 	반환 : 성공실패]
+	public boolean update( String mid , String mpwd , String newmpwd , String memail , String newmimg ) {
+		String sql = "update member set mpwd = ? , memail = ? , mimg = ? where mid = ? and mpwd = ?";
 		try {
 			ps = con.prepareStatement(sql);
-			ps.setString( 1 , mpwd );
-			ps.setString( 2 , memail );
-			ps.setString( 3 , mid );
+			ps.setString( 1 , newmpwd ); 	ps.setString( 2 , memail );
+			ps.setString( 3 , newmimg ); 	ps.setString( 4 , mid ); ps.setString( 5 , mpwd );
 			int count = ps.executeUpdate();	// 수정된 레코드 수 반환 
 			if( count == 1 ) { return true; }	// 레코드 1개 수정 성공시 true 
 			
