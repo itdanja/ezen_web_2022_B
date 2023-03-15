@@ -43,8 +43,14 @@ public class Boardinfo extends HttpServlet {
 		}else if( type == 2 ) { // 2. 개별 출력 
 			int bno = Integer.parseInt( request.getParameter("bno") ) ;	System.out.println("bno:"+bno);
 			// Dao 처리 
+			BoardDto result = BoardDao.getInstance().getBoard(bno);
 			// 형변환 처리
+			ObjectMapper mapper = new ObjectMapper();
+			String json = mapper.writeValueAsString( result );
 			// 응답 처리
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("application/json");
+			response.getWriter().print( json );
 		}
 
 	}
