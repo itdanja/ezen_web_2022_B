@@ -29,14 +29,24 @@ public class Boardinfo extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<BoardDto> result = BoardDao.getInstance().getBoardList();
-		// java 형식 ---> js형식 
-		ObjectMapper mapper = new ObjectMapper();
-		String jsonArray =  mapper.writeValueAsString( result );
-		// 응답
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("applcation/json");
-		response.getWriter().print( jsonArray );
+		
+		int type = Integer.parseInt( request.getParameter("type") );
+		if( type == 1 ) { // 1. 전체 출력 
+			ArrayList<BoardDto> result = BoardDao.getInstance().getBoardList();
+			// java 형식 ---> js형식 
+			ObjectMapper mapper = new ObjectMapper();
+			String jsonArray =  mapper.writeValueAsString( result );
+			// 응답
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("applcation/json");
+			response.getWriter().print( jsonArray );
+		}else if( type == 2 ) { // 2. 개별 출력 
+			int bno = Integer.parseInt( request.getParameter("bno") ) ;	System.out.println("bno:"+bno);
+			// Dao 처리 
+			// 형변환 처리
+			// 응답 처리
+		}
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
