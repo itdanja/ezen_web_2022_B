@@ -123,10 +123,12 @@ public class BoardDto {
 	public void setMid(String mid) {
 		this.mid = mid;
 	}
-	
-	
-	
-	
+	@Override
+	public String toString() {
+		return "BoardDto [bno=" + bno + ", btitle=" + btitle + ", bcontent=" + bcontent + ", bfile=" + bfile
+				+ ", bdate=" + bdate + ", bview=" + bview + ", bup=" + bup + ", bdown=" + bdown + ", mno=" + mno
+				+ ", cno=" + cno + ", mid=" + mid + "]";
+	}
 	
 	
 	

@@ -24,10 +24,9 @@ function bwrite(){
 		processData : false , 
 		success : (r) => {
 			console.log('통신'); console.log( r );
+			if( r == 'true'){ alert('글쓰기 성공');}
+			else{ alert('글쓰기 실패'); }
 		}
 	})
-	
-	
-	
 	
 }

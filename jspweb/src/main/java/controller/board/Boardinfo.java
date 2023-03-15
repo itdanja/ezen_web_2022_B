@@ -10,6 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import model.dao.BoardDao;
+import model.dao.MemberDao;
+import model.dto.BoardDto;
+
+
 /**
  * Servlet implementation class Boardinfo
  */
@@ -41,19 +46,22 @@ public class Boardinfo extends HttpServlet {
 		// ---------- 확인 ----------
 			// request.getParameter("객체명의 필드명")
 			// multi.getParameter("form 하위 태그의 name명");
-		String cno = multi.getParameter("cno");				System.out.println("cno:"+cno);
-		String btitle = multi.getParameter("btitle");		System.out.println("btitle:"+btitle);
-		String bcontent = multi.getParameter("bcontent");	System.out.println("bcontent:"+bcontent);
-		String bfile = multi.getFilesystemName("bfile");	System.out.println("bfile:"+bfile);
+		int cno = Integer.parseInt( multi.getParameter("cno") ) ;		System.out.println("cno:"+cno);
+		String btitle = multi.getParameter("btitle");					System.out.println("btitle:"+btitle);
+		String bcontent = multi.getParameter("bcontent");				System.out.println("bcontent:"+bcontent);
+		String bfile = multi.getFilesystemName("bfile");				System.out.println("bfile:"+bfile);
 						// getFilesystemName : input 실제 파일이름
 		// ---------- 확인 ----------
-		
-		// Dto 
-		
-		// DAO
-		
+			// 1. 회원제게시판[ 로그인된 회원의 mno 필요!]
+			String mid = 
+				(String)request.getSession().getAttribute("login");
+			// 2. mid ---> mno ( Dao )
+			int mno = MemberDao.getInstance().getMno(mid);
+		BoardDto dto = new BoardDto(btitle, bcontent, bfile, mno, cno); // Dto 
+			System.out.println( "dto : " + dto );
+		boolean result = BoardDao.getInstance().bwrite(dto); // DAO
 		// 응답 
-		
+		response.getWriter().print(result);
 	}
 
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
