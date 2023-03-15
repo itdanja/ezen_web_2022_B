@@ -7,9 +7,25 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
-	<%@include file ="/header.jsp" %>
 
+	<%@include file ="/header.jsp" %>
+	
+	<script type="text/javascript">
+	/* 	
+		// 1. js 로그인 여부 제어 
+		if( memberInfo.mid == null ){
+			alert('회원제 기능입니다. 로그인후 작성해주세요'); 
+			location.href="/jspweb/member/login.jsp";
+		} */
+	</script>
+	<%
+		// 2. jsp 로그인 여부 제어 
+		Object o = request.getSession().getAttribute("login");
+		if( o == null ){
+			response.sendRedirect("/jspweb/member/login.jsp");
+		}
+	%>
+	
 	<div class="container">
 		<h3> 글쓰기 </h3>
 		<form class="writeForm">
@@ -25,7 +41,6 @@
 			<button onclick="bwrite()" type="button">쓰기</button>
 		</form>
 	</div>
-	
 	<script src="/jspweb/js/board/write.js" type="text/javascript"></script>
 	
 	<!-- 

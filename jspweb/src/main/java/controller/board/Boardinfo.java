@@ -57,6 +57,9 @@ public class Boardinfo extends HttpServlet {
 				(String)request.getSession().getAttribute("login");
 			// 2. mid ---> mno ( Dao )
 			int mno = MemberDao.getInstance().getMno(mid);
+			// 3. 만약에 회원번호가 존재하지 않으면 글쓰기 불가능 
+			if( mno > 0 ) { response.getWriter().print("false"); }
+			
 		BoardDto dto = new BoardDto(btitle, bcontent, bfile, mno, cno); // Dto 
 			System.out.println( "dto : " + dto );
 		boolean result = BoardDao.getInstance().bwrite(dto); // DAO

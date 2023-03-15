@@ -1,4 +1,5 @@
 console.log( '함수');
+console.log( memberInfo ) 
 
 function bwrite(){
 	
