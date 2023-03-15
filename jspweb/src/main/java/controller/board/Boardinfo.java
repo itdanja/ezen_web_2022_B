@@ -1,12 +1,15 @@
 package controller.board;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -26,7 +29,14 @@ public class Boardinfo extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		ArrayList<BoardDto> result = BoardDao.getInstance().getBoardList();
+		// java 형식 ---> js형식 
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonArray =  mapper.writeValueAsString( result );
+		// 응답
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("applcation/json");
+		response.getWriter().print( jsonArray );
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -58,7 +68,7 @@ public class Boardinfo extends HttpServlet {
 			// 2. mid ---> mno ( Dao )
 			int mno = MemberDao.getInstance().getMno(mid);
 			// 3. 만약에 회원번호가 존재하지 않으면 글쓰기 불가능 
-			if( mno > 0 ) { response.getWriter().print("false"); }
+			if( mno < 1 ) { response.getWriter().print("false"); }
 			
 		BoardDto dto = new BoardDto(btitle, bcontent, bfile, mno, cno); // Dto 
 			System.out.println( "dto : " + dto );

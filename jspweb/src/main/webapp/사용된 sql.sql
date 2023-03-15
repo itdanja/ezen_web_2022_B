@@ -59,3 +59,37 @@ insert into category(cname) values( 'QnA');
 insert into category(cname) values( '노하우');
 select * from category;
 
+-- 2. 조인 테스트 
+
+-- 1. 조건[where] 조인[합집합]
+drop table ex4;
+create table ex4(
+	mno int 
+);
+insert into ex4 values( 1 ) , ( 2 ) , ( 3 ) , ( 4 ) , ( 5 );	-- 5레코드 추가 
+select * from ex4;
+
+drop table ex5;
+create table ex5(
+	mno	int
+);
+insert into ex5 values( 3 ) , ( 4 ) , ( 5 ) , ( 6 ) , ( 7 );	-- 5레코드 추가 
+select * from ex5;
+-- ------------------------------------
+select * from ex4 , ex5	; -- 25레코드 검색 [ 합 집합 레코드개수 * 레코드개수 ]
+select * from ex4 , ex5 where ex4.mno = ex5.mno; -- 3레코드[ 교 집합의  두 레코드의 일치값 [ pk-fk ] ]
+
+select * from ex4 natural join ex5;	-- natural join 자연조인 [ 교집합 ( 암묵적으로 동일한 레코드의 일치값 ) ]
+-- board 테이블에는 mno 있다. 원한건 mno[fk] ---> member테이블의 mno[pk] 외 다른 필드에 접근 
+select * from member , board; 
+	-- 1. where 이용한 조인 [ * 다른 조건과 가독성 떨어짐 ]
+    select * from member , board where member.mno = board.mno;
+    -- 2. 테이블명 별칭[별명]
+    select * from member m , board b where m.mno = b.mno; 
+	-- 3. A테이블 natural join B테이블 		:  자연조인 [ * pk와fk 필드가 1개씩 존재하는 테이블에서 자주 사용 ]
+    select * from member natural join board;
+    -- 4. A테이블 join B테이블 on 조인조건  	:  조인 [ * on 키워드를 사용해서 교집합조건 사용하면 다른 where 구분 ]
+    select * from member m join board b on m.mno = b.mno;
+-- 결론 
+select board.* , member.mid from member natural join board;
+
