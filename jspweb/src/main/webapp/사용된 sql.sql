@@ -28,3 +28,34 @@ create table mpoint(
     mno			int ,						-- 포인트 변경된 회원번호 
     foreign key ( mno ) 	references member ( mno ) on delete set null  -- 탈퇴하면 포인트 null
 );
+-- 카테고리 테이블[ 카테고리번호 , 카테고리 이름 ( 공지사항 , 커뮤니티 , QnA , 노하우 등등 ) ]
+create table category(
+	cno		int auto_increment primary key , 
+    cname	varchar(100) not null 
+);
+-- 게시물 테이블 [ 번호 , 제목 , 내용 , 첨부파일 , 작성일 , 조회수 , 좋아요수 , 싫어요수 , 작성자 , 카테고리번호 ]
+create table board(
+	bno			int auto_increment primary key , 
+    btitle 		varchar(1000) not null ,
+    bcontent	longtext	not null ,
+    bfile		longtext	,
+    bdate 		datetime default now() ,
+    bview		int default 0 ,
+    bup			int default 0 ,
+    bdown		int default 0 ,
+    mno			int , -- 회원번호 fk
+    cno			int , -- 카테고리번호 fk
+    foreign key ( mno ) references member( mno ) on delete set null,  	-- [회원]pk가 삭제되면 게시물fk는 null 변경
+	foreign key ( cno ) references category( cno ) on delete cascade	-- [카테고리]pk가 삭제되면 게시물 같이 삭제 
+);
+-- on delete cascade 	: pk가 삭제되면 fk 같이 삭제
+-- on delete set null 	: pk가 삭제되면 fk는 null 로 변경 
+-- 생략 					: fk에 존재하는 식별키[pk] 는 삭제 불가능 
+
+-- 1. 
+insert into category(cname) values( '공지사항');
+insert into category(cname) values( '커뮤니티');
+insert into category(cname) values( 'QnA');
+insert into category(cname) values( '노하우');
+select * from category;
+
