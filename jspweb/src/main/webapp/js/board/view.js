@@ -28,7 +28,7 @@ function getBoard(){
 			if( r.bfile == null ){ // 첨부파일 없을때 
 				document.querySelector('.bfile').innerHTML = '첨부파일없음';
 			}else{ // 첨부파일 있을때 
-				html = ` ${ r.bfile } <button onclick="bdownload( '${ r.bfile }' )" type="type"> 다운로드 </button>`
+				html = ` ${ r.bfile } <button onclick="bdownload( '${ r.bfile }' )" type="button"> 다운로드 </button>`
 				document.querySelector('.bfile').innerHTML = html;
 			}
 		}
@@ -37,6 +37,7 @@ function getBoard(){
 // 2. 다운로드 [ 다운로드할 파일명을 인수로 받기 ]
 function bdownload( bfile ){
 	console.log( '선택한 파일명 : ' + bfile );
+	/* 
 	$.ajax({
 		url : "/jspweb/filedownload" , 
 		method : "get" , 
@@ -45,6 +46,9 @@ function bdownload( bfile ){
 			console.log('통신');	console.log(r);
 		}
 	}) // ajax end 
+	*/
+	location.href="/jspweb/filedownload?bfile="+bfile;
+
 } // m end 
 
 /*
@@ -56,6 +60,16 @@ function bdownload( bfile ){
 		
 	<button onclick="bdownload( '${ r.bfile }' )" type="type">
 		<button onclick="bdownload( '짱구4.jpg' )" type="type">
+
+	2. 
+		전송 방법
+			HTML	:	1.<form>				2.<a href="">
+			JS 		:	1.location.href="" 	
+			JQUERY	:	1.$.ajax({ })
+			servlet : 	
+					1.response.getwriter.print(문자데이터);
+					2.response.sendRedirect('경로');
+						
 */
 
 
