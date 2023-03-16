@@ -40,15 +40,22 @@ public class Boardinfo extends HttpServlet {
 			int listsize = 3;
 			int startrow = (page-1)*listsize; // 해당 페이지에서의 게시물 시작번호
 			// ------------- page 버튼 만들기 ------------ //
-			// 1. 전체페이지수[ 총게시물레코드수/페이지당 표시수 ] 2. 페이지 표시할 최대버튼수 3. 시작버튼 번호 
+			// 1. 전체페이지수[ 총게시물레코드수/페이지당 표시수 ] 2. 페이지 표시할 최대버튼수 3. 시작버튼/마지막버튼 번호 
 			int totalsize = BoardDao.getInstance().gettotalsize();
 			int totalpage = totalsize % listsize == 0 ? 	// 만약에 나머지가 0 이면 
 							totalsize/listsize :  totalsize/listsize+1;
+			int btnsize = 5; // 최대 페이징버튼 출력수
+			int startbtn = ( (page-1) / btnsize ) * btnsize +1 ; 
+			int endbtn = startbtn + (btnsize-1);
+			// * 단 마지막버튼수가 총페이지수보다 커지면 마지막버튼수 총페이지수로 대입 
+			if( endbtn > totalpage ) endbtn = totalpage;
 			
 			ArrayList<BoardDto> result = BoardDao.getInstance().getBoardList( startrow , listsize );
 			
 			// page Dto 만들기 
-			PageDto pageDto = new PageDto(page, listsize, startrow, totalsize, totalpage, result);
+			PageDto pageDto 
+			= new PageDto(page, listsize, startrow, totalsize, totalpage, btnsize, startbtn, endbtn, result);
+			
 			
 			// java 형식 ---> js형식 
 			ObjectMapper mapper = new ObjectMapper();
@@ -85,7 +92,37 @@ public class Boardinfo extends HttpServlet {
 			1페이지 요청 -> (1-1)*3	=> 0
 			2페이지 요청 -> (2-1)*3	=> 3
 			3페이지 요청 -> (3-1)*3	=> 6
-	 */
+	3. 시작버튼 , 마지막버튼 수 
+		7페이지	btnsize = 5
+				시작번호패턴 : 1 6 11 16 21
+		1페이지 -> 12345
+		2페이지 -> 12345
+		3페이지 -> 12345
+		4페이지 -> 12345
+		5페이지 -> 12345
+		6페이지 -> 678910	--> 67
+		7페이지 -> 678910	--> 67
+		
+		7페이지	btnsize = 3
+				시작번호패턴 : 1 4 7 10
+		1페이지 -> 123
+		2페이지 -> 123
+		3페이지 -> 123
+		4페이지 -> 456
+		5페이지 -> 456
+		6페이지 -> 456
+		7페이지 -> 7
+		
+ 			1페이지 	: 1-1 / 5 	*5 +1			-> 	0*5+1	 	1 
+  			2페이지	: 2-1 / 5	*5 +1			->	0*5+1		1
+  			3페이지 	: 3-1 / 5	*5 +1			->  0*5+1		1
+  			4페이지	: 4-1 / 5	*5 +1			->	0*5+1		1
+  			5페이지	: 5-1 / 5	*5 +1			->  0*5+1		1
+  			6페이지	: 6-1 / 5 	*5 +1			->  1*5+1 		6
+  			7페이지	: 7-1 / 5	*5 +1			->	1*5+1		6
+ */
+
+		
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
