@@ -10,8 +10,17 @@
 
 	<%@include file = "/header.jsp" %>
 	
+	 <%
+	 	// 1. HTTP GET <a href="URL경로?변수명=값"> 전달된 매개변수 가져오기 
+	 	String cno = request.getParameter("cno");
+	 	// 2. 표현식을 이용한 input , div 등등 대입 
+	 %>
+	 <!-- cno 숨겨서 js에게 전달  -->
+	<input type="hidden" class="cno" value="<%=cno%>">
+	
 	<div class="container">
-		<h3> 게시물 목록 </h3>
+		<h3 class="cname"></h3>
+		
 		<a href="write.jsp">글쓰기</a>
 		
 		<table class="boardTable table table-hover">

@@ -5,8 +5,17 @@ let pageObject = {
 	page : 1 , // page : 표시할 페이징번호
 	key : "" , 
 	keyword : "",
-	type : 1 // 1:전체출력 2:개별출력 
+	type : 1 , // 1:전체출력 2:개별출력
+	cno : document.querySelector('.cno').value // 카테고리 번호
 }
+
+// -- 카테고리 제목 넣어주기 
+let cnameHTML ='';
+if( pageObject.cno == 1 ){ cnameHTML ='공지사항'; }
+if( pageObject.cno == 2 ){ cnameHTML ='커뮤니티'; }
+if( pageObject.cno == 3 ){ cnameHTML ='QnA'; }
+if( pageObject.cno == 4 ){ cnameHTML ='노하우'; }
+document.querySelector('.cname').innerHTML = cnameHTML
 
 // 1. 게시물 호출
 getBoardList(1); // js열릴때 페이지1 기본값 설정
