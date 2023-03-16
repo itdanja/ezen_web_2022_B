@@ -1,13 +1,25 @@
 console.log('js열림')
 
+// * pageObject : 현재 페이지 , 검색 , 전송타입 보관된 객체
+let pageObject = {
+	page : 1 , // page : 표시할 페이징번호
+	key : "" , 
+	keyword : "",
+	type : 1 // 1:전체출력 2:개별출력 
+}
+
+// 1. 게시물 호출
 getBoardList(1); // js열릴때 페이지1 기본값 설정
 function getBoardList( page ){
 	// 해당 함수로부터 페이징번호 받기 = page
 	console.log('해당 페이지 주세요 : ' + page);
+	pageObject.page = page; // 인수로 받은 현재페이지를 객체에 대입
+	console.log( pageObject )
+	
 	$.ajax({
 		url : "/jspweb/board/info",
 		method : "get" ,
-		data : { "type" : 1 , "page" : page } ,	// 1:전체출력 2:개별출력 / page : 표시할 페이징번호
+		data : pageObject ,	
 		success : (r)=>{
 			console.log('통신'); console.log(r);
 			
@@ -49,6 +61,36 @@ function getBoardList( page ){
 	}) // ajax end 
 } // method end 
 
+// 2.
+function getsearch(){
+	console.log('onsearch()함수');
+	// * 입력받은 데이터를 전역객체내 필드에 대입 
+	pageObject.key = document.querySelector('.key').value
+	pageObject.keyword = document.querySelector('.keyword').value
+	// * 게시물리스트 호출 
+	getBoardList(1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
 	- 클릭한 pk[식별자] 이동하는 경우의수
 		1. HTTP get메소드 방식의 a태그 이용한 pk 이동 
@@ -61,3 +103,15 @@ function getBoardList( page ){
 				http://localhost:8080/jspweb/board/view.jsp?bno=1
 				
 */
+
+
+
+
+
+
+
+
+
+
+
+

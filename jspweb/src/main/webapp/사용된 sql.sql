@@ -93,3 +93,58 @@ select * from member , board;
 -- 결론 
 select board.* , member.mid from member natural join board;
 
+
+
+
+------------------------------------ 3/16 페이징처리 / 검색처리 연습 sql ----------------------------------
+-- 1. 출력 
+select board.* , member.mid from member natural join board;
+
+-- 2. 특정 개수 만 출력 [ 페이징 조건 ] limit 시작인덱스[0~] , 개수 
+select b.* , m.mid from member m natural join board b limit 0 , 3; -- 1페이지
+select b.* , m.mid from member m natural join board b limit 3 , 3; -- 2페이지
+select b.* , m.mid from member m natural join board b limit 6 , 3; -- 3페이지
+
+select b.* , m.mid from member m natural join board b limit ? , ? ;
+
+-- 3. 레코드 수 구하기 count(*)
+select count(*) from member m natural join board b;
+
+-- 4. 조건식 [ = 같다 ]
+select * from board where btitle = '123123';
+-- 4. 조건식 [ like 포함된 패턴검색 ]	필드명 like %데이터%
+select * from board where btitle = 'asd';		-- asd인 제목의 레코드 찾기 
+select * from board where btitle like '%asd%';	-- asd가 포함된 제목의 레코드 찾기
+select * from board where btitle like '_asd_';	-- asd가 2번째 글자에 있는 5글자 제목의 레코드 찾기 
+	-- % : 모든 문자 대응 [ 문자개수 무시 ]	/	_ : _개수만큼 대응 [ 문자개수 중요 ]
+/*
+	1asd2		like '_asd_'	--> true	/	like '%asd%' --> true
+    1asd23		like '_asd_'	--> false	/	liket '%asd%' --> true
+*/
+
+-- 결론 
+	-- 1. 검색이 없을때 레코드수 구하기 
+    select count(*) from member m natural join board b;
+    -- 2. 검색이 있을때 레코드수 구하기 [ 검색[조건]된 레코드수 ]
+    select count(*) from member m natural join board b where b.btitle like '%asd%';
+    -- 3. 자바에서 사용할경우
+	-- "select count(*) from member m natural join board b where "+key+" like '%"+keyword+"%'" ;
+
+	-- 1. 검색이 없을때 레코드 출력 
+		select b.* , m.mid from member m natural join board b order by b.bdate desc limit ? , ? ;
+	-- 2. 검색이 있을때 레코드 출력 
+		select b.* , m.mid from member m natural join board b where b.btitle like '%asd%' order by b.bdate desc limit 0 , 3 
+	-- 3. 자바에서 사용할 경우 
+	--	"select b.* , m.mid from member m natural join board b where "+key+" like '%"+keyword+"%' order by b.bdate desc limit ? , ?" 
+
+
+
+
+
+
+
+
+
+
+
+
