@@ -16,6 +16,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import model.dao.BoardDao;
 import model.dao.MemberDao;
 import model.dto.BoardDto;
+import model.dto.PageDto;
 
 
 /**
@@ -38,23 +39,20 @@ public class Boardinfo extends HttpServlet {
 			int page = Integer.parseInt( request.getParameter("page") );
 			int listsize = 3;
 			int startrow = (page-1)*listsize; // 해당 페이지에서의 게시물 시작번호
+			// ------------- page 버튼 만들기 ------------ //
+			// 1. 전체페이지수[ 총게시물레코드수/페이지당 표시수 ] 2. 페이지 표시할 최대버튼수 3. 시작버튼 번호 
+			int totalsize = BoardDao.getInstance().gettotalsize();
+			int totalpage = totalsize % listsize == 0 ? 	// 만약에 나머지가 0 이면 
+							totalsize/listsize :  totalsize/listsize+1;
+			
 			ArrayList<BoardDto> result = BoardDao.getInstance().getBoardList( startrow , listsize );
-			/*
-			 	총 게시물수 = 10		, 페이지당 표시할 게시물수 = 3
-			 	총 레코드수 = 10	총 레코드의 인덱스 : 0~9
-			 	1. 총 페이지수 = 012 , 345 , 678 , 9
-				2. 페이지별 게시물시작 번호 찾기 
-						1페이지 요청 -> (1-1)*3	=> 0
-						2페이지 요청 -> (2-1)*3	=> 3
-						3페이지 요청 -> (3-1)*3	=> 6
-			 */
 			
-			
-			
+			// page Dto 만들기 
+			PageDto pageDto = new PageDto(page, listsize, startrow, totalsize, totalpage, result);
 			
 			// java 형식 ---> js형식 
 			ObjectMapper mapper = new ObjectMapper();
-			String jsonArray =  mapper.writeValueAsString( result );
+			String jsonArray =  mapper.writeValueAsString( pageDto );
 			// 응답
 			response.setCharacterEncoding("UTF-8");
 			response.setContentType("applcation/json");
@@ -74,6 +72,21 @@ public class Boardinfo extends HttpServlet {
 		}
 
 	}
+	/*
+ 	총 게시물수 = 10		, 페이지당 표시할 게시물수 = 3
+ 	총 레코드수 = 10	총 레코드의 인덱스 : 0~9
+ 	1. 총 페이지수 = 012 , 345 , 678 , 9	--> 4
+ 			
+ 			총 레코드수/페이당표시게시물수
+ 				1. 나머지가 없으면 => 몫			9/3 -> 3페이지
+ 				2. 나머지가 있으면 => 몫 + 1		10/3 -> 4페이지
+ 			
+	2. 페이지별 게시물시작 번호 찾기 
+			1페이지 요청 -> (1-1)*3	=> 0
+			2페이지 요청 -> (2-1)*3	=> 3
+			3페이지 요청 -> (3-1)*3	=> 6
+	 */
+
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

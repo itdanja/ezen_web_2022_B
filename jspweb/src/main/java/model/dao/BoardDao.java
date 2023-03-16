@@ -20,6 +20,14 @@ public class BoardDao extends Dao {
 			ps.setInt( 5 , dto.getCno() );			ps.executeUpdate(); return true;
 		}catch (Exception e) {System.out.println(e);} return false;
 	}
+	// 2-2 게시물/레코드 수 구하기 
+	public int gettotalsize() {
+		String sql = "select count(*) from member m natural join board b";
+		try {
+			ps =con.prepareStatement(sql); rs = ps.executeQuery();
+			if( rs.next() )return rs.getInt(1);
+		}catch (Exception e) {System.err.println(e);} return 0;
+	}
 	// 2. 모든 글 출력
 	public ArrayList< BoardDto > getBoardList( int startrow , int listsize ){
 		ArrayList< BoardDto > list = new ArrayList<>();
