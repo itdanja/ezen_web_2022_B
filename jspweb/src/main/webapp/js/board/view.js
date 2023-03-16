@@ -17,8 +17,8 @@ function getBoard(){
 			
 			let html = `${ r.bdate } / 
 						${ r.bview } / 
-						${ r.bup } /
-						${ r.bdown } /`
+						<button onclick="bIncrease(2)" type="type"> ${ r.bup } </button> /
+						<button onclick="bIncrease(3)" type="type"> ${ r.bdown } </button> /`
 			
 			document.querySelector('.infobox').innerHTML = html;
 			document.querySelector('.pimgbox').innerHTML = r.mid;
@@ -51,6 +51,26 @@ function bdownload( bfile ){
 	location.href="/jspweb/filedownload?bfile="+bfile;
 
 } // m end 
+
+// 3. 조회수[1] 좋아요수[2] 싫어요수[3]
+bIncrease( 1 ); // 현재 jsp/js가 열리는 순간 [ 조회수 증가 ]
+function bIncrease( type ){
+	// 1. 현재 게시물의 번호 [ 증가할 대상 ]
+	let bno = document.querySelector('.bno').innerHTML;
+	console.log( "bno : "+bno);
+	// 2. 
+	$.ajax({
+		url : "/jspweb/board/view",
+		method: "get" , 
+		data : { "type" : type , "bno" : bno  },
+		success : (r)=>{
+			console.log('통신'); console.log('r');
+			getBoard(); // 새로고침
+		}
+	})
+}
+
+
 
 /*
 	1. onclick = JS 코드 작성구역 
