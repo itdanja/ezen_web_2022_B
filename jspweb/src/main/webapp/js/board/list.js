@@ -1,11 +1,13 @@
 console.log('js열림')
 
-getBoardList();
-function getBoardList(){
+getBoardList(1); // js열릴때 페이지1 기본값 설정
+function getBoardList( page ){
+	// 해당 함수로부터 페이징번호 받기 = page
+	console.log('해당 페이지 주세요 : ' + page);
 	$.ajax({
 		url : "/jspweb/board/info",
 		method : "get" ,
-		data : { "type" : 1 } ,	// 1:전체출력 2:개별출력
+		data : { "type" : 1 , "page" : page } ,	// 1:전체출력 2:개별출력 / page : 표시할 페이징번호
 		success : (r)=>{
 			console.log('통신');
 			console.log(r);

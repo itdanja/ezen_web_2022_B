@@ -18,9 +18,22 @@
 			
 		</table>
 		
+		<!-- 페이징처리 버튼들 -->
+		<div>
+			<button onclick="getBoardList(1)" type="button"> 1 </button>
+			<button onclick="getBoardList(2)"  type="button"> 2 </button>
+			<button onclick="getBoardList(3)" type="button"> 3 </button>
+		</div>
+		
 	</div>
 	
 	<script src="/jspweb/js/board/list.js" type="text/javascript"></script>
 	
 </body>
 </html>
+
+
+
+
+
+

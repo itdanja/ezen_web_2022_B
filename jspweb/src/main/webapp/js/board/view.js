@@ -29,6 +29,7 @@ function getBoard(){
 				document.querySelector('.bfile').innerHTML = '첨부파일없음';
 			}else{ // 첨부파일 있을때 
 				html = ` ${ r.bfile } <button onclick="bdownload( '${ r.bfile }' )" type="button"> 다운로드 </button>`
+				// html = ` ${ r.bfile } <a href="/jspweb/filedownload?bfile=${ r.bfile }" type="button"> 다운로드 </button>`
 				document.querySelector('.bfile').innerHTML = html;
 			}
 		}

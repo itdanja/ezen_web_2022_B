@@ -32,7 +32,26 @@ public class Boardinfo extends HttpServlet {
 		
 		int type = Integer.parseInt( request.getParameter("type") );
 		if( type == 1 ) { // 1. 전체 출력 
-			ArrayList<BoardDto> result = BoardDao.getInstance().getBoardList();
+			
+			// ------------- page 처리 --------------- //
+			// 1. 현재페이지[요청] , 2.페이지당 표시할게시물수 3.현재페이지[ 게시물시작  ]
+			int page = Integer.parseInt( request.getParameter("page") );
+			int listsize = 3;
+			int startrow = (page-1)*listsize; // 해당 페이지에서의 게시물 시작번호
+			ArrayList<BoardDto> result = BoardDao.getInstance().getBoardList( startrow , listsize );
+			/*
+			 	총 게시물수 = 10		, 페이지당 표시할 게시물수 = 3
+			 	총 레코드수 = 10	총 레코드의 인덱스 : 0~9
+			 	1. 총 페이지수 = 012 , 345 , 678 , 9
+				2. 페이지별 게시물시작 번호 찾기 
+						1페이지 요청 -> (1-1)*3	=> 0
+						2페이지 요청 -> (2-1)*3	=> 3
+						3페이지 요청 -> (3-1)*3	=> 6
+			 */
+			
+			
+			
+			
 			// java 형식 ---> js형식 
 			ObjectMapper mapper = new ObjectMapper();
 			String jsonArray =  mapper.writeValueAsString( result );
@@ -40,6 +59,7 @@ public class Boardinfo extends HttpServlet {
 			response.setCharacterEncoding("UTF-8");
 			response.setContentType("applcation/json");
 			response.getWriter().print( jsonArray );
+			
 		}else if( type == 2 ) { // 2. 개별 출력 
 			int bno = Integer.parseInt( request.getParameter("bno") ) ;	System.out.println("bno:"+bno);
 			// Dao 처리 

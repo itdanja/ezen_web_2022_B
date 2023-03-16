@@ -6,6 +6,7 @@ import java.io.*;
 import java.net.URLEncoder;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -42,6 +43,8 @@ public class FiledownLoad extends HttpServlet {
 		String path = request.getSession().getServletContext().getRealPath("/board/bfile/"+bfile);
 			System.out.println( "path : "+ path );
 			// 3. 파일 클래스 [ 해당 경로의 파일을 파일 객체화 ]  
+				// - path.length()	: 경로 문자열 길이
+				// - file.length() 	: 해당 파일의 바이트 길이[용량]
 		File file = new File( path );	
 		// 3. HTTP 다운로드 형식[프론트엔드] = 각 브라우저(크롬,엣지등) 제공
 		response.setHeader( // HTTP Header메소드[ HTTP 옵션정보 설정 ]
@@ -64,6 +67,7 @@ public class FiledownLoad extends HttpServlet {
 					// 1. response응답객체에서 출력스트림 호출해서 파일출력스트림객체 만들기 
 					//  response.getOutputStream() : HTTP 스트림 단위[바이트] 전송 
 		BufferedOutputStream fout = new BufferedOutputStream( response.getOutputStream() );
+		// ServletOutputStream fout = response.getOutputStream();
 					// 2. 파일입력스트림객체에서 읽어온 바이트들[바이트배열]을 
 					// 파일출력스트림객체 write() : 해당 배열내 바이트를 출력하는 함수 
 		fout.write( bytes ); // ---> response.getOutputStream()
