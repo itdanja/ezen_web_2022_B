@@ -6,7 +6,8 @@ let pageObject = {
 	key : "" , 
 	keyword : "",
 	type : 1 , // 1:전체출력 2:개별출력
-	cno : document.querySelector('.cno').value // 카테고리 번호
+	cno : document.querySelector('.cno').value , // 카테고리 번호
+	listsize : 3
 }
 
 // -- 카테고리 제목 넣어주기 
@@ -66,19 +67,37 @@ function getBoardList( page ){
 					:
 					`<button onclick="getBoardList(${ page+1 })" type="button"> 다음 </button>`
 			document.querySelector('.pagebox').innerHTML = html;
+			// -------------------- 게시물수 출력  --------------------- //
+			document.querySelector('.seachcount').innerHTML = `게시물 수 : ${ r.totalsize } `
 		} // success end 
 	}) // ajax end 
 } // method end 
 
-// 2.
+// 2. 검색 
 function getsearch(){
 	console.log('onsearch()함수');
 	// * 입력받은 데이터를 전역객체내 필드에 대입 
 	pageObject.key = document.querySelector('.key').value
 	pageObject.keyword = document.querySelector('.keyword').value
-	// * 게시물리스트 호출 
+	// * 게시물리스트 재호출 
 	getBoardList(1);
 }
+// 3. 검색풀기 : 전체보기 
+function setsearch(){
+	pageObject.key = '';	// 검색 없애기
+	pageObject.keyword ='';	// 검색 없애기
+	getBoardList(1);		// 재호출
+}
+// 4. 화면에 표시할 게시물 수 변경 함수 
+function setlistsize(){
+	// 1. select 에서 선택된 값 가져오기 
+	let listsize 
+		= document.querySelector('.listsize').value;
+	// 2. pageObject 필드에 대입 
+	pageObject.listsize = listsize;
+	// 3.  
+	getBoardList(1);		// 재호출
+} 
 
 
 
