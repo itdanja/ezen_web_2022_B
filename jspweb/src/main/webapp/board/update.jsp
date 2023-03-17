@@ -37,11 +37,8 @@
 			<div>
 				내용 : <textarea name="bcontent" class="bcontent" rows="3" cols="30"></textarea>
 			</div>
-			<div>
-				기존 첨부파일 : <span class="oldbfile"></span> 
-				<button type="button">삭제</button>
-				변경할 첨부파일 : 
-				<input name="bfile" type="file">
+			<div class="bfilebox">
+				
 			</div>
 			<button onclick="bupdate()" type="button">수정</button>
 		</form>

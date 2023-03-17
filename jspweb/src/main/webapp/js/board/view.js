@@ -84,7 +84,7 @@ function bdelete( bno , cno ){
 	$.ajax({
 		url : "/jspweb/board/info" ,
 		method : "delete" ,
-		data : { "bno" : bno } , 
+		data : { "bno" : bno , "type" : 1 } , 
 		success : (r)=>{
 			console.log(r);
 			if( r == 'true'){

@@ -121,6 +121,14 @@ public class BoardDao extends Dao {
 		}catch (Exception e) {System.out.println(e);	}
 		return false;
 	}
+	//  7. 파일만 삭제수정 
+	public boolean bfiledelete( int bno ) {
+		String sql = "update board set bfile = null where bno="+bno;
+		try {
+			ps = con.prepareStatement(sql);	
+			int count = ps.executeUpdate(); 	if( count == 1 ) return true;
+		}catch (Exception e) {System.out.println(e);} return false;
+	}
 }
 
 
