@@ -48,7 +48,12 @@ function bupdate(){
 		contentType : false , 	
 		processData : false , 
 		success : (r)=>{
-			console.log(r);
+			if( r == "true"){
+				alert('업데이트성공');
+				location.href="/jspweb/board/view.jsp?bno="+bno;
+			}else{
+				alert('업데이트성공');
+			}
 		}
 	})
 	

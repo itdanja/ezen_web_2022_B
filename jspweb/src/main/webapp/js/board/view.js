@@ -36,7 +36,7 @@ function getBoard(){
 			// 로그인된 회원과 작성자가 일치하면 수정/삭제 버튼 출력 
 			if( memberInfo.mid == r.mid){
 				html = `
-					<button onclick="bdelete( ${bno} )" type="button">삭제</button>
+					<button onclick="bdelete( ${ bno } , ${ r.cno } )" type="button">삭제</button>
 					<button onclick="bupdate( ${bno} )" type="button">수정</button>
 					`;
 				document.querySelector('.btnbox').innerHTML = html;	
@@ -80,7 +80,7 @@ function bIncrease( type ){
 }
 
 // 4. 삭제 
-function bdelete( bno ){
+function bdelete( bno , cno ){
 	$.ajax({
 		url : "/jspweb/board/info" ,
 		method : "delete" ,
@@ -89,6 +89,7 @@ function bdelete( bno ){
 			console.log(r);
 			if( r == 'true'){
 				alert('삭제성공');
+				location.href="/jspweb/board/list.jsp?cno="+cno;
 			}else{
 				alert('삭제실패');
 			}

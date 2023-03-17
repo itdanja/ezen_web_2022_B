@@ -192,14 +192,31 @@ public class Boardinfo extends HttpServlet {
 		String btitle = multi.getParameter("btitle");
 		String bcontent = multi.getParameter("bcontent");
 		String bfile = multi.getFilesystemName("bfile");
-		// dto 
-		BoardDto updatedto = new BoardDto(bno, btitle, bcontent, bfile, cno);
-			System.out.println( "update dto : " + updatedto );
-		// dao
-		//boolean result = BoardDao.getInstance().bupdate( updatedto );
-		// 응답 
-		//response.getWriter().print(result);
 		
+		/* 첨부파일의 수정 경우의수
+			// 1. 기존에 첨부파일이 없었다. --> 새로운첨부파일 없다.	[x]
+									--> 새로운첨부파일 있다.	[ 업로드 , 새로운파일로 업데이트 처리 ]
+			// 2. 기존에 첨부파일이 있었다. --> 새로운첨부파일 없다.	[ 기존파일명 로 업데이트 처리 (그대로 사용) ]
+			 						--> 새로운첨부파일 있다.	[ 업로드 , 새로운파일로 업데이트 처리 , 기존파일 삭제 ]
+		*/
+		// 1. 수정전 기존 첨부파일명 가져오기 
+		String oldfile = BoardDao.getInstance().getBoard(bno).getBfile();
+		
+		if( bfile == null ) { // 새로운 첨부파일이 없다.
+			bfile = oldfile;	// 기존 첨부파일명을 대입 
+		}else { // 새로운 첨부파일 있다.
+			// 2. 삭제할 첨부파일 경로 찾기 
+			String filepath = request.getSession().getServletContext().getRealPath("/board/bfile/"+oldfile);
+			// 3. 파일 삭제 처리 
+			File file = new File(filepath); if( file.exists() ) file.delete();
+		}
+		
+		// dto 
+		BoardDto updatedto = new BoardDto(bno, btitle, bcontent, bfile, cno);	System.out.println( "update dto : " + updatedto );
+		// dao
+		boolean result = BoardDao.getInstance().bupdate( updatedto );
+		// 응답 
+		response.getWriter().print(result);
 	}
 
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
