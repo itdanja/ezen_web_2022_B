@@ -181,6 +181,25 @@ public class Boardinfo extends HttpServlet {
 
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		// 업로드
+		String path = request.getSession().getServletContext().getRealPath("/board/bfile");
+		MultipartRequest multi = new MultipartRequest(
+				request, path, 1024*1024*10, "UTF-8" , new DefaultFileRenamePolicy());
+		
+		// 수정할대상 + 수정된 정보 호출 
+		int bno = Integer.parseInt(  multi.getParameter("bno") );
+		int cno = Integer.parseInt( multi.getParameter("cno") );
+		String btitle = multi.getParameter("btitle");
+		String bcontent = multi.getParameter("bcontent");
+		String bfile = multi.getFilesystemName("bfile");
+		// dto 
+		BoardDto updatedto = new BoardDto(bno, btitle, bcontent, bfile, cno);
+			System.out.println( "update dto : " + updatedto );
+		// dao
+		//boolean result = BoardDao.getInstance().bupdate( updatedto );
+		// 응답 
+		//response.getWriter().print(result);
+		
 	}
 
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -31,7 +31,7 @@
 		<form class="writeForm">
 			카테고리 : <select name="cno">
 						<option value="1"> 공지사항 </option>
-						<option value="2"> 커뮤니티 </osption>
+						<option value="2"> 커뮤니티 </option>
 						<option value="3"> QnA </option>
 						<option value="4"> 노하우 </option>
 					</select>

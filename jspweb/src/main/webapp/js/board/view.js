@@ -37,7 +37,7 @@ function getBoard(){
 			if( memberInfo.mid == r.mid){
 				html = `
 					<button onclick="bdelete( ${bno} )" type="button">삭제</button>
-					<button onclick="bupdate()" type="button">수정</button>
+					<button onclick="bupdate( ${bno} )" type="button">수정</button>
 					`;
 				document.querySelector('.btnbox').innerHTML = html;	
 			}
@@ -94,7 +94,10 @@ function bdelete( bno ){
 			}
 		}
 	})
-	
+}
+// 5. 수정 페이지로 이동 
+function bupdate( bno ){
+	location.href="/jspweb/board/update.jsp?bno="+bno;
 }
 
 
