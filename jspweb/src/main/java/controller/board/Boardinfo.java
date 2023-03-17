@@ -1,5 +1,6 @@
 package controller.board;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -48,7 +49,7 @@ public class Boardinfo extends HttpServlet {
 			int page = Integer.parseInt( request.getParameter("page") );
 			//int listsize = 3;
 			int listsize = Integer.parseInt( request.getParameter("listsize") ) ; // 화면에 표시할 게시물수 요청
-			int startrow = (page-1)*listsize; // 해당 페이지에서의 게시물 시작번호
+			int startrow = (page-1)*listsize; // 해당 페이지에서의 게시물 시작번호 = 검색된 결과의 레코드중 인덱스번호
 			// ------------- page 버튼 만들기 ------------ //
 			// 1. 전체페이지수[ 총게시물레코드수/페이지당 표시수 ] 2. 페이지 표시할 최대버튼수 3. 시작버튼/마지막버튼 번호 
 				// 1. 검색이 없을때 
@@ -184,9 +185,43 @@ public class Boardinfo extends HttpServlet {
 
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		int bno = Integer.parseInt( request.getParameter("bno") );
+		// 삭제전 기존게시물의 첨부파일 명 구하기
+		String bfile = BoardDao.getInstance().getBoard( bno ).getBfile();
+		// 삭제처리 
+		boolean result = BoardDao.getInstance().bdelete( bno );
+		// 삭제/수정시 : 첨부파일 있을경우 같이 삭제 
+			// 1. 경로 찾아서 
+			// 2. 파일 객체화[?? 다양한 파일 관련 메소드 제공 .length() , .delete() , exists() 등 ]
+		if( result ) { // 만약에 db가 레코드를 삭제를 성공하면
+			String path = request.getSession().getServletContext().getRealPath("/board/bfile/"+bfile);
+			File file = new File(path); // 객체화 
+			if( file.exists() ){//만약에 파일이 존재하면 
+				file.delete(); // 파일 삭제 
+			}
+		}	
+		response.getWriter().print(result);
+		
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

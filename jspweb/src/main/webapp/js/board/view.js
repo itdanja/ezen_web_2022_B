@@ -32,6 +32,15 @@ function getBoard(){
 				// html = ` ${ r.bfile } <a href="/jspweb/filedownload?bfile=${ r.bfile }" type="button"> 다운로드 </button>`
 				document.querySelector('.bfile').innerHTML = html;
 			}
+			// ------------------------------------//
+			// 로그인된 회원과 작성자가 일치하면 수정/삭제 버튼 출력 
+			if( memberInfo.mid == r.mid){
+				html = `
+					<button onclick="bdelete( ${bno} )" type="button">삭제</button>
+					<button onclick="bupdate()" type="button">수정</button>
+					`;
+				document.querySelector('.btnbox').innerHTML = html;	
+			}
 		}
 	}) // ajax end 
 } // m end 
@@ -68,6 +77,24 @@ function bIncrease( type ){
 			getBoard(); // 새로고침
 		}
 	})
+}
+
+// 4. 삭제 
+function bdelete( bno ){
+	$.ajax({
+		url : "/jspweb/board/info" ,
+		method : "delete" ,
+		data : { "bno" : bno } , 
+		success : (r)=>{
+			console.log(r);
+			if( r == 'true'){
+				alert('삭제성공');
+			}else{
+				alert('삭제실패');
+			}
+		}
+	})
+	
 }
 
 
