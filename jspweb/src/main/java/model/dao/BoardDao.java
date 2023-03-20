@@ -153,10 +153,12 @@ public class BoardDao extends Dao {
 		
 	}
 	// 9. 댓글 출력 
-	public ArrayList<ReplyDto> getReplyList( int bno ){
+	public ArrayList<ReplyDto> getReplyList( int bno , int rindex ){
 		ArrayList<ReplyDto> list = new ArrayList<>();
+	
 		String sql = " select r.* , m.mid , m.mimg from reply r natural join member m "
-				+ " where r.bno = "+bno;
+					+ " where r.rindex = "+rindex+" and r.bno = "+bno;
+		
 		try {
 			ps = con.prepareStatement(sql);	rs = ps.executeQuery();
 			while( rs.next() ) {

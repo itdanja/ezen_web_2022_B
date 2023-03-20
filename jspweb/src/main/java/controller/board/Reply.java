@@ -33,11 +33,18 @@ public class Reply extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request , HttpServletResponse response) throws ServletException, IOException {
 		// 1. 
 		int bno = Integer.parseInt( request.getParameter("bno")	);
-		// 2. 
-		ArrayList<ReplyDto> result = BoardDao.getInstance().getReplyList( bno );
+		int type = Integer.parseInt( request.getParameter("type") );
+		int rindex = 0;
+		
+		if( type == 1 ) { // 상위 댓글 
+			
+		}else if( type == 2 ) { // 하위 댓글 출력 
+			rindex = Integer.parseInt( request.getParameter("rindex") );
+		}
+		ArrayList<ReplyDto> result = BoardDao.getInstance().getReplyList( bno , rindex ); // 2. 
 		// 3. 
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonArray = mapper.writeValueAsString(result);

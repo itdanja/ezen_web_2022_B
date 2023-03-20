@@ -137,7 +137,7 @@ function getReplyList(){
 	$.ajax({
 		url : "/jspweb/board/reply" ,
 		method : "get" , 
-		data : { "bno" : bno },
+		data : { "type" : 1 ,"bno" : bno },
 		success : (r) => {
 			console.log(r);
 			
@@ -160,13 +160,31 @@ function getReplyList(){
 }//end 
 // 8.하위 댓글 구역 표시 
 function rereplyview( rno ){
-	let html = `
+	$.ajax({
+		url : "/jspweb/board/reply" ,
+		async : 'false',	// 동기식 통신  
+		method : "get" , 
+		data : { "type": 2 , "rindex" : rno , "bno" : bno },
+		success: (r)=>{	console.log(r); // 대댓글 목록 
+			let html = ''
+			r.forEach( ( o )=>{ // 대댓글 html 구성 
+				html += `--------------------------
+					<div>
+						<span>${ o.mimg} </span>
+						<span>${ o.mid} </span>
+						<span>${ o.rdate} </span>
+						<span>${ o.rcontent} </span>
+					</div>
+					`
+			 } );
+		  	html += `
 				<textarea class="rrcontent${rno}"> </textarea>
-				<button type="type" onclick="rrwirte( ${rno} )"> 답글 작성 </button>
-				`
-	document.querySelector('.rereplybox'+rno ).innerHTML = html;
-	
+				<button type="type" onclick="rrwirte( ${rno} )"> 답글 작성 </button>`
+			document.querySelector('.rereplybox'+rno ).innerHTML = html;
+		}  // success end 
+	}) // ajax end 
 } // end 
+
 // 9.하위 댓글 쓰기 
 function rrwirte( rno ){
 	// bno , mno , rrcontnet , rindex(상위댓글번호) , type
@@ -178,7 +196,7 @@ function rrwirte( rno ){
 			"rcontent" : document.querySelector('.rrcontent'+rno).value } ,
 		success : (r) => {
 			console.log( r )
-			if( re == "true"){
+			if( r == "true"){
 				alert('대댓글 출력');
 				location.reload();
 			}
