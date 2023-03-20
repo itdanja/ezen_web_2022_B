@@ -55,17 +55,20 @@ public class Reply extends HttpServlet {
 		// 1. 
 		request.setCharacterEncoding("UTF-8");
 		int bno = Integer.parseInt( request.getParameter("bno") );
-		int mno = MemberDao.getInstance().getMno( 
-				(String)request.getSession().getAttribute("login")
-				);
+		int mno = MemberDao.getInstance().getMno( (String)request.getSession().getAttribute("login") );
 		String rcontent = request.getParameter("rcontent");
-		// 2. 
+		
+		int type = Integer.parseInt( request.getParameter("type") );
+		
 		ReplyDto dto = new ReplyDto(rcontent, mno, bno);
-			System.out.println( "dto:"+ dto );
-		// 3. 
-		boolean result = BoardDao.getInstance().rwrite(dto);
-		// 4.
-		response.getWriter().print(result);
+		if( type == 1 ) { // 상위댓글 
+		}else if( type == 2 ) { // 하위댓글 
+			int rindex = Integer.parseInt( request.getParameter("rindex") );
+			dto.setRindex(rindex);
+		};System.out.println( "dto:"+ dto );
+		
+		boolean result = BoardDao.getInstance().rwrite(dto); // 3. 
+		response.getWriter().print(result); // 4.
 		
 		
 	}

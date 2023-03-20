@@ -106,12 +106,20 @@ function rwrite(){
 		url : "/jspweb/board/reply" , 
 		method : "post" , 
 		data : { 
+			"type" : 1 ,	// 1: 상위 댓글 / 2:하위 댓글 
 			"bno" : bno , 
 			"rcontent" : document.querySelector('.rcontent').value 
 			} ,
 		success : (r)=>{
 			console.log(r);
-			if( r == "true"){ alert('댓글작성성공'); }
+			if( r == "true"){ 
+				alert('댓글작성성공'); 
+				document.querySelector('.rcontent').value = ''
+				// jquery : 특정 div만 새로고침[랜더링]
+				// $('.replylistbox').load( location.href+' .replylistbox');
+				// js : 현재페이지 새로고침[랜더링]
+				location.reload();
+			 }
 			else{ alert('댓글작성실패');}
 		}
 	});
@@ -124,9 +132,48 @@ function getReplyList(){
 		data : { "bno" : bno },
 		success : (r) => {
 			console.log(r);
+			
+			let html = ''
+			r.forEach( (o,i) => {
+				html +=`
+					<div>
+						<span>${ o.mimg} </span>
+						<span>${ o.mid} </span>
+						<span>${ o.rdate} </span>
+						<span>${ o.rcontent} </span>
+						<button onclick="rereplyview(${ o.rno })" type="button">댓글달기</button>
+						<div class="rereplybox${ o.rno }"></div>
+					</div>
+					`
+			})
+			document.querySelector('.replylistbox').innerHTML = html;
 		}
 	})
-}
+}//end 
+// 8.하위 댓글 구역 표시 
+function rereplyview( rno ){
+	let html = `
+				<textarea class="rrcontent${rno}"> </textarea>
+				<button type="type" onclick="rrwirte( ${rno} )"> 대댓글작성 </button>
+				`
+	document.querySelector('.rereplybox'+rno ).innerHTML = html;
+	
+} // end 
+// 9.하위 댓글 쓰기 
+function rrwirte( rno ){
+	// bno , mno , rrcontnet , rindex(상위댓글번호) , type
+	$.ajax({
+		url : "/jspweb/board/reply" , 
+		method : "post" , 
+		data : { 
+			"type" : 2 , "bno":bno , "rindex":rno , 
+			"rcontent" : document.querySelector('.rrcontent'+rno).value } ,
+		success : (r) => {
+			console.log( r )
+		}
+	})
+} // end 
+
 
 /*
 	1. onclick = JS 코드 작성구역 
