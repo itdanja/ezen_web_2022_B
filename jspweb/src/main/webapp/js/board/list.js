@@ -62,20 +62,20 @@ function getBoardList( page ){
 			html = ''; // 기존에 들어있던 내용 제거 
 			// 이전 [ 만약에 현재 페이지가 1 이하 이면 이전페이지 없음 ]
 			html += page <= 1 ?
-					`<button onclick="getBoardList(${ page })" type="button"> 이전 </button>`
+					`<button onclick="getBoardList(${ page })" type="button" class="pagebtn"> < </button>`
 					:
-					` <button onclick="getBoardList(${ page-1 })" type="button"> 이전 </button> `
+					` <button onclick="getBoardList(${ page-1 })" type="button" class="pagebtn"> < </button> `
 			// 페이징 번호 버튼 들 
 			for( let i = r.startbtn ; i<=r.endbtn ; i++ ){ // 시작버튼번호 부터 마지막버튼번호 까지 버튼 생성 
 				html += `
-					<button onclick="getBoardList(${i})" type="button"> ${i} </button>
+					<button onclick="getBoardList(${i})" type="button" class="pagebtn"> ${i} </button>
 					`
 			}
 			// 다음 [ 만약에 현재 페이지가 총페이지수 이상이면 다음페이지 없음 ]
 			html += page >= r.totalpage ?
-					`<button onclick="getBoardList(${ page })" type="button"> 다음 </button>`
+					`<button onclick="getBoardList(${ page })" type="button" class="pagebtn"> > </button>`
 					:
-					`<button onclick="getBoardList(${ page+1 })" type="button"> 다음 </button>`
+					`<button onclick="getBoardList(${ page+1 })" type="button" class="pagebtn" > > </button>`
 			document.querySelector('.pagebox').innerHTML = html;
 			// -------------------- 게시물수 출력  --------------------- //
 			document.querySelector('.seachcount').innerHTML = `게시물 수 : ${ r.totalsize } `

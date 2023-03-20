@@ -32,4 +32,37 @@
 .contentbottom{ text-align: right; }
 .contentbottom span{ padding-left: 2px; }
 
+/* 게시물 아래 버튼들 */
+.boardbottom{
+    text-align: center;
+    border-top: 1px solid #eeeeee;
+    padding-top: 30px;
+    margin: 20px 0px;
+}
+.pagebtn{
+	border: none;
+    background-color: transparent;
+    font-weight: bold;
+    margin: 15px 10px;
+}
+.keyword{
+	border: 1px solid #e8e8e8;
+	padding: 5px 10px;
+	border-radius: 15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
