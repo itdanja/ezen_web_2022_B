@@ -76,8 +76,6 @@ function bdownload( bfile ){
 bIncrease( 1 ); // 현재 jsp/js가 열리는 순간 [ 조회수 증가 ]
 function bIncrease( type ){
 	// 1. 현재 게시물의 번호 [ 증가할 대상 ]
-	let bno = document.querySelector('.bno').innerHTML;
-	console.log( "bno : "+bno);
 	// 2. 
 	$.ajax({
 		url : "/jspweb/board/view",
