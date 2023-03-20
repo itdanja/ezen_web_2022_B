@@ -1,0 +1,68 @@
+@charset "UTF-8";
+
+
+.viewtop{
+	display: flex;
+    margin: 30px 0px;
+}
+.rviewtop{
+	margin-left: 10px;
+}
+.btitle{
+	font-weight: bold;
+	font-size: 25px;
+	margin-bottom: 30px;
+}
+.bcontent{
+	padding: 10px;
+	margin-bottom: 30px;
+}
+.bfilebox{
+	border-top: 1px solid #eeeeee;
+	padding-top: 20px;
+}
+.replywritebox{
+    border: 1px solid #eeeeee;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+}
+.rcontent{
+	width: 90%;
+	border: 1px solid #eeeeee;
+	border-radius: 5px;
+	resize: none; /* 사이즈 크기변경 불가*/
+	margin-right: 10px;
+	padding: 15px;
+}
+.rwritebtn{
+	font-size: 12px;
+}
+.replycount{
+	font-size: 12px;
+	margin : 50px 0px 5px 0px;
+}
+.btnbox{
+	text-align: right;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
