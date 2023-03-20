@@ -39,6 +39,8 @@ function getBoard(){
 					`;
 				document.querySelector('.btnbox').innerHTML = html;	
 			}
+			// 댓글출력 
+			getReplyList();
 		}
 	}) // ajax end 
 } // m end 
@@ -113,6 +115,17 @@ function rwrite(){
 			else{ alert('댓글작성실패');}
 		}
 	});
+}
+// 7. 댓글 출력 
+function getReplyList(){
+	$.ajax({
+		url : "/jspweb/board/reply" ,
+		method : "get" , 
+		data : { "bno" : bno },
+		success : (r) => {
+			console.log(r);
+		}
+	})
 }
 
 /*

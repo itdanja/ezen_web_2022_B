@@ -1,11 +1,15 @@
 package controller.board;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import model.dao.BoardDao;
 import model.dao.MemberDao;
@@ -30,8 +34,18 @@ public class Reply extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		// 1. 
+		int bno = Integer.parseInt( request.getParameter("bno")	);
+		// 2. 
+		ArrayList<ReplyDto> result = BoardDao.getInstance().getReplyList( bno );
+		// 3. 
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonArray = mapper.writeValueAsString(result);
+		// 4.
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("application/json");
+		response.getWriter().print(jsonArray);
+		
 	}
 
 	/**
