@@ -1,4 +1,12 @@
 
+
+// * 로그인이 안되어 있으면
+if( memberInfo.mid == null ){
+	document.querySelector('.rcontent').disabled = true;
+	document.querySelector('.rcontent').value = `로그인후 작성 가능합니다.`;
+	document.querySelector('.rwritebtn').disabled = true;
+}
+
 // * 현재 보고 있는 게시물 번호 
 let bno = document.querySelector('.bno').innerHTML;
 
@@ -141,7 +149,7 @@ function getReplyList(){
 						<span>${ o.mid} </span>
 						<span>${ o.rdate} </span>
 						<span>${ o.rcontent} </span>
-						<button onclick="rereplyview(${ o.rno })" type="button">댓글달기</button>
+						<button onclick="rereplyview(${ o.rno })" type="button">답글보기</button>
 						<div class="rereplybox${ o.rno }"></div>
 					</div>
 					`
@@ -154,7 +162,7 @@ function getReplyList(){
 function rereplyview( rno ){
 	let html = `
 				<textarea class="rrcontent${rno}"> </textarea>
-				<button type="type" onclick="rrwirte( ${rno} )"> 대댓글작성 </button>
+				<button type="type" onclick="rrwirte( ${rno} )"> 답글 작성 </button>
 				`
 	document.querySelector('.rereplybox'+rno ).innerHTML = html;
 	
@@ -170,6 +178,10 @@ function rrwirte( rno ){
 			"rcontent" : document.querySelector('.rrcontent'+rno).value } ,
 		success : (r) => {
 			console.log( r )
+			if( re == "true"){
+				alert('대댓글 출력');
+				location.reload();
+			}
 		}
 	})
 } // end 

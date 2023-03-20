@@ -49,7 +49,7 @@
 		
 		<div>
 			<textarea class="rcontent" rows="" cols=""></textarea>
-			<button onclick="rwrite()" type="button">댓글작성</button>
+			<button class="rwritebtn" onclick="rwrite()" type="button">댓글작성</button>
 		</div>
 		
 		<div class="replylistbox"> </div>
