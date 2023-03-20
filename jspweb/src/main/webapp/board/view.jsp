@@ -46,6 +46,11 @@
 		<div class="btnbox">
 		
 		</div>
+		
+		<div>
+			<textarea class="rcontent" rows="" cols=""></textarea>
+			<button onclick="rwrite()" type="button">댓글작성</button>
+		</div>
 	
 	</div>
 	
@@ -53,3 +58,20 @@
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

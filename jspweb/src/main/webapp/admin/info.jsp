@@ -8,11 +8,14 @@
 </head>
 <body>
 	<%@ include file="/header.jsp" %>
-	<h3> 모든 회원 명단 </h3>
 	
-	<table class="mListTable" border="1">
+	<div class="container">
+		<h3> 모든 회원 명단 </h3>
+		<table class="mListTable table">
+	
+		</table>
+	</div>
 
-	</table>
 	
 	<script src="/jspweb/js/admin/info.js" type="text/javascript"></script>
 	

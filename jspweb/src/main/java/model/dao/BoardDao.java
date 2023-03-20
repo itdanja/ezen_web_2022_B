@@ -3,6 +3,7 @@ package model.dao;
 import java.util.ArrayList;
 
 import model.dto.BoardDto;
+import model.dto.ReplyDto;
 
 public class BoardDao extends Dao {
 	
@@ -128,6 +129,19 @@ public class BoardDao extends Dao {
 			ps = con.prepareStatement(sql);	
 			int count = ps.executeUpdate(); 	if( count == 1 ) return true;
 		}catch (Exception e) {System.out.println(e);} return false;
+	}
+	
+	
+	// 8. 댓글 쓰기 
+	public boolean rwrite( ReplyDto dto ) {
+		String sql = "insert into reply(rcontent,mno,bno)values(?,?,?)";
+		try {
+			
+			ps = con.prepareStatement(sql);	ps.setString( 1, dto.getRcontent() );
+			ps.setInt( 2, dto.getMno() );	ps.setInt( 3, dto.getBno() );
+			ps.executeUpdate(); return true ;	
+		}catch (Exception e) {System.out.println(e);	} return false;
+		
 	}
 }
 
