@@ -14,6 +14,7 @@
 .boardtopetc{ 
 	display: flex;
     justify-content: space-between;
+    margin-bottom: 20px;
 }
 .bbtn{ /* 게시물에서 사용되는 버튼 */
     border: none;
@@ -23,7 +24,6 @@
     color: white;
 }
 .boardcontent{
-	margin: 20px 0px ;
     border-top: 2px solid #eeeeee;
     padding: 20px 10px;
 }

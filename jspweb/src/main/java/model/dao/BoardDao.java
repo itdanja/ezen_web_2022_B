@@ -1,5 +1,6 @@
 package model.dao;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import model.dto.BoardDto;
@@ -43,10 +44,10 @@ public class BoardDao extends Dao {
 		
 		String sql ="";
 		if( key.equals("") && keyword.equals("") ) { // 검색이 없다.
-			sql = "select b.* , m.mid from member m natural join board b where b.cno = "+cno
+			sql = "select b.* , m.mid , m.mimg from member m natural join board b where b.cno = "+cno
 					+ " order by b.bdate desc limit ? , ? ";
 		}else { // 검색이 있다.
-			sql = "select b.* , m.mid from member m natural join board b "
+			sql = "select b.* , m.mid , m.mimg from member m natural join board b "
 					+ " where "+key+" like '%"+keyword+"%' and b.cno = "+cno
 							+ " order by b.bdate desc limit ? , ?";
 		}
@@ -61,7 +62,18 @@ public class BoardDao extends Dao {
 						rs.getString(4),rs.getString(5), rs.getInt(6), 
 						rs.getInt(7), 	rs.getInt(8), 	rs.getInt(9), 
 						rs.getInt(10), 	rs.getString(11)	);
+				
+				// !! : 추가된 프로필 이미지 대입 
+				dto.setMimg( rs.getString(12) );
+				// !! : 현재 게시물[레코드]의 댓글 수 
+				sql = "select count(*) from reply where bno = "+dto.getBno();
+				// 모든 게시물을 찾은 rs가 아직 안끝났다. 새로운 rs2 선언 
+				ps = con.prepareStatement(sql);
+				ResultSet rs2 = ps.executeQuery();
+				if( rs2.next() ) { dto.setRcount(rs2.getInt(1) ); }
+				
 				list.add(dto);
+				
 			}// while end 
 		}catch (Exception e) {System.out.println(e);} 
 		return list;

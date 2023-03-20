@@ -40,16 +40,20 @@ function getBoardList( page ){
 				html += `
 						<div class="boardcontent">
 							<div>
-								<img alt="" class="hpimg" src="/jspweb/member/pimg/default.webp">
-								<span class="mid"> qweqwe </span>
-								<span class="bdate"> 2023-03-20 </span>
+								<img alt="" class="hpimg" 
+								src="/jspweb/member/pimg/${ o.mimg == null ? 'default.webp' : o.mimg }">
+								
+								<span class="mid"> ${ o.mid } </span>
+								<span class="bdate"> ${ o.bdate } </span>
 							</div>
-							<div class="btitle"> 제목 위치 입니다. </div>
+							<div class="btitle"> 
+								<a href="/jspweb/board/view.jsp?bno=${ o.bno }"> ${ o.btitle } </a>
+							</div>
 							<div class="contentbottom">
-								<span> <i class="far fa-eye"></i> <span class="bview">30</span> </span>
-								<span> <i class="far fa-thumbs-up"></i> <span class="bup">5</span> </span>
-								<span> <i class="far fa-thumbs-down"></i> <span class="bdown">2</span> </span>
-								<span> <i class="far fa-comment-dots"></i> <span class="rcount">10 </span> </span>
+								<span> <i class="far fa-eye"></i> <span class="bview">${ o.bview }</span> </span>
+								<span> <i class="far fa-thumbs-up"></i> <span class="bup">${ o.bup }</span> </span>
+								<span> <i class="far fa-thumbs-down"></i> <span class="bdown">${ o.bdown }</span> </span>
+								<span> <i class="far fa-comment-dots"></i> <span class="rcount">${ o.rcount } </span> </span>
 							</div>
 						</div>`;
 			})

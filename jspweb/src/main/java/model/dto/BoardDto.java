@@ -13,7 +13,22 @@ public class BoardDto {
 	private int mno;
 	private int cno;
 	//  추가 필드 --> 작성자 id 
-	private String mid;
+	private String mid;	// 작성자 아이디
+	private String mimg; // 작성자 프로필 이미지
+	private int rcount;	// 댓글개수 
+	
+	public String getMimg() {
+		return mimg;
+	}
+	public void setMimg(String mimg) {
+		this.mimg = mimg;
+	}
+	public int getRcount() {
+		return rcount;
+	}
+	public void setRcount(int rcount) {
+		this.rcount = rcount;
+	}
 	
 	// 1. 생성자 [ 빈생성자 ] : 사용할 용도가 적음 
 	public BoardDto() {}

@@ -50,9 +50,7 @@
 				</div>
 			</div>
 			
-			<div class="boardTable">
-			
-			</div>
+			<div class="boardTable"> </div>
 			
 		</div>
 		
