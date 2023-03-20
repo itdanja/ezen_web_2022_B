@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+/* 게시물 출력 구역 */
+.boardbox{ 
+	width: 80%;
+	margin: 70px auto;
+}
+.boardtop{
+	text-align: center;
+}
+.boardtop .cname{
+	font-family: 'KCC-Ganpan';
+}
+.boardtopetc{ 
+	display: flex;
+    justify-content: space-between;
+}
+.bbtn{ /* 게시물에서 사용되는 버튼 */
+    border: none;
+    background-color: #139ab8;
+    padding: 5px 10px;
+    border-radius: 10px;
+    color: white;
+}
+.boardcontent{
+	margin: 20px 0px ;
+    border-top: 2px solid #eeeeee;
+    padding: 20px 10px;
+}
+.bdate{ font-size: 8px; }
+.btitle{ margin-top : 20px ; font-weight: bold; font-size: 18px; }
+.contentbottom{ text-align: right; }
+.contentbottom span{ padding-left: 2px; }
+
+

@@ -5,6 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+	<link href="/jspweb/css/list.css" rel="stylesheet">
+	
+	<!-- 폰트어썸 -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
+
 </head>
 <body>
 
@@ -18,23 +24,43 @@
 	 <!-- cno 숨겨서 js에게 전달  -->
 	<input type="hidden" class="cno" value="<%=cno%>">
 	
+	<!-- html/css -->
 	<div class="container">
-		<h3 class="cname"></h3>
+	
+		<div class="boardbox">	
 		
-		<a href="write.jsp">글쓰기</a>
-		
-		<button onclick="setsearch()" type="button">전체보기[검색제거]</button>
-		<div class="seachcount"> 총 게시물수 : </div>
-		<select onchange="setlistsize()" class="listsize">
-			<option>3</option>
-			<option>5</option>
-			<option>10</option>
-		</select>
-		
-		<table class="boardTable table table-hover">
+			<div class="boardtop">
+				<h3 class="cname"> 공지사항 </h3>
+				<p> 다양한 사람들과 정보를 공뷰 해보세요 </p>
+			</div>
 			
-		</table>
+			<div class="boardtopetc">
+				<a href="write.jsp">
+					<button class="bbtn"> <i class="fas fa-pencil-alt"></i> 글쓰기</button>
+				</a>
+				
+				<div>
+					<span class="seachcount"> 게시물수 : 6</span>
+					<button onclick="setsearch()" class="bbtn">전체보기</button>
+					<select class="bbtn listsize" onchange="setlistsize()">
+						<option>3</option>
+							<option>5</option>
+							<option>10</option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="boardTable">
+			
+			</div>
+			
+		</div>
 		
+	</div>
+	
+	
+	<div class="container">
+
 		<!-- 페이징처리 버튼들 -->
 		<div class="pagebox">
 			
@@ -53,7 +79,7 @@
 	</div>
 	
 	<script src="/jspweb/js/board/list.js" type="text/javascript"></script>
-	
+
 </body>
 </html>
 

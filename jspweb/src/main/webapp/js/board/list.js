@@ -34,18 +34,24 @@ function getBoardList( page ){
 			console.log('통신'); console.log(r);
 			
 			// --------------------- 테이블 출력  ----------------------- //
-			let html = `	<tr>
-						<th> 번호 </th> <th> 제목 </th><th> 작성자 </th><th> 작성일 </th>
-						<th> 조회수 </th>	<th> 좋아요 </th> <th> 싫어요 </th> </tr>`
+			let html = ``;
+			
 			r.boardList.forEach( ( o , i ) => {
-				html += `	<tr>
-						<td> ${ o.bno } </td> 
-						<td> <a href="/jspweb/board/view.jsp?bno=${ o.bno }">${ o.btitle }</a></td>
-						<td> ${ o.mid } </td>
-						<td> ${ o.bdate } </td>
-						<td> ${ o.bview } </td>
-						<td> ${ o.bup } </td> 
-						<td> ${ o.bdown } </td> </tr>`
+				html += `
+						<div class="boardcontent">
+							<div>
+								<img alt="" class="hpimg" src="/jspweb/member/pimg/default.webp">
+								<span class="mid"> qweqwe </span>
+								<span class="bdate"> 2023-03-20 </span>
+							</div>
+							<div class="btitle"> 제목 위치 입니다. </div>
+							<div class="contentbottom">
+								<span> <i class="far fa-eye"></i> <span class="bview">30</span> </span>
+								<span> <i class="far fa-thumbs-up"></i> <span class="bup">5</span> </span>
+								<span> <i class="far fa-thumbs-down"></i> <span class="bdown">2</span> </span>
+								<span> <i class="far fa-comment-dots"></i> <span class="rcount">10 </span> </span>
+							</div>
+						</div>`;
 			})
 			document.querySelector('.boardTable').innerHTML = html;
 			// -------------------- 페이징 버튼 출력 --------------------- //
