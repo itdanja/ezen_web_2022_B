@@ -35,7 +35,7 @@ public class Api1 extends HttpServlet {
 		// 1. 공공데이터 포털에서 신청한 데이터 가져오기 [ 안산시 전기차충전소 현황 ]
 			// URL 클래스
 			// 1. .openStream()	: 해당 객체의 연결된 url 스트림 제공 함수 [ 반환 : InputStream ]
-		// URL url = new URL("URL주소");
+		// URL url = new URL("신청한공공데이터 Request URL");
 		URL url = new URL("https://api.odcloud.kr/api/15090398/v1/uddi:6fe0e3f2-0285-4999-9edf-995afe19a6ea?page=1&perPage=96&serviceKey=z427Q0DLkQqM0SDOc1Lz8jPzk%2BKj0ng%2Bvz7h3I8CpVs3T90219bWi2o%2BmStIxJW%2B9lwayA%2FsAT6apxsxuvydQg%3D%3D");
 		
 		// 2. 해당 URL 의 데이터[ 스트림(바이트) ]읽어오기 위한 스트림 객체 생성
@@ -53,7 +53,6 @@ public class Api1 extends HttpServlet {
 		String result = bf.readLine( );			// 모든 바이트 읽은후 문자열 String 반환 
 		
 		System.out.println( result );
-		
 		
 	}
 
