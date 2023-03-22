@@ -1,0 +1,61 @@
+@charset "UTF-8";
+.cattingbox{ /* 채팅 전체 구역 */
+	width: 30%;
+    margin: 50px auto;
+}
+.contentbox{	/* 채팅 정보가 출력되는 구역 */
+	background-color: #bacee0;
+	height: 700px;
+	/* 해당 구역크기보다 내용물이 커지면 스크롤 생성 */
+	overflow-y:scroll; 
+	padding: 20px;
+}
+.secontent{ /* 보낼때 */
+	display: flex;
+	justify-content: flex-end;
+	align-items: flex-end;
+}
+.date{ /*시간 */
+	font-size: 2px;  margin: 0px 5px;
+}
+.content{ /* 내용물 */
+	background-color: #ffffff;
+	border-radius: 10px;
+	padding: 10px;
+	/* 해당 구역크기보다 내용물이 커지면 자동줄바꿈처리 */
+	max-width: 70%;	/* 해당 구역크기의 최대 사이즈 */
+	word-break : break-all;
+	font-size: 12px;
+}
+.alarm{	/* 알람메시지 */
+	width: 70%; margin: 20px auto;
+	font-size: 5px;
+	text-align: center;
+	background-color: #b1c3d5;
+	border-radius: 10px;
+}
+
+
+
+
+
+
+
+
+.msgbox{
+	width: 100%;
+	border: 1px solid #e8e8e8;
+	padding: 15px;
+	resize: none;
+}
+.cattingbtnbox{
+	display: flex;
+	justify-content: flex-end;
+}
+.sendbtn{
+	padding : 10px;
+	font-size : 12px;
+	background-color: yellow;
+	border: none;
+	border-radius: 5px;
+}

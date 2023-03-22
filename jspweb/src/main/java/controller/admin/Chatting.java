@@ -59,10 +59,9 @@ public class Chatting {
 		MessageDto messageDto = new MessageDto(session, msg);
 			System.out.println( messageDto.toString() );
 			
-		// 메시지 받는 프로그램[JS] : JSON 으로 형변환
+		// 메시지 받는 프로그램[JS] : JSON 으로 형변환 // * Session 객체를 json형식 으로 변환 불가능
 		ObjectMapper mapper = new ObjectMapper();
 		String json = mapper.writeValueAsString( messageDto );
-			System.out.println( json );
 		
 		// ** 서버가 클라이언트 소켓에게 메시지를 보내기 
 		// 현재 서버소켓과 연결된 클라이언트소켓 모두에게 서버가 받은 내용물 전달 
