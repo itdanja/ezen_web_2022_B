@@ -136,14 +136,18 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
             let marker = new kakao.maps.Marker({
 				// map : map , // 클러스터 사용시 불필요 
                 position : new kakao.maps.LatLng( o['위도(WGS84)'], o['경도(WGS84)'] ) , 
-                image: markerImage
+                image: markerImage ,
+                clickable: true // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
             });
-            
             // 위에서 생성된 마커객체의 클릭 이벤트 추가 하기   
             kakao.maps.event.addListener(marker, 'click', function() {
-			     alert( o.충전소명 ); 
+			     // 모달 정보 담기 
+			     document.querySelector('.modal_title').innerHTML = o.충전소명;
+			     document.querySelector('.modal_title').style.fontSize =  '15px';
+			     document.querySelector('.modal_content').innerHTML = o
+			     // 모달 띄우기
+			     onpenModal();
 			}); 
-            
             // 리턴해서 markers에 대입하기 [ map함수 제공 ]
             return marker;
             

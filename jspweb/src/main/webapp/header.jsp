@@ -9,6 +9,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- 부트스트랩 css -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+	
 	<!-- 모든페이지 공통 css -->
 	<link href="/jspweb/css/modal.css" rel="stylesheet">
 		
@@ -36,7 +37,8 @@
 				<li> <a href="/jspweb/board/list.jsp?cno=4"> 노하우 </a> </li>
 				<li> <a href="/jspweb/api/api1.jsp"> api1 </a> </li>
 				<li> <a href="/jspweb/api/api2.jsp"> api2 </a> </li>
-				<li> <a href="#"> 기능메뉴7 </a> </li>
+				<li> <a href="/jspweb/api/api3.jsp"> api3[과제] </a> </li>
+				<li> <a href="#"> 기능메뉴 </a> </li>
 			</ul>
 			<!-- 서브메뉴 -->
 			<div class="submenu">
