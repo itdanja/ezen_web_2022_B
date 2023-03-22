@@ -46,7 +46,7 @@
 			
 			
 */
-/* */
+/* 채팅창 내용들이 출력되는 상자 */
 let contentbox = document.querySelector('.contentbox')
 
 let 클라이언트소켓 = null
@@ -102,11 +102,25 @@ function 메시지받기( e ){	// <------  e <----- getBasicRemote().sendText(ms
 									</div>
 								</div>`
 	}
+	// --------- * 스크롤 하단으로 내리기 -----------// 
+	//let top = contentbox.scrollTop;	// 현재 스크롤의 상단 위치 좌표
+		//	console.log( top );
+	//let height = contentbox.scrollHeight; // 현재 스크롤 전체 의 높이 [ 기본값 contentbox height ];
+		//	console.log( height )
+	// 스크롤막대의 상단위치를 스크롤막대의 가장아래의 위치로 대입 
+	contentbox.scrollTop =  contentbox.scrollHeight;
 }
 
 // 5. 서버와 연결이 끊겼을때. [ 클라이언소켓 객체가 초기화될때 -> F5 , 페이지 전환할때 등등 ]
 function 연결해제(e){ console.log( '연결해제') }
 
+// 6. 엔터키를 눌렀을때
+function enterkey(){
+	// 만약에 입력한 키 코드가 13[엔터] 이면 메시지전송
+	if( window.event.keyCode == 13 ){
+		보내기();
+	}
+}
 
 
 

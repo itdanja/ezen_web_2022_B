@@ -21,7 +21,7 @@
 			</div>
 			
 			<!--  form-control : bs -->
-			<textarea class="msgbox" rows="" cols=""></textarea>
+			<textarea onkeyup="enterkey()" class="msgbox" rows="" cols=""></textarea>
 			
 			<div class="cattingbtnbox">
 				<button onclick="보내기()" class="sendbtn" type="button">보내기</button>

@@ -32,7 +32,7 @@ public class MessageDto {
 				// 메시지 [메시지객체] 생성된 날짜
 				// 1. 
 				Date date = new Date();	// 오늘날짜/시간 객체
-				SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss"); // 날짜/시간 형식 
+				SimpleDateFormat sdf = new SimpleDateFormat("aa hh:mm"); // 날짜/시간 형식 
 				this.time = sdf.format( date );	// 오늘객체를 정의한 형식으로 형변환
 				// 2.
 				// this.time = new SimpleDateFormat("hh:mm:ss").format( new Date() );
