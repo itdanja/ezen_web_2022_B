@@ -75,7 +75,9 @@ function 보내기(){
 }
 // 4. 서버로부터 메시지가 왔을때 메시지 받기
 function 메시지받기( e ){	// <------  e <----- getBasicRemote().sendText(msg)
-	console.log(e);
+	console.log( e) ;
+	console.log( e.data ); // e.data : 문자열타입  vs JSON.parse( e.data ) : 객체타입
+	console.log( JSON.parse( e.data ) ); // 문자열json -> 객체json 형변환 
 	contentbox.innerHTML += `<div> ${ e.data } </div>`
 }
 
