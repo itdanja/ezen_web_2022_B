@@ -38,7 +38,8 @@
 				<li> <a href="/jspweb/api/api1.jsp"> api1 </a> </li>
 				<li> <a href="/jspweb/api/api2.jsp"> api2 </a> </li>
 				<li> <a href="/jspweb/api/api3.jsp"> api3[과제] </a> </li>
-				<li> <a href="#"> 기능메뉴 </a> </li>
+				<li> <a href="/jspweb/board/chatting.jsp"> 채팅 </a> </li>
+				<li> <a href="#"> 메뉴 </a> </li>
 			</ul>
 			<!-- 서브메뉴 -->
 			<div class="submenu">
