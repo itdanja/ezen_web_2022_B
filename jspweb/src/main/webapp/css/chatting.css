@@ -63,9 +63,10 @@
 	padding: 15px;
 	resize: none;
 }
+/* 이모티콘 버튼 , 보내기 버튼 있는 구역 */
 .cattingbtnbox{
 	display: flex;
-	justify-content: flex-end;
+	justify-content: space-between;
 }
 .sendbtn{
 	padding : 10px;
@@ -74,3 +75,39 @@
 	border: none;
 	border-radius: 5px;
 }
+/* 이모티콘 버튼 */
+.emobtn{
+	background-color: transparent;
+	border: none;
+	padding: 5px;
+	font-size: 23px;
+}
+/* 드롭다운시 보이는 구역 */
+.enolist{
+	width: 300px;	height: 300px;
+	overflow-y:scroll; 
+}
+/* 내용물안에 사진이 있으면 배경 투명 */
+.emocotent{
+	background-color: transparent !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

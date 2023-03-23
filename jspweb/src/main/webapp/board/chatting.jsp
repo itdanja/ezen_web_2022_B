@@ -24,10 +24,22 @@
 			<textarea onkeyup="enterkey()" class="msgbox" rows="" cols=""></textarea>
 			
 			<div class="cattingbtnbox">
+				
+				<!-- 
+					bs : 드롭다운  
+						클릭위치 :  data-bs-toggle="dropdown"
+						드롭다운시 표시할 위치 : class="dropdown-menu"
+				-->
+				<!-- 드롭다운 버튼  -->
+				<button class="emobtn" type="button" data-bs-toggle="dropdown">
+					<i class="far fa-smile"></i>
+				</button>
+				
+				<!-- 드롭다운 버튼 클릭시 보이는 구역  -->
+				<div class="dropdown-menu enolist">   </div>
+				
 				<button onclick="보내기()" class="sendbtn" type="button">보내기</button>
 			</div>
-			
-			
 			
 		</div>
 	

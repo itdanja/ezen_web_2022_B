@@ -60,6 +60,7 @@ if( memberInfo.mid == null ){ // memberInfo : 헤더js 존재하는 객체
 	클라이언트소켓.onopen = function(e){ 서버소켓연결(e) } // 클라이언트소켓 객체에 정의한 함수 대입
 	클라이언트소켓.onmessage = function(e){ 메시지받기(e); }
 	클라이언트소켓.onclose = function(e){ 연결해제(e) }
+	클라이언트소켓.onerror = function(e){ alert('문제발생:관리자에게문의'+e) }
 }
 // 2. 클라이언트소켓이 접속했을때 이벤트/함수 정의
 function 서버소켓연결( e ){ 
@@ -70,14 +71,37 @@ function 서버소켓연결( e ){
 						` 
 }	// 접속했을때 하고 싶은 함수 정의
  		
-// 3. 클라이언트소켓이 서버에게 메시지를 보내기 [  @OnMessage  ]
+// 3. 클라이언트소켓이 서버에게 메시지를 보내기 [  @OnMessage  ] ( 1. 보내기버튼 눌렀을때 2.입력창에서 엔터했을때 ) type = msg
 function 보내기(){
 	let msgbox = document.querySelector('.msgbox').value;
-	// ** 서버소켓에게 메시지 전송하기 
-	클라이언트소켓.send( msgbox ); // ----> @OnMessage
+	// ** 서버소켓에게 메시지 전송하기
+		// JSON형식의 문자열 타입 만들어서 문자열로 타입으로 전송 
+		// 	JSON.parse( JSON형식의 문자열타입 )	:	JSON 형식[모양]의 String 타입 --> JSON 타입으로 변환
+		//	JSON.stringify( JSON객체 )		: 	JSON타입 --> JSON 형식[모양]의 String 타입으로 변환  
+		let msg = {
+			type : 'msg',
+			msgbox : msgbox
+		} 
+	클라이언트소켓.send( JSON.stringify( msg )  ); // ----> @OnMessage
 	// 전송 성공시 채팅 입력창 초기화
 	document.querySelector('.msgbox').value = '' ;
 }
+
+// 4-2 type 에 따른 html 구별 
+function 메시지타입구분( msg ){
+	
+	let json = JSON.parse( msg );
+	
+	let html = '';
+	if( json.type == 'msg'){
+		html += `<div class="content"> ${ json.msgbox } </div>`
+	}else if( json.type == 'emo'){
+		html += `<div class="content emocotent"> <img src="/jspweb/img/imoji/emo${json.msgbox}.gif" > </div>`
+	}
+	return html;
+	
+} 
+
 // 4. 서버로부터 메시지가 왔을때 메시지 받기
 function 메시지받기( e ){	// <------  e <----- getBasicRemote().sendText(msg)
 	console.log( e) ; console.log( e.data ); // e.data : 문자열타입  vs JSON.parse( e.data ) : 객체타입
@@ -89,7 +113,7 @@ function 메시지받기( e ){	// <------  e <----- getBasicRemote().sendText(ms
 	if( data.frommid == memberInfo.mid ){
 		contentbox.innerHTML += `<div class="secontent">
 									<div class="date"> ${ data.time } </div>
-									<div class="content"> ${ data.msg } </div>
+									${ 메시지타입구분( data.msg ) }
 								</div>`
 	}else{ // [내가 받은 메시지]
 		contentbox.innerHTML += `<div class="tocontent">
@@ -97,7 +121,7 @@ function 메시지받기( e ){	// <------  e <----- getBasicRemote().sendText(ms
 									<div class="rcontent">
 										<div class="name"> ${ data.frommid } </div>
 										<div class="contentdate">
-											<div class="content"> ${ data.msg } </div>
+											${ 메시지타입구분( data.msg ) }
 											<div class="date"> ${ data.time } </div>
 										</div>
 									</div>
@@ -123,6 +147,24 @@ function enterkey(){
 	}
 }
 
+// 7. 이모티콘 출력 
+getemo();
+function getemo( ){
+	let html = '';
+	for( let i = 1 ; i<=43 ;i++ ){
+		html+=`<img onclick="자료보내기( ${i} , 'emo' )" alt="" src="/jspweb/img/imoji/emo${i}.gif" width="60px">`
+	}
+	document.querySelector('.enolist').innerHTML = html;
+}
+// 8. 타입형 메시지 전송하기 
+function 자료보내기( msgbox , type ){
+	let msg = {
+		type : type,
+		msgbox : msgbox
+	} 
+	클라이언트소켓.send( JSON.stringify( msg )  ); // ----> @OnMessage
+}
+ 
 
 
 /*

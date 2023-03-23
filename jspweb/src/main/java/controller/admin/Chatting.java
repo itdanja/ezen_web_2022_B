@@ -40,6 +40,8 @@ public class Chatting {
 		
 	}// end 
 	
+	
+	
 	@OnClose 	// 클라이언트소켓이 나갔을때
 	public void onClose( Session session ) {
 		// 접속이 끊긴 세션의 dto 찾아서 제외 
