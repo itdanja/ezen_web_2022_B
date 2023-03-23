@@ -65,6 +65,7 @@ if( memberInfo.mid == null ){ // memberInfo : 헤더js 존재하는 객체
 // 2. 클라이언트소켓이 접속했을때 이벤트/함수 정의
 function 서버소켓연결( e ){ 
 	
+	//
 	자료보내기( memberInfo.mid +"님 이 채팅방에 접속하셨습니다."  , "alarm");
 	
 }	// 접속했을때 하고 싶은 함수 정의
@@ -107,12 +108,12 @@ function 메시지받기( e ){	// <------  e <----- getBasicRemote().sendText(ms
 	
 	let data = JSON.parse( e.data );	// 전달받은 메시지 dto 
 		console.log( data );
+	
 	// 명단[여러개=list/Array] vs 메시지정보[1개=dto/object]
 		// Array 타입 확인 : Array.isArray( 객체 ) : 해당 객체가 배열/리스트이면 true
 	if( Array.isArray( data ) ){
 		let html ='';
 		data.forEach( (o)=>{
-			
 			html += `
 					<div class="connetbox"> <!-- 접속 명단 1명기준 -->
 						<div> 

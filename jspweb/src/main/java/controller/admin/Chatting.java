@@ -37,7 +37,7 @@ public class Chatting {
 		// 접속한 클라이언트소켓 들을 보관 
 		ClientDto clientDto = new ClientDto( session , mid );
 		접속명단.add( clientDto  );
-		// 연결된 클라이언트 소켓를 모든 접속명단 목록 알림 메시지 보내기 
+		// 연결된 클라이언트 소켓를 모든 접속명단 목록 메시지 보내기 
 		onMessage( session, "enter");
 		
 	}// end 
