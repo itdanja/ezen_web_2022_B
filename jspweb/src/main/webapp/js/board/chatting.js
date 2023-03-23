@@ -64,11 +64,9 @@ if( memberInfo.mid == null ){ // memberInfo : 헤더js 존재하는 객체
 }
 // 2. 클라이언트소켓이 접속했을때 이벤트/함수 정의
 function 서버소켓연결( e ){ 
-	contentbox.innerHTML += `
-						<div class="alarm">
-										<span> 채팅방 입장 하셨습니다. </span>
-						</div>
-						` 
+	
+	자료보내기( memberInfo.mid +"님 이 채팅방에 접속하셨습니다."  , "alarm");
+	
 }	// 접속했을때 하고 싶은 함수 정의
  		
 // 3. 클라이언트소켓이 서버에게 메시지를 보내기 [  @OnMessage  ] ( 1. 보내기버튼 눌렀을때 2.입력창에서 엔터했을때 ) type = msg
@@ -108,9 +106,33 @@ function 메시지받기( e ){	// <------  e <----- getBasicRemote().sendText(ms
 	console.log( JSON.parse( e.data ) ); // 문자열json -> 객체json 형변환 
 	
 	let data = JSON.parse( e.data );	// 전달받은 메시지 dto 
-	
+		console.log( data );
+	// 명단[여러개=list/Array] vs 메시지정보[1개=dto/object]
+		// Array 타입 확인 : Array.isArray( 객체 ) : 해당 객체가 배열/리스트이면 true
+	if( Array.isArray( data ) ){
+		let html ='';
+		data.forEach( (o)=>{
+			
+			html += `
+					<div class="connetbox"> <!-- 접속 명단 1명기준 -->
+						<div> 
+							<img alt="" src="/jspweb/member/pimg/${ o.frommimg ==null ? 'default.webp' :  o.frommimg }" class="hpimg">
+						</div>
+						<div class="name"> ${ o.frommid } </div>
+					</div>
+					`
+		} );
+		document.querySelector('.connectlistbox').innerHTML = html;
+	}
+	else if( JSON.parse( data.msg ).type == 'alarm'){
+		contentbox.innerHTML += `
+						<div class="alarm">
+										<span> ${ JSON.parse( data.msg ).msgbox } </span>
+						</div>
+						` 
+	}
 	// 보낸사람과 현재 유저와 일치하면 [ 내가 보낸 메시지 ]
-	if( data.frommid == memberInfo.mid ){
+	else if( data.frommid == memberInfo.mid ){
 		contentbox.innerHTML += `<div class="secontent">
 									<div class="date"> ${ data.time } </div>
 									${ 메시지타입구분( data.msg ) }
@@ -137,7 +159,10 @@ function 메시지받기( e ){	// <------  e <----- getBasicRemote().sendText(ms
 }
 
 // 5. 서버와 연결이 끊겼을때. [ 클라이언소켓 객체가 초기화될때 -> F5 , 페이지 전환할때 등등 ]
-function 연결해제(e){ console.log( '연결해제') }
+function 연결해제(e){ 
+	// 이미 세션이 종료후에 발생하는 함수이므로 아래 코드는 다른 세션에게 전달 불가능 
+	// 자료보내기( memberInfo.mid +"님 이 채팅방에 나갔습니다 ."  , "alarm");
+}
 
 // 6. 엔터키를 눌렀을때
 function enterkey(){

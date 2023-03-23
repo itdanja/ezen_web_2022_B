@@ -11,7 +11,11 @@
 </head>
 <body>
 	<%@include file ="/header.jsp" %>
-	<div class="container">
+	<div class="container chattingwrap">
+		
+		<div class="connectlistbox"> <!-- 접속 명단 표시 구역 -->
+	
+		</div>
 		
 		<div class="cattingbox">	<!--  채팅 구역 -->
 		
@@ -43,10 +47,16 @@
 			
 		</div>
 	
-		
 	</div>
 	
 	<!-- 
+	
+			<div class="connetbox">
+				<div> <img alt="" src="/jspweb/member/pimg/default.webp" class="hpimg"></div>
+				<div class="name"> 강호동 </div>
+			</div>
+			
+			
 				보낼때[ 시간 ,내용 ] 
 				<div class="secontent">
 					<div class="date"> 오전 10:07 </div>
