@@ -44,38 +44,58 @@ var clusterer = new kakao.maps.MarkerClusterer({
 });
 // $.ajax( { url:"/jspweb/product/info" , success : (r) => { } );
 
-$.get("/jspweb/product/info", (r) => {	console.log(r);
-    // ------------ 사이드바 제품목록 --------------------------------
-    productList = r;	// 제품목록 결과를 전역변수 담아주기 
-	produclistprint(  );
-   //------------ 마커 작업 ----------------------
-    var markers = r.map( ( p ) => {		console.log( p )
-		// 마커에 추가코드 작성하기 위해 변수화
-        let marker = new kakao.maps.Marker({	
-            position : new kakao.maps.LatLng( p.plat, p.plng)
-        });
-        // 마커에 클릭이벤트를 등록합니다
-		kakao.maps.event.addListener(marker, 'click', function() {
-		       let html = `<button onclick="produclistprint()"> <== </button> <h3>제품상세페이지</h3>`;
-		      html += `<div> 
-					<div> ${ p.pname } </div>
-					<div> ${ p.pcomment }  </div>
-					<div> ${ p.pprice }  </div>
-					<div> ${ p.pstate }  </div>
-					<div> ${ p.pview }  </div>
-					<div> ${ p.pdate }  </div>
-					<div> <button type="button"> ♡ </button> </div>
-				</div>`
-			document.querySelector('.produclistbox').innerHTML = html;
-		});
-        return marker;
-    });
 
-    // 클러스터러에 마커들을 추가합니다
-    clusterer.addMarkers(markers);
-    //-------------------------------------------------
+// 1. 제품목록 호출 [ 1. 현재 보이는 지도좌표내 포함된 제품만 2. ]
+function getproductlist( 동 , 서  , 남 , 북 ){
+	$.ajax({
+		url : "/jspweb/product/info" ,
+		method : "get",
+		async : false ,
+		data : { "동" : 동 , "서" : 서 ,"남" : 남 , "북":북 },
+		success : (r)=>{
+		    // ------------ 사이드바 제품목록 --------------------------------
+		    productList = r;	// 제품목록 결과를 전역변수 담아주기 
+			produclistprint(  );
+		   //------------ 마커 작업 ----------------------
+		    var markers = r.map( ( p ) => {		console.log( p )
+				// 마커에 추가코드 작성하기 위해 변수화
+		        let marker = new kakao.maps.Marker({	
+		            position : new kakao.maps.LatLng( p.plat, p.plng)
+		        });
+		        // 마커에 클릭이벤트를 등록합니다
+				kakao.maps.event.addListener(marker, 'click', function() {
+				       let html = `<button onclick="produclistprint()"> <== </button> <h3>제품상세페이지</h3>`;
+				      html += `<div> 
+							<div> ${ p.pname } </div>
+							<div> ${ p.pcomment }  </div>
+							<div> ${ p.pprice }  </div>
+							<div> ${ p.pstate }  </div>
+							<div> ${ p.pview }  </div>
+							<div> ${ p.pdate }  </div>
+							<div> <button type="button"> ♡ </button> </div>
+						</div>`
+					document.querySelector('.produclistbox').innerHTML = html;
+				}); // 클릭이벤트 end 
+		        return marker;
+		    }); // map end 
+		    clusterer.addMarkers(markers);   // 클러스터러에 마커들을 추가합니다
+		    //-------------------------------------------------
+		} // success end 
+	}); // ajax end  
+} // getproductlist end 
+
+// ------------  지도 중심좌표 이동 이벤트 //
+// 지도가 이동, 확대, 축소로 인해 중심좌표가 변경되면 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록합니다
+kakao.maps.event.addListener( map, 'dragend', function() {
+    var bounds = map.getBounds();  // 지도의 현재 영역을 얻어옵니다 
+    var swLatLng = bounds.getSouthWest();   // 영역의 남서쪽 좌표를 얻어옵니다 
+    var neLatLng = bounds.getNorthEast();   // 영역의 북동쪽 좌표를 얻어옵니다 
+    let 남 = swLatLng.getLat();
+    let 서 = swLatLng.getLng();
+    let 북 = neLatLng.getLat();
+    let 동 = neLatLng.getLng();
+    getproductlist( 동 , 서  , 남 , 북 );
 });
-	 
 	 
 	 
         // $(r).map( (인덱스,반복객체명) =>{ } ) 		실행문에서 return 값을 배열에 대입  
