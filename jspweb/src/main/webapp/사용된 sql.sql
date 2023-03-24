@@ -82,6 +82,7 @@ create table reply(
 */
 
 /* 제품 테이블 */
+drop table if exists product;
 create table product(
     pno int auto_increment primary key , -- 제품번호
     pname varchar(500) not null , -- 제품명 
@@ -95,6 +96,14 @@ create table product(
 );
 /* 제품 사진 테이블 */
 /* 제품 찜하기 테이블 */
+drop table if exists plike;
+create table plike(
+	plinkno bigint auto_increment primary key, /* 식별키 */
+	mno int , /* 회원번호 = 누가 */
+    pno int , /* 제품번호 = 어떤제품 찜했는지 */
+    foreign key (mno) references member(mno) on delete cascade ,
+    foreign key (pno) references product(pno) on delete cascade 
+);
 /* 제품 쪽지 테이블 */
 
 

@@ -42,7 +42,6 @@ public class Productinfo extends HttpServlet {
 		String 남 = request.getParameter("남");	System.out.println(남);
 		String 북 = request.getParameter("북");	System.out.println(북);
 		
-		
 		ArrayList<ProductDto> result = ProductDao.getInstance().getProductList( 동 , 서 , 남 , 북 );
 		
 		String jsonarray = mapper.writeValueAsString(result);
