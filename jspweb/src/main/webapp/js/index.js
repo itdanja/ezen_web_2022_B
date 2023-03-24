@@ -75,9 +75,13 @@ function getproductlist( 동 , 서  , 남 , 북 ){
 							<div> ${ p.pstate }  </div>
 							<div> ${ p.pview }  </div>
 							<div> ${ p.pdate }  </div>
-							<div> <button onclick="setplike(${p.pno})" type="button"> ♡ </button> </div>
+							<div> <button class="plikebtn" onclick="setplike(${p.pno})" type="button"> </button> </div>
 						</div>`
+					
 					document.querySelector('.produclistbox').innerHTML = html;
+					
+					getplike( p.pno );
+					
 				}); // 클릭이벤트 end 
 		        return marker;
 		    }); // map end 
@@ -117,13 +121,33 @@ function setplike( pno ){
 		data : { "pno" : pno } , 
 		success : (r)=>{ 
 			if( r == 'true'){
-				alert('찜하기 등록')
+				alert('찜하기 등록');
+				document.querySelector('.plikebtn').innerHTML = '♥';
 			}else{
 				alert("찜하기 취소")
+				document.querySelector('.plikebtn').innerHTML = '♡';
 			}
 		}
 	})
-		
+}
+
+// 4. 현재 회원이 해당 제품의 찜하기 상태 호출 
+function getplike( pno ){
+	if( memberInfo.mid == null ){ document.querySelector('.plikebtn').innerHTML = '♡'; }
+	$.ajax({
+		url : "/jspweb/product/like",
+		method : "get",
+		async : 'false',
+		data : { "pno" : pno },
+		success : (r)=>{ 
+			console.log( r )
+			if(r == "true"){ document.querySelector('.plikebtn').innerHTML = '♥'; }
+			else{ document.querySelector('.plikebtn').innerHTML = '♡'; }
+		 }
+	})
+}
+
+	 		
 	// vs
 	// $.get( "/jspweb/product/like?pno="+pno , (r)=>{} )
 	// $.ajax({ url : "/jspweb/product/like?pno="+pno , success : (r)=>{ console.log(r); } })
@@ -133,9 +157,7 @@ function setplike( pno ){
 	
 	// $.post( "/jspweb/product/like , { "data" : data } , (r)=>{} )
 	// $.ajax({ url : "/jspweb/product/like", method : "post" , data : { "data" : data } , success : (r)=>{ console.log(r); } })
-	
-}
-	 
+
 	 
         // $(r).map( (인덱스,반복객체명) =>{ } ) 		실행문에서 return 값을 배열에 대입  
         // r.map( (반복객체명,인덱스) =>{ } ) 		실행문에서 return 값을 배열에 대입  

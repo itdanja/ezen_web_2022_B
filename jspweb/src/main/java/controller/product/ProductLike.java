@@ -29,9 +29,10 @@ public class ProductLike extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		
+		int pno = Integer.parseInt( request.getParameter("pno") ) ;	
+		int mno = MemberDao.getInstance().getMno( (String)request.getSession().getAttribute("login") );
+		boolean result =  ProductDao.getInstance().getplike(pno, mno);
+		response.getWriter().print(result);
 	}
 
 	/**
@@ -43,12 +44,9 @@ public class ProductLike extends HttpServlet {
 		int mno = MemberDao.getInstance().getMno( 
 				(String)request.getSession().getAttribute("login") 
 				);	System.out.println( mno );
-		
 		boolean result =  ProductDao.getInstance().setplike(pno, mno);
 		response.getWriter().print(result);
-		
 	}
-
 }
 
 
