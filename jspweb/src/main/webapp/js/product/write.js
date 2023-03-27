@@ -1,4 +1,8 @@
 
+// 회원제 페이지 
+if( memberInfo.mid == null ){
+	alert('로그인후 제품등록 가능합니다.');	location.href="/jspweb/member/login.jsp";
+}
 // 전역변수 
 let plat = 0;
 let plng = 0;
@@ -17,12 +21,11 @@ function onwrite(){
 	
 	if( plat == 0 || plng == 0 ){ alert('위치 선택후 등록해주세요.'); return; }
 	
-	if( fileList.length < 1 ){ alert('하나 이상의 이미지 등록해주세요.'); return;}
+	if( fileList.length < 1 ){ alert('하나 이상의 제품 이미지 등록해주세요.'); return;}
 	
 	// 폼에 [ 드래그된 파일들을 ] 첨부파일 등록 
 	fileList.forEach( (f)=>{ 
-		// 배열에 존재하는 파일들을 하나씩 폼에 필드 추가
-		// [ append 필드명 중복 가능 ]
+		// 배열에 존재하는 파일들을 하나씩 폼에 필드 추가 // [ append 필드명 중복 가능 ]
 		writeFormData.append( "fileList" , f );
 	})
 	
@@ -73,39 +76,58 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
 let fileDrop = document.querySelector('.fileDrop');
 // * 해당 구역에 드래그된 파일들을 저장하는 리스트/배열 
 let fileList = [];
+
 // 2. 해당 구역에 이벤트 등록 
-	// 1. dragenter
+	// 1. dragenter : 드래그 요소가 해당 구역에 닿았을때
 fileDrop.addEventListener("dragenter" , (e)=>{
-	console.log('드래그 요소가 해당 구역에 닿았을때 ')
 	e.preventDefault(); // 고유/기존[브라우저내 ] 이벤트 제거 
 })
-	//2. dragover
+	//2. dragover : 드래그 요소가 해당 구역에 위치하고 있을때
 fileDrop.addEventListener('dragover' , (e)=>{
-	console.log('드래그 요소가 해당 구역에 위치하고 있을때')
 	e.preventDefault(); // 고유/기존[브라우저내 ] 이벤트 제거 
+	fileDrop.style.backgroundColor = "#e8e8e8";
 })
-	//3. dragleave
+	//3. dragleave : 드래그 요소가 해당 구역에 나갔을때
 fileDrop.addEventListener('dragleave' , (e)=>{
-	console.log('드래그 요소가 해당 구역에 나갔을때')
 	e.preventDefault(); // 고유/기존[브라우저내 ] 이벤트 제거 
+	fileDrop.style.backgroundColor = "#ffffff"; // 배경색 되돌리기
 })
-	//4. drop
+	//4. drop : 드래그 요소가 해당 구역에 드랍 되었을때
 fileDrop.addEventListener('drop' , (e)=>{
-	console.log('드래그 요소가 해당 구역에 드랍 되었을때')
 	// 문제점 : 브라우저 영역 에 드랍했을때 해당 페이지 열림 [ 브라우저 이벤트가 먼저 실행 ]
 	e.preventDefault(); // 고유/기존[브라우저내 ] 이벤트 제거  
 	// 1.  드랍된 파일[dataTransfer]을 호출 
-	let files = e.dataTransfer.files 
-	console.log( files ); // forEach 사용불가
+	let files = e.dataTransfer.files  // forEach 사용불가
 	for( let i = 0 ; i<files.length ; i++ ){
-		console.log( files[i] )
 		if( files[i] != null && files[i] != undefined ){ // 파일이 존재하면 // 비어있지 않고 정의되어 있으면
 			fileList.push( files[i] ); // 각 파일들을 하나씩 배열 저장
 		}
-	}
-	console.log( fileList )
-})
-
+	}// for end 
+	fileDrop.style.backgroundColor = "#ffffff"; // 배경색 되돌리기
+	printfiles(); // 파일 목록 출력 
+}) // event end 
+// 3. 해당구역에 드랍된 파일 목록 출력 
+function printfiles(){
+	let html = ``;
+	fileList.forEach( (f , i)=>{
+		let fname = f.name;// 파일명 호출 console.log( f.name ); 
+		let fsize = ( f.size / 1024 ).toFixed(1) ; // 파일 용량[바이트 --> kb 변경] console.log( f.size ); 
+			// toFixed(표시할소수자리수)
+		html += ` <div>
+					<span> ${ fname } </span>
+					<span> ${ fsize }KB </span>
+					<span> 
+						<button type="button" onclick="filedelete(${i})"> 
+							삭제 
+						</button>
+					 </span> 
+				</div>
+				`
+	}) 
+	fileDrop.innerHTML = html;	
+} // end 
+// 4. 드래그앤드랍된 파일 목록에 특정 인덱스의 파일 제거 
+function filedelete( i ){ fileList.splice( i , 1 );  printfiles(); }
 
 
 

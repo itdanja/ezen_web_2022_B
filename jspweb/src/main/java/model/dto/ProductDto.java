@@ -16,6 +16,7 @@ public class ProductDto {
     // 추가 필드
     private int mno; // 등록한 회원번호
     private String mid; // 등록한 회원아이디
+    private String mimg; // 등록한 회원프로필
     private List<String> pimglist; // 등록한 사진목록들 
     
     // 등록용 생성자 [ 제품명 , 제품설명 , 제품가격 , 위도 , 경도 , 등록회원번호 , 등록사진목록 ]
@@ -31,14 +32,13 @@ public class ProductDto {
 		this.pimglist = pimglist;
 	}
     
-    // 빈 필드 
+    // 빈 필드 생성자 
     public ProductDto() {
 		// TODO Auto-generated constructor stub
 	}
-
-	// 풀 필드 
+    // 풀 필드 생성자 [ 출력용 ]
 	public ProductDto(int pno, String pname, String pcomment, long pprice, int pstate, String plat, String plng,
-			int pview, String pdate, int mno, String mid, List<String> pimglist) {
+			int pview, String pdate, int mno, String mid, String mimg, List<String> pimglist) {
 		super();
 		this.pno = pno;
 		this.pname = pname;
@@ -51,87 +51,120 @@ public class ProductDto {
 		this.pdate = pdate;
 		this.mno = mno;
 		this.mid = mid;
+		this.mimg = mimg;
 		this.pimglist = pimglist;
 	}
+
 	public int getPno() {
 		return pno;
 	}
+
 	public void setPno(int pno) {
 		this.pno = pno;
 	}
+
 	public String getPname() {
 		return pname;
 	}
+
 	public void setPname(String pname) {
 		this.pname = pname;
 	}
+
 	public String getPcomment() {
 		return pcomment;
 	}
+
 	public void setPcomment(String pcomment) {
 		this.pcomment = pcomment;
 	}
+
 	public long getPprice() {
 		return pprice;
 	}
+
 	public void setPprice(long pprice) {
 		this.pprice = pprice;
 	}
+
 	public int getPstate() {
 		return pstate;
 	}
+
 	public void setPstate(int pstate) {
 		this.pstate = pstate;
 	}
+
 	public String getPlat() {
 		return plat;
 	}
+
 	public void setPlat(String plat) {
 		this.plat = plat;
 	}
+
 	public String getPlng() {
 		return plng;
 	}
+
 	public void setPlng(String plng) {
 		this.plng = plng;
 	}
+
 	public int getPview() {
 		return pview;
 	}
+
 	public void setPview(int pview) {
 		this.pview = pview;
 	}
+
 	public String getPdate() {
 		return pdate;
 	}
+
 	public void setPdate(String pdate) {
 		this.pdate = pdate;
 	}
+
 	public int getMno() {
 		return mno;
 	}
+
 	public void setMno(int mno) {
 		this.mno = mno;
 	}
+
 	public String getMid() {
 		return mid;
 	}
+
 	public void setMid(String mid) {
 		this.mid = mid;
 	}
+
+	public String getMimg() {
+		return mimg;
+	}
+
+	public void setMimg(String mimg) {
+		this.mimg = mimg;
+	}
+
 	public List<String> getPimglist() {
 		return pimglist;
 	}
+
 	public void setPimglist(List<String> pimglist) {
 		this.pimglist = pimglist;
 	}
+
 	@Override
 	public String toString() {
 		return "ProductDto [pno=" + pno + ", pname=" + pname + ", pcomment=" + pcomment + ", pprice=" + pprice
 				+ ", pstate=" + pstate + ", plat=" + plat + ", plng=" + plng + ", pview=" + pview + ", pdate=" + pdate
-				+ ", mno=" + mno + ", mid=" + mid + ", pimglist=" + pimglist + "]";
+				+ ", mno=" + mno + ", mid=" + mid + ", mimg=" + mimg + ", pimglist=" + pimglist + "]";
 	}
-    
     
     
 

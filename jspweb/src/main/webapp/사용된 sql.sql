@@ -92,9 +92,18 @@ create table product(
     plat varchar(100) not null, -- 위도
     plng varchar(100) not null, -- 경도
     pview int default 0 , -- 조회수
-    pdate datetime default now() -- 등록일
+    pdate datetime default now(), -- 등록일
+    mno int , -- 등록한 회원번호 
+	foreign key (mno) references member(mno) on delete cascade
 );
 /* 제품 사진 테이블 */
+drop table if exists pimg;
+create table pimg( 
+	pimgno bigint auto_increment primary key , -- 사진 식별번호 
+    pimgname longtext not null , -- 사진명 
+    pno int , -- 해당 사진의 연결된 제품번호 
+    foreign key (pno) references product(pno) on delete cascade
+);
 /* 제품 찜하기 테이블 */
 drop table if exists plike;
 create table plike(
@@ -105,8 +114,6 @@ create table plike(
     foreign key (pno) references product(pno) on delete cascade 
 );
 /* 제품 쪽지 테이블 */
-
-
 
 
 
