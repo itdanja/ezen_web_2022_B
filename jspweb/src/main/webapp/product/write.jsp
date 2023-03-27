@@ -17,7 +17,19 @@
 			제품가격 : <input type="text" name="pprice">		<br>
 			위치 : 
 			<div id="map" style="width:100%;height:350px;"></div>
-			<button onclick="onwrite()" type="button">제품등록</button>
+			<button onclick="onwrite()" type="button">제품등록</button> <br>
+			
+			<h5> 첨부파일 한개 </h5>
+			<input type="file" name="pfile" accept="image/*">	
+			
+			<h5>  첨부파일 여러 개 [ 서로 다른 file input ] </h5>
+			<input type="file" name="pfile1" >
+			<input type="file" name="pfile2" >
+			<input type="file" name="pfile3" >
+			
+			<h5> 첨부파일 여러 개 [ multiple / cos.jar 불가능 , commons 가능 ] </h5>
+			<input type="file" name="pfiles" multiple="multiple" accept="image/*">	<br>
+			
 		</form>
 	
 	</div>

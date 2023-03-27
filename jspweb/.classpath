@@ -16,5 +16,7 @@
 	<classpathentry kind="lib" path="C:/java-mail.jar"/>
 	<classpathentry kind="lib" path="C:/java-activation.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="lib" path="C:/commons-fileupload.jar"/>
+	<classpathentry kind="lib" path="C:/commons-io.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

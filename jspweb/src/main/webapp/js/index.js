@@ -80,7 +80,7 @@ function getproductlist( 동 , 서  , 남 , 북 ){
 					
 					document.querySelector('.produclistbox').innerHTML = html;
 					
-					getplike( p.pno );
+					getplike( p.pno ); // 찜하기 상태호출 
 					
 				}); // 클릭이벤트 end 
 		        return marker;
