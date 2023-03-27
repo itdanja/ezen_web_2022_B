@@ -129,6 +129,15 @@ public class Productinfo extends HttpServlet {
 			
 		}catch (Exception e) { 	System.out.println(" 파일저장 실패 "+e); }
 		
+		/*
+		 FileItem 클래스 
+			item.isFormField() 	: 바이너리[첨부파일] 필드 여부 확인 [ 첨부파일:false ] 
+			item.getFieldName()	: 매개변수명 
+			item.getString()	: 매개변수명의 데이터/값 호출 
+			item.getName()		: 바이너리[첨부파일] 필드의 파일명 호출 
+			item.write( 경로[file] )	: 해당 경로에 해당 첨부파일 객체[item] 업로드 
+		 */
+		
 		
 		
 		
