@@ -119,7 +119,7 @@ public class Productinfo extends HttpServlet {
 			
 			ProductDto dto = new ProductDto( 
 					일반필드목록.get(0), 일반필드목록.get(1), Integer.parseInt( 일반필드목록.get(2) ) , 
-					일반필드목록.get(4), 일반필드목록.get(5) , mno , 파일필드목록 );
+					일반필드목록.get(3), 일반필드목록.get(4) , mno , 파일필드목록 );
 			
 			System.out.println( "dto : " + dto.toString() );
 			
