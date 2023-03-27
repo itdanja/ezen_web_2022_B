@@ -85,8 +85,9 @@ public class Productinfo extends HttpServlet {
 		try {
 			// 5. 매개변수 요청해서 리스트에 담기 [ 무조건 예외처리 발생 ]  
 			List<FileItem> 파일아이템목록 = 파일업로드객체.parseRequest(request);
-			List<String> 일반필드목록 = new ArrayList<>();
-			List<String> 파일필드목록 = new ArrayList<>();
+				// * DB에 저장할 데이터를 분류
+				List<String> 일반필드목록 = new ArrayList<>();
+				List<String> 파일필드목록 = new ArrayList<>();
 			// 6.
 			for( FileItem item : 파일아이템목록 ) {	// 요청된 모든 매개변수들을 반복문 돌려서 확인 
 				
