@@ -22,8 +22,7 @@
 		<div id="map" style="width:75%;height:100%;"></div>
 		<!-- 사이드바 -->
 		<div class="produclistbox">
-
-		
+			
 		</div>
 	</div>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b7c0acb1395b016fc6b2661dad73840f&libraries=clusterer"></script>
@@ -31,6 +30,33 @@
 
 </body>
 </html>
+
+<!-- 
+
+			<div class="chatbox">
+				<div class="pviewinfo">
+					<div class="mimgbox">
+						<img src="/jspweb/product/pimg/default.jpg" class="hpimg">
+						<span class="pname"> 커피포트 팝니다. </span>
+					</div>
+					<div>
+						<button onclick="produclistprint()" class="pbadge" type="button"> 목록보기 </button>
+					</div>
+				</div>
+				
+				<div class="chatcontent">
+					<div class="sendbox">구매 가능할까요? </div>
+					<div class="receivebox"> 네 구매 가능 합니다.</div>
+				</div>
+				
+				<div class="chatbtn">
+					<textarea rows="" cols=""></textarea>
+					<button type="button">전송</button>
+				</div>
+			</div>
+
+
+ -->
 
 
 <!-- 

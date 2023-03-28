@@ -148,10 +148,37 @@ html , body{
 }
 
 
-
-
-
-
+/* ------- 제품 채팅 ------ */
+.chatbox{
+	height: 100%;
+	padding: 10px;
+}
+.chatcontent{
+	height: 80%;
+	border: 1px solid black;
+	padding: 20px;
+	overflow: scroll;
+}
+.sendbox{ text-align: right;}
+.receivebox{ text-align: left;}
+.chatbtn{
+	height: 10%;
+	display: flex;
+	margin-top: 10px;
+}
+.chatbtn textarea {
+	width: 80%;
+	resize: none;
+	padding: 10px;
+}
+.chatbtn button{
+	width: 20%;
+	border: none;
+	margin-left: 10px;
+	background-color: black;
+	color: white;
+	font-weight: bold;
+}
 
 
 

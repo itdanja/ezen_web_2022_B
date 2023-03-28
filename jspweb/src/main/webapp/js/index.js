@@ -1,5 +1,5 @@
 
-// 제품 목록 출력 
+// *제품 목록 출력 
 let productList = null;
 function produclistprint(  ){
     let html = `<p style="font-size:12px; text-align:right" > 제품목록수 : ${ productList.length } 개 </h6>`;
@@ -25,7 +25,7 @@ function produclistprint(  ){
 	document.querySelector('.produclistbox').innerHTML = html;
 } // end 
 
-// 제품 개별 조회 
+// *제품 개별 조회 
 function productprint( i ){
 	let p = productList[i];
 	// 이미지 슬라이드에 대입할 html 구성 
@@ -89,16 +89,63 @@ function productprint( i ){
 					 </div>
 					<div class="pviewbtnbox">
 						<button class="plikebtn" onclick="setplike(${p.pno})"  type="button"> <i class="far fa-heart"></i> </button>
-						<button type="button"> 채팅 </button>
+						<button onclick="chatprint( ${i} )" type="button"> 채팅 </button>
 					</div>
 				</div>
 			`	
-		
-		
 	document.querySelector('.produclistbox').innerHTML = html;
 	getplike( p.pno ); // 찜하기 상태호출 
 	
+} // end 
+// 채팅 페이지 이동 
+function chatprint( i ){
+	if( memberInfo.mid == null ){
+		alert('회원기능 입니다. 로그인후 사용해주세요.'); return;
+	}
+	let p = productList[i];
+	let html = `
+			<div class="chatbox">
+				<div class="pviewinfo">
+					<div class="mimgbox">
+						<img src="/jspweb/product/pimg/${ p.pimglist[0] }" class="hpimg">
+						<span class="pname"> ${ p.pname } </span>
+					</div>
+					<div>
+						<button onclick="produclistprint()" class="pbadge" type="button"> 목록보기 </button>
+					</div>
+				</div>
+				
+				<div class="chatcontent">
+					<div class="sendbox"> 구매 가능할까요? </div>
+					<div class="receivebox"> 네 구매 가능 합니다.</div>
+				</div>
+				
+				<div class="chatbtn">
+					<textarea class="ncontentinput" rows="" cols=""></textarea>
+					<button onclick="sendchat( ${p.pno} , ${ p.mno } )" type="button">전송</button>
+				</div>
+			</div>
+				`;
+	document.querySelector('.produclistbox').innerHTML = html;
+} // end 
+
+// 5. 
+function sendchat( pno , tomno ){
+	let ncontent = document.querySelector('.ncontentinput').value;
+	$.ajax({
+		url : "/jspweb/product/chat" ,
+		method : "post",
+		data : { "pno" : pno , "tomno" : tomno , "ncontent" : ncontent  } ,
+		success : (r)=>{ 
+			console.log( r )
+			if( r =="true"){
+				document.querySelector('.ncontentinput').value = '';
+			}
+		}
+	})
 }
+
+
 
 
 var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
