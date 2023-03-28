@@ -58,7 +58,7 @@ function getproductlist( 동 , 서  , 남 , 북 ){
 		success : (r)=>{
 		    // ------------ 사이드바 제품목록 --------------------------------
 		    productList = r;	// 제품목록 결과를 전역변수 담아주기 
-			produclistprint(  );
+			// produclistprint(  );
 		   //------------ 마커 작업 ----------------------
 		    var markers = r.map( ( p ) => {		console.log( p )
 				// 마커에 추가코드 작성하기 위해 변수화

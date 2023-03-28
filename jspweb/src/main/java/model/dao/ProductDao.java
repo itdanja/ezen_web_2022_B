@@ -32,6 +32,7 @@ public class ProductDao extends Dao {
 					ps = con.prepareStatement(sql);
 					ps.setString( 1 ,pimgname ); ps.setInt( 2 , rs.getInt(1) );
 					ps.executeUpdate();
+					
 				}
 			}
 			return true;

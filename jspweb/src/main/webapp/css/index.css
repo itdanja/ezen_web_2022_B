@@ -49,6 +49,83 @@ a{ color: black; text-decoration: none; }
 }
 
 
+/* -------------------------- */
+html , body{
+	height: 100%;
+	/* 부모요소 의 사이즈가 존재해야지 자식요소의 사이즈 기준점 부모요소 */
+	/* 해당 구역의 스크롤바 제거 */
+	-ms-overflow-style:none;
+}
+/* 브라우저[크롬]의 스크롤바 제거 */
+::-webkit-scrollbar{ display: none; }
+
+/* 카카오지도 , 사이드바 구역 */
+.contentbox{
+	display: flex; width: 100%; height: 80%;
+}
+.searchbox{
+	position: fixed; left: 10px; top: 40%; z-index : 100;
+	width: 200px; height: 200px; background-color: white; 
+}
+/* 사이드바 */
+.produclistbox{ width: 25%; height: 100%; }
+/* 제품 1개 구역 */
+.productbox{
+	display: flex;
+	padding: 0px 5px 20px 5px;
+	border-bottom: 1px solid #eeeeee;
+	margin: 0px 5px 20px 5px; 
+}
+/* 제품 대표이미지 */
+.pimgbox img{
+	height: 130px; width: 130px; object-fit : cover;
+}
+/* 제품 내용 구역 */
+.pcontentbox{
+	width: 100%; 
+	padding: 0px 15px;
+}
+/* 제품 제목 */
+.pname{
+	font-family: 'KCC-Ganpan';
+	font-size: 20px;
+	/* 내용물이 구역크기보다 커질때 ... */
+	overflow: hidden;
+	white-space: nowrap; /* 자동 줄바꿈처리 제거 */
+	text-overflow: ellipsis; /* ... */
+	max-width: 95%;	/* 표현할 최대 사이즈 : 최대사이즈보다 커지면 ... */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
