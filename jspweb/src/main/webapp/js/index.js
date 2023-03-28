@@ -1,34 +1,46 @@
 
-
-/*
-$.ajax({
-	url : "/jspweb/product/info",
-	method : "get" ,
-	success : (r)=>{
-		console.log(r)
-	}
-})
-
-// 		VS
-
-$.get( 
-	"/jspweb/product/info"  ,
-	 (r)=>{ console.log(r) } );
-*/
+// 제품 목록 출력 
 let productList = null;
 function produclistprint(  ){
-    let html = '<h3>제품목록페이지</h3>';
-    productList.forEach( (p) => {
-		html += `<div> 
-					<span> ${ p.pname } </span>
-					<span> ${ p.pcomment }  </span>
-					<span> ${ p.pprice }  </span>
-					<span> ${ p.pstate }  </span>
-					<span> ${ p.pview }  </span>
-					<span> ${ p.pdate }  </span>
-				</div>`
+    let html = '';
+    productList.forEach( ( p , i) => {
+		html += `
+			<div onclick="productprint( ${ i } )" class="productbox">
+				<div class="pimgbox">
+					<img src="/jspweb/product/pimg/${ p.pimglist[0] }">
+				</div>
+				<div class="pcontentbox">
+					<div class="pdate"> ${ p.pdate } </div>
+					<div class="pname"> ${ p.pname } </div>
+					<div class="pprice"> ${ p.pprice.toLocaleString() } 원 </div>
+					<div class="petc">
+						<i class="far fa-eye"></i> ${ p.pview }
+						<i class="far fa-thumbs-up"></i> 5
+						<i class="far fa-comment-dots"></i> 2
+					</div>
+				</div>
+			</div>
+			`
 	});
 	document.querySelector('.produclistbox').innerHTML = html;
+} // end 
+
+// 제품 개별 조회 
+function productprint( i ){
+	let p = productList[i];
+	 let html = `<button onclick="produclistprint()"> <== </button> <h3>제품상세페이지</h3>`;
+      html += `<div> 
+			<div> ${ p.pname } </div>
+			<div> ${ p.pcomment }  </div>
+			<div> ${ p.pprice }  </div>
+			<div> ${ p.pstate }  </div>
+			<div> ${ p.pview }  </div>
+			<div> ${ p.pdate }  </div>
+			<div> <button class="plikebtn" onclick="setplike(${p.pno})" type="button"> </button> </div>
+		</div>`
+	document.querySelector('.produclistbox').innerHTML = html;
+	getplike( p.pno ); // 찜하기 상태호출 
+	
 }
 
 var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
@@ -47,9 +59,7 @@ var clusterer = new kakao.maps.MarkerClusterer({
 
 // 1. 제품목록 호출 [ 1. 현재 보이는 지도좌표내 포함된 제품만 2. ]
 function getproductlist( 동 , 서  , 남 , 북 ){
-	
 	clusterer.clear() // 클러스터 비우기 [ 기존 마커들 제거 ]
-	
 	$.ajax({
 		url : "/jspweb/product/info" ,
 		method : "get",
@@ -58,30 +68,16 @@ function getproductlist( 동 , 서  , 남 , 북 ){
 		success : (r)=>{
 		    // ------------ 사이드바 제품목록 --------------------------------
 		    productList = r;	// 제품목록 결과를 전역변수 담아주기 
-			// produclistprint(  );
+			produclistprint(  );
 		   //------------ 마커 작업 ----------------------
-		    var markers = r.map( ( p ) => {		console.log( p )
+		    var markers = r.map( ( p , i ) => {		console.log( p )
 				// 마커에 추가코드 작성하기 위해 변수화
 		        let marker = new kakao.maps.Marker({	
 		            position : new kakao.maps.LatLng( p.plat, p.plng)
 		        });
 		        // 마커에 클릭이벤트를 등록합니다
 				kakao.maps.event.addListener(marker, 'click', function() {
-				       let html = `<button onclick="produclistprint()"> <== </button> <h3>제품상세페이지</h3>`;
-				      html += `<div> 
-							<div> ${ p.pname } </div>
-							<div> ${ p.pcomment }  </div>
-							<div> ${ p.pprice }  </div>
-							<div> ${ p.pstate }  </div>
-							<div> ${ p.pview }  </div>
-							<div> ${ p.pdate }  </div>
-							<div> <button class="plikebtn" onclick="setplike(${p.pno})" type="button"> </button> </div>
-						</div>`
-					
-					document.querySelector('.produclistbox').innerHTML = html;
-					
-					getplike( p.pno ); // 찜하기 상태호출 
-					
+				      productprint( i )
 				}); // 클릭이벤트 end 
 		        return marker;
 		    }); // map end 
@@ -168,6 +164,23 @@ function getplike( pno ){
 	 
 	 
 	 
+
+/*
+$.ajax({
+	url : "/jspweb/product/info",
+	method : "get" ,
+	success : (r)=>{
+		console.log(r)
+	}
+})
+
+// 		VS
+
+$.get( 
+	"/jspweb/product/info"  ,
+	 (r)=>{ console.log(r) } );
+*/
+
 	 
 	 
 	 

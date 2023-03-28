@@ -23,23 +23,18 @@
 		<!-- 사이드바 -->
 		<div class="produclistbox">
 		
-			<div class="productbox">
-				<div class="pimgbox">
-					<img src="/jspweb/product/pimg/default.jpg">
-				</div>
-				<div class="pcontentbox">
-					<div class="pdate"> 2023-03-28 </div>
-					<div class="pname"> LG 노트북 팝니다. LG 노트북 팝니다. LG 노트북 팝니다. LG 노트북 팝니다. LG 노트북 팝니다. LG 노트북 팝니다. LG 노트북 팝니다. </div>
-					<div class="pprice"> 3,000 원 </div>
-					<div class="petc">
-						<i class="far fa-eye"></i> 30
-						<i class="far fa-thumbs-up"></i> 5
-						<i class="far fa-comment-dots"></i> 2
-					</div>
-				</div>
-			</div>
-			
-			
+
+	
+		</div>
+	</div>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b7c0acb1395b016fc6b2661dad73840f&libraries=clusterer"></script>
+	<script src="/jspweb/js/index.js" type="text/javascript"></script>
+
+</body>
+</html>
+
+<!-- 
+
 			<div class="productbox">
 				<div class="pimgbox">
 					<img src="/jspweb/product/pimg/default.jpg">
@@ -55,13 +50,7 @@
 					</div>
 				</div>
 			</div>
-			
-			
-			
-		</div>
-	</div>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b7c0acb1395b016fc6b2661dad73840f&libraries=clusterer"></script>
-	<script src="/jspweb/js/index.js" type="text/javascript"></script>
+	
 
-</body>
-</html>
+
+ -->

@@ -68,33 +68,40 @@ html , body{
 	width: 200px; height: 200px; background-color: white; 
 }
 /* 사이드바 */
-.produclistbox{ width: 25%; height: 100%; }
-/* 제품 1개 구역 */
-.productbox{
+.produclistbox{ width: 25%; height: 100%; overflow: scroll; }
+.productbox{/* 제품 1개 구역 */ 
 	display: flex;
 	padding: 0px 5px 20px 5px;
 	border-bottom: 1px solid #eeeeee;
 	margin: 0px 5px 20px 5px; 
 }
-/* 제품 대표이미지 */
-.pimgbox img{
-	height: 130px; width: 130px; object-fit : cover;
+.pimgbox img{ /* 제품 대표이미지 */
+	height: 130px; width: 130px; object-fit : cover; /* 비율유지 , 해당 설정된 크기보다 커지면 짤림*/
 }
-/* 제품 내용 구역 */
-.pcontentbox{
+.pcontentbox{ /* 제품 내용 구역 */
 	width: 100%; 
 	padding: 0px 15px;
 }
-/* 제품 제목 */
-.pname{
+.pname{ /* 제품 제목 */
 	font-family: 'KCC-Ganpan';
 	font-size: 20px;
+	height : 30px;
 	/* 내용물이 구역크기보다 커질때 ... */
 	overflow: hidden;
 	white-space: nowrap; /* 자동 줄바꿈처리 제거 */
 	text-overflow: ellipsis; /* ... */
-	max-width: 95%;	/* 표현할 최대 사이즈 : 최대사이즈보다 커지면 ... */
+	max-width: 230px;	/* 표현할 최대 사이즈 : 최대사이즈보다 커지면 ... */
 }
+.pprice{ /* 제품 가격 */
+	text-align: right;
+	font-family: 'KCC-Ganpan';
+	font-size: 25px;
+	margin-top: 20px;
+}
+.pdate{ font-size: 10px; }
+.petc{ font-size: 12px; text-align: right; }
+
+
 
 
 
