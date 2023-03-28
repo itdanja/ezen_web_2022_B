@@ -103,6 +103,24 @@ function chatprint( i ){
 		alert('회원기능 입니다. 로그인후 사용해주세요.'); return;
 	}
 	let p = productList[i];
+	
+	let chathtml = '';
+	$.ajax({
+		url : "/jspweb/product/chat" ,
+		method : "get",
+		data : { "pno" : p.pno },
+		async : false , /* 동기식 */
+		success : (r)=>{
+			r.forEach( ( o )=> {
+				if( o.frommno == memberInfo.mno ){ // 현재 로그인된 회원과 보낸 사람과 일치하면 
+					chathtml += `<div class="sendbox"> ${ o.ncontent }</div>`
+				}else{
+					chathtml += `<div class="receivebox"> ${ o.ncontent }</div>`
+				}
+			})	
+		}
+	}) // end 
+	
 	let html = `
 			<div class="chatbox">
 				<div class="pviewinfo">
@@ -116,10 +134,8 @@ function chatprint( i ){
 				</div>
 				
 				<div class="chatcontent">
-					<div class="sendbox"> 구매 가능할까요? </div>
-					<div class="receivebox"> 네 구매 가능 합니다.</div>
+					${ chathtml }
 				</div>
-				
 				<div class="chatbtn">
 					<textarea class="ncontentinput" rows="" cols=""></textarea>
 					<button onclick="sendchat( ${p.pno} , ${ p.mno } )" type="button">전송</button>
