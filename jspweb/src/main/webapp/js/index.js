@@ -2,7 +2,7 @@
 // 제품 목록 출력 
 let productList = null;
 function produclistprint(  ){
-    let html = '';
+    let html = `<p style="font-size:12px; text-align:right" > 제품목록수 : ${ productList.length } 개 </h6>`;
     productList.forEach( ( p , i) => {
 		html += `
 			<div onclick="productprint( ${ i } )" class="productbox">
@@ -28,16 +28,73 @@ function produclistprint(  ){
 // 제품 개별 조회 
 function productprint( i ){
 	let p = productList[i];
-	 let html = `<button onclick="produclistprint()"> <== </button> <h3>제품상세페이지</h3>`;
-      html += `<div> 
-			<div> ${ p.pname } </div>
-			<div> ${ p.pcomment }  </div>
-			<div> ${ p.pprice }  </div>
-			<div> ${ p.pstate }  </div>
-			<div> ${ p.pview }  </div>
-			<div> ${ p.pdate }  </div>
-			<div> <button class="plikebtn" onclick="setplike(${p.pno})" type="button"> </button> </div>
-		</div>`
+	// 이미지 슬라이드에 대입할 html 구성 
+	let imghtml = ``;
+	p.pimglist.forEach( (img , i )=>{
+		// bs class : active	현재 보여지는 이미지
+		if( i == 0 ){	// 첫 이미지에만 actvie 클래스 적용
+			imghtml += `<div class="carousel-item active">
+				      <img src="/jspweb/product/pimg/${ img }" class="d-block w-100" alt="...">
+				    </div>
+				    `
+		}else{
+			imghtml += `<div class="carousel-item">
+					      <img src="/jspweb/product/pimg/${ img }" class="d-block w-100" alt="...">
+					    </div>
+					    `
+	    }
+	})
+	
+	let html = ``;
+	html += `
+			<div class="pviewbox">
+				<div class="pviewinfo">
+					<div class="mimgbox">
+						<img src="/jspweb/member/pimg/${ p.mimg == null ? 'default.webp' : p.mimg }" class="hpimg">
+						<span class="mid"> ${ p.mid } </span>
+					</div>
+					<div>
+						<button onclick="produclistprint()" class="pbadge" type="button"> 목록보기 </button>
+					</div>
+				</div>
+				<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+				  <div class="carousel-inner">
+				  
+				  	${ imghtml }
+				  	
+				  </div>
+				  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+				    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				    <span class="visually-hidden">Previous</span>
+				  </button>
+				  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+				    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+				    <span class="visually-hidden">Next</span>
+				  </button>
+				</div>
+				
+					<div class="pdate"> ${ p.pdate } </div>
+					<div class="pname"> ${ p.pname } </div>
+					<div class="pcomment"> ${ p.pcomment } </div>
+					<div class="pstate"> 
+						<span class="pbadge">
+							${ p.pstate == 1 ? '판매중' : p.pstate == 2 ? '거래중' : '판매완료'  }
+						</span> 
+					</div>
+					<div class="pprice"> ${ p.pprice.toLocaleString() }원 </div>
+					<div class="petc"> 
+						<i class="far fa-eye"></i> ${ p.pview }
+						<i class="far fa-thumbs-up"></i> 5
+						<i class="far fa-comment-dots"></i> 2
+					 </div>
+					<div class="pviewbtnbox">
+						<button class="plikebtn" onclick="setplike(${p.pno})"  type="button"> <i class="far fa-heart"></i> </button>
+						<button type="button"> 채팅 </button>
+					</div>
+				</div>
+			`	
+		
+		
 	document.querySelector('.produclistbox').innerHTML = html;
 	getplike( p.pno ); // 찜하기 상태호출 
 	

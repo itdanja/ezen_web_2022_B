@@ -76,11 +76,14 @@ html , body{
 	margin: 0px 5px 20px 5px; 
 }
 .pimgbox img{ /* 제품 대표이미지 */
-	height: 130px; width: 130px; object-fit : cover; /* 비율유지 , 해당 설정된 크기보다 커지면 짤림*/
+	height: 140px; width: 140px; object-fit : cover; /* 비율유지 , 해당 설정된 크기보다 커지면 짤림*/
 }
 .pcontentbox{ /* 제품 내용 구역 */
 	width: 100%; 
 	padding: 0px 15px;
+	display : flex ;
+	flex-direction: column;
+    justify-content: space-between;
 }
 .pname{ /* 제품 제목 */
 	font-family: 'KCC-Ganpan';
@@ -90,7 +93,7 @@ html , body{
 	overflow: hidden;
 	white-space: nowrap; /* 자동 줄바꿈처리 제거 */
 	text-overflow: ellipsis; /* ... */
-	max-width: 230px;	/* 표현할 최대 사이즈 : 최대사이즈보다 커지면 ... */
+	max-width: 200px;	/* 표현할 최대 사이즈 : 최대사이즈보다 커지면 ... */
 }
 .pprice{ /* 제품 가격 */
 	text-align: right;
@@ -102,6 +105,47 @@ html , body{
 .petc{ font-size: 12px; text-align: right; }
 
 
+/* --------- 제품 상세 --------- */
+.pviewbox{	/* 제품 상세 구역 */
+	padding: 0px 20px 10px 20px;
+}
+.pviewinfo{	/* 제품 상세 상단 구역 */
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 15px;
+}
+.pbadge{	/* 제품 상세 버튼 */
+	background-color: #f66d85;
+	border: none;
+	border-radius: 10px;
+	padding: 3px 10px;
+	color:  white;
+}
+.pviewbox .pdate{
+	margin: 20px 0px 5px 0px;
+}
+.pviewbox .pcomment{
+	height: 120px;
+	font-size: 13px;
+}
+.pstate{ text-align: right; }
+.pviewbtnbox button{
+	border: none;
+	background-color: #f66d85;
+	width: 48%;
+	padding: 15px;
+	color: white;
+	font-size: 20px;
+	margin-top: 20px;
+	border-radius: 10px;
+	font-weight: bold;
+}
+/* 캐러셀 이미지 */
+.carousel-item img{
+	height: 270px;
+	object-fit : cover;
+}
 
 
 
