@@ -112,17 +112,27 @@ public class ProductDao extends Dao {
 			return true;
 		}catch (Exception e) { 	System.out.println(e); 	}  return false;
 	} // end 
-	// 6. 제품에 등록 채팅 출력 [ 제품번호 일치 , 현재 보고 있는 회원[로그인된회원] 받거나 보낸 내용들 ]
+	
+	// 6. 제품에 등록된 채팅 출력 [ 제품번호 일치 , 현재 보고 있는 회원[로그인된회원] 받거나 보낸 내용들 ]
 	public ArrayList<ChatDto> getChatList( int pno , int mno ){
 		ArrayList<ChatDto> list = new ArrayList<>();
-		String sql = "select * from note where pno = ? and ( frommno = ? or tomno = ? )";
+		String sql = " select * from note where pno = ? and ( frommno = ? or tomno = ? )";
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setInt( 1 , pno );	ps.setInt( 2 , mno );	ps.setInt( 3 , mno );
 			rs = ps.executeQuery();
 			while( rs.next() ) {
-				list.add( new ChatDto( 	rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), 
-						rs.getInt(5), rs.getInt(6)) );
+				ChatDto dto =  new ChatDto( 	rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), 
+						rs.getInt(5), rs.getInt(6));
+				// 보낸회원의 정보 호출 
+				sql ="select mid , mimg from member where mno = " + rs.getInt(5);	// rs.getInt(5) = frommno
+				ps = con.prepareStatement(sql);
+				ResultSet rs2 = ps.executeQuery();
+				if( rs2.next() ) { 
+					dto.setFrommid( rs2.getString(1) );
+					dto.setFrommimg( rs2.getString(2));
+				}
+				list.add(  dto  );
 			}
 		}catch (Exception e) { 	System.out.println(e); 	}  
 		return list;
