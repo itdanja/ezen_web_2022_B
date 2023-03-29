@@ -22,7 +22,7 @@
 		<div id="map" style="width:75%;height:100%;"></div>
 		<!-- 사이드바 -->
 		<div class="produclistbox">
-			
+		
 		</div>
 	</div>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b7c0acb1395b016fc6b2661dad73840f&libraries=clusterer"></script>
@@ -30,6 +30,18 @@
 
 </body>
 </html>
+
+<!-- 
+			<div class="chatlist">
+				<div class="frommimg"> <img src="/jspweb/member/pimg/default.webp" class="hpimg"> </div>
+				<div class="frominfo">
+					<div class="fromndate"> 2023-03-29 10:02 </div>
+					<div class="frommid"> qweqwe123123</div>
+					<div class="fromncontent"> 구매할수 있을까요? </div>
+				</div>
+			</div>
+
+ -->
 
 <!-- 
 

@@ -181,6 +181,22 @@ html , body{
 }
 
 
+/* ---------- 제품별 받은 채팅 목록 ---------- */
+
+.chatlist{
+	display: flex;
+	margin: 20px;
+	border-bottom: 1px solid #eeeeee;
+	padding-bottom: 20px;
+}
+.frominfo{ margin-left: 15px;}
+.fromndate{ font-size: 8px; }
+.frommid{ font-weight: bold; }
+.fromncontent{ font-size: 12px;}
+
+
+
+
 
 
 
