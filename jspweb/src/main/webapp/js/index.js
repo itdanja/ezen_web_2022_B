@@ -16,6 +16,8 @@
 
 // * 전역변수
 let productList = null;	// getproductlist() 의 ajax 로부터 요청된 결과를 담는곳
+let index = 0;		// 현재 보고 있는 제품의 제품 인덱스 
+let chatmno = 0;	// 현재 채팅하고 있는 상대방의 mno
 
 // [2023-03-29 김현수] 1. 모든 제품 목록 html 출력 함수  
 function produclistprint(  ){
@@ -146,9 +148,7 @@ function chatlistprint( i ){
 	document.querySelector('.produclistbox').innerHTML = html;
 }
 
-// *
-let index = 0;		// 현재 보고 있는 제품의 제품 인덱스 
-let chatmno = 0;	// 현재 채팅하고 있는 상대방의 mno
+
 
 // 10. 채팅방 내용물 요청해서 해당 html에 출력
 function getcontent( ){

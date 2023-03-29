@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import controller.admin.Alarm;
 import model.dao.MemberDao;
 import model.dao.ProductDao;
 import model.dto.ChatDto;
@@ -58,6 +59,12 @@ public class ProductChat extends HttpServlet {
 		ChatDto dto = new ChatDto(0, 쪽지내용, null, 제품번호, 보낸회원번호, 받는회원번호);	System.out.println( "dto : " + dto );
 		// 3
 		boolean result = ProductDao.getInstance().setChat( dto );
+		// 4. 만약에 채팅 등록 성공했으면 tomno 에게 소켓 알림 메시지 보내기
+		if( result ) {
+			try {Alarm.서버메시지( null , null );}
+			catch (Exception e) { e.printStackTrace(); }
+		}
+		
 		response.getWriter().print(result);
 	}
 }

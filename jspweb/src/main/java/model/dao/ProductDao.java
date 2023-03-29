@@ -101,7 +101,7 @@ public class ProductDao extends Dao {
 		}catch (Exception e) { 	System.out.println(e); 	}  return false;
 	}
 	
-	// 5. 제품에 채팅 등록 
+	// 5. 제품에 채팅 등록
 	public boolean setChat ( ChatDto dto ) {
 		String sql = "insert into note( ncontent , pno , frommno , tomno )values(?,?,?,?)";
 		try {
@@ -113,19 +113,29 @@ public class ProductDao extends Dao {
 		}catch (Exception e) { 	System.out.println(e); 	}  return false;
 	} // end 
 	
-	// 6. 제품에 등록된 채팅 출력 [ 제품번호 일치 , 현재 보고 있는 회원[로그인된회원] 받거나 보낸 내용들 ]
+	// 6. 제품에 등록된 채팅 출력 [ 1. 채팅목록출력[ js.9 ] 2.채팅방내 메시지목록 출력 [ js.10] ]
 	public ArrayList<ChatDto> getChatList( int pno , int mno , int chatmno ){
 		ArrayList<ChatDto> list = new ArrayList<>();
-		// String sql = " select * from note where pno = ? and ( frommno = ? or tomno = ? )";
-		// 현재 같이 채팅 하고 있는 대상자들 의 내용물만 출력 
-		String sql = " select * from note where pno = ? and "
-				+ " ( ( frommno = ? and tomno = ? ) or  (frommno = ? and tomno = ? ) )";
+		
+		String sql = "";
+		
+		if( chatmno !=0 ) {// 현재 같이 채팅 하고 있는 대상자들[로그인된회원,채팅대상자] 의 내용물만 출력 
+			sql = " select * from note where pno = ? and "
+					+ " ( ( frommno = ? and tomno = ? ) or  (frommno = ? and tomno = ? ) )";
+		}else { // 채팅목록출력[ js.9 ]
+			 sql = " select * from note where pno = ? and ( frommno = ? or tomno = ? )";
+		}
+		
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setInt( 1 , pno );	
-			ps.setInt( 2 , mno );		ps.setInt( 3 , chatmno );
-			ps.setInt( 4 , chatmno );	ps.setInt( 5 , mno );
-			
+			if( chatmno != 0 ) {
+				ps.setInt( 2 , mno );		ps.setInt( 3 , chatmno );
+				ps.setInt( 4 , chatmno );	ps.setInt( 5 , mno );
+			}else {
+				ps.setInt( 2 , mno );		ps.setInt( 3 , mno );
+			}
+		
 			rs = ps.executeQuery();
 			while( rs.next() ) {
 				ChatDto dto =  new ChatDto( 	rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), 
