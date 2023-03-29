@@ -114,12 +114,18 @@ public class ProductDao extends Dao {
 	} // end 
 	
 	// 6. 제품에 등록된 채팅 출력 [ 제품번호 일치 , 현재 보고 있는 회원[로그인된회원] 받거나 보낸 내용들 ]
-	public ArrayList<ChatDto> getChatList( int pno , int mno ){
+	public ArrayList<ChatDto> getChatList( int pno , int mno , int chatmno ){
 		ArrayList<ChatDto> list = new ArrayList<>();
-		String sql = " select * from note where pno = ? and ( frommno = ? or tomno = ? )";
+		// String sql = " select * from note where pno = ? and ( frommno = ? or tomno = ? )";
+		// 현재 같이 채팅 하고 있는 대상자들 의 내용물만 출력 
+		String sql = " select * from note where pno = ? and "
+				+ " ( ( frommno = ? and tomno = ? ) or  (frommno = ? and tomno = ? ) )";
 		try {
 			ps = con.prepareStatement(sql);
-			ps.setInt( 1 , pno );	ps.setInt( 2 , mno );	ps.setInt( 3 , mno );
+			ps.setInt( 1 , pno );	
+			ps.setInt( 2 , mno );		ps.setInt( 3 , chatmno );
+			ps.setInt( 4 , chatmno );	ps.setInt( 5 , mno );
+			
 			rs = ps.executeQuery();
 			while( rs.next() ) {
 				ChatDto dto =  new ChatDto( 	rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), 
@@ -155,7 +161,15 @@ public class ProductDao extends Dao {
 
 
 
-
+/*
+	- 1. 로그인된 회원기준으로 보내거나 받은 메시지 모두 출력 
+		select * from note where pno = ? and ( frommno = ? or tomno = ? )
+		1. 구매자 문제 없음 2.판매자는 채팅 대상만의 메시지만 출력 해야함 문제 발생 
+	- 2.
+		만약에 채팅방에 4번회원 과 5번회원 존재
+		frommno = 4 이면서 tomno = 5		이거나		frommno = 5 이면서 tomno = 4
+		- 4번회원이 보냈거나 받았으면 5번회원이 받았거나 보냈으면
+*/
 
 
 

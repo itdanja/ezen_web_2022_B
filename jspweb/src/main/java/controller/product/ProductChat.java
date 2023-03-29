@@ -34,8 +34,10 @@ public class ProductChat extends HttpServlet {
 		//
 		int pno = Integer.parseInt( request.getParameter("pno") );
 		int mno = MemberDao.getInstance().getMno( (String)request.getSession().getAttribute("login") );
+		int chatmno = Integer.parseInt( request.getParameter("chatmno") );
+		
 		//
-		ArrayList<ChatDto> result = ProductDao.getInstance().getChatList(pno, mno);
+		ArrayList<ChatDto> result = ProductDao.getInstance().getChatList( pno, mno , chatmno );
 		ObjectMapper mapper = new ObjectMapper();	String jsonArray = mapper.writeValueAsString(result);
 		//
 		response.setCharacterEncoding("UTF-8"); response.setContentType("application/json");
