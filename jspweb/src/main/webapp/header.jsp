@@ -22,6 +22,11 @@
 	
 </head>
 <body>
+
+	<div class="msgbox">
+		메시지가 도착했어요.
+	</div>
+
 	
 	<div class="container"> <!-- bs 박스권 -->
 		<div class="header">
@@ -48,7 +53,6 @@
 				<!-- js가 들어가는 자리  -->
 			</div>
 		</div>
-		
 	</div>
 	
 	

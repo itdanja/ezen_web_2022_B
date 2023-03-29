@@ -10,6 +10,7 @@ import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
+import model.dao.MemberDao;
 import model.dto.ClientDto;
 
 @ServerEndpoint("/alarm/{mid}")
@@ -30,8 +31,17 @@ public class Alarm {
 	
 	@OnMessage // 클라이언트 소켓이 메시지를 보냈을때  매핑[연결] !!! 필수로 정의할 인수
 	public static void 서버메시지( Session session , String msg ) throws Exception { 
+		// 메시지를 받는 회원번호 
+		int tomno = Integer.parseInt( msg.split(",")[0] );
+		// 메시지 내용 
+		String tomsg = msg.split(",")[1];
+		
 		for( ClientDto c : 알림명단 ) {
-			c.getSession().getBasicRemote().sendText("");
+			// 현재 소켓의 접속된 회원명단의 아이디로 회원번호 구하기 
+			int cmno =  MemberDao.getInstance().getMember( c.getMid() ).getMno();
+			if( cmno == tomno ) { // 받는 회원번호가 알림명단에 존재하면
+				c.getSession().getBasicRemote().sendText( tomsg );
+			}
 		}
 	}
 }

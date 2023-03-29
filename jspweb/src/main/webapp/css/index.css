@@ -194,6 +194,20 @@ html , body{
 .frommid{ font-weight: bold; }
 .fromncontent{ font-size: 12px;}
 
+/* ---- 알림 모달 구역 --------*/
+.msgbox{
+	width: 200px; height: 100px;
+	border: 1px solid red;
+	background-color: white;
+	position: fixed;
+	left : 1%;
+	bottom: -100px;
+	z-index: 300;
+	opacity: 0.8;
+	/* 애니메이션 효과 */
+	/* 특정 css 변화있을때 css 변화 시간(초)  */
+	transition : 1s;
+}
 
 
 

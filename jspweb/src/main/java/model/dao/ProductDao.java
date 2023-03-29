@@ -13,8 +13,8 @@ public class ProductDao extends Dao {
 	private ProductDao() {}
 	public static ProductDao getInstance() { return dao; }
 	
-	// 1. 제품 등록 
-	public boolean write( ProductDto dto ) {
+	// 1. 제품 등록 [ synchronized : 멀티스레드 사용시( 서블릿 ) 해당 메소드 동시사용불가 대기만들기 = await	 
+	public synchronized boolean write( ProductDto dto ) {
 		// 1. 제품 우선 등록 
 		String sql ="insert into product(pname, pcomment, pprice, plat, plng , mno )"
 				+ " values(?,?,?,?,?,?)";
@@ -41,7 +41,7 @@ public class ProductDao extends Dao {
 	}
 	
 	// 2. 제품 호출
-	public ArrayList<ProductDto> getProductList( String 동 , String 서 , String 남 , String 북 ){
+	public synchronized ArrayList<ProductDto> getProductList( String 동 , String 서 , String 남 , String 북 ){
 		ArrayList<ProductDto> list = new ArrayList<>();
 		String sql ="SELECT p.* , m.mid , m.mimg FROM product p natural join member m "
 				+ " where ? >= p.plng and ? <= p.plng and ? <= p.plat and ? >= p.plat ";
@@ -74,7 +74,7 @@ public class ProductDao extends Dao {
 	}
 	
 	// 3. 찜하기 등록/취소 
-	public boolean setplike( int pno , int mno ) {
+	public synchronized boolean setplike( int pno , int mno ) {
 		// 1. 등록할지 취소할지 검색 먼저하기 
 		String sql ="select * from plike where pno = "+pno+" and mno = "+mno;
 		try {
@@ -93,7 +93,7 @@ public class ProductDao extends Dao {
 		}catch (Exception e) { 	System.out.println(e); 	}  return false;
 	}
 	// 4. 현재 회원이 해당 제품의 찜하기 상태 확인 
-	public boolean getplike( int pno , int mno ) {
+	public synchronized boolean getplike( int pno , int mno ) {
 		String sql ="select * from plike where pno = "+pno+" and mno = "+mno;
 		try {
 			ps = con.prepareStatement(sql);	rs = ps.executeQuery();
@@ -102,7 +102,7 @@ public class ProductDao extends Dao {
 	}
 	
 	// 5. 제품에 채팅 등록
-	public boolean setChat ( ChatDto dto ) {
+	public synchronized boolean setChat ( ChatDto dto ) {
 		String sql = "insert into note( ncontent , pno , frommno , tomno )values(?,?,?,?)";
 		try {
 			ps = con.prepareStatement(sql);
@@ -114,7 +114,7 @@ public class ProductDao extends Dao {
 	} // end 
 	
 	// 6. 제품에 등록된 채팅 출력 [ 1. 채팅목록출력[ js.9 ] 2.채팅방내 메시지목록 출력 [ js.10] ]
-	public ArrayList<ChatDto> getChatList( int pno , int mno , int chatmno ){
+	public synchronized ArrayList<ChatDto> getChatList( int pno , int mno , int chatmno ){
 		ArrayList<ChatDto> list = new ArrayList<>();
 		
 		String sql = "";
