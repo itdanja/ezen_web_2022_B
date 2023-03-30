@@ -89,6 +89,25 @@ public class Dao {
 			ps.executeUpdate(); return true;
 		}catch (Exception e) {System.out.println(e);} return false;
 	}
+	// 6. 회원별[매출있는회원만] 집계 
+	public ArrayList<MemberDto> getsum(){
+		ArrayList<MemberDto> list = new ArrayList<>();
+		String sql = "select "
+				+ "			m.custno , "
+				+ "        	m.custname , "
+				+ "        	if( m.grade = 'A' , 'VIP' , if( m.grade='B' , '일반','직원') ) as g , "
+				+ "        	sum( mo.price ) as psum "
+				+ "    from member_tbl_02 m natural join money_tbl_02 mo "
+				+ "    group by m.custno"
+				+ "    order by sum( mo.price ) desc";
+		try {
+			ps = con.prepareStatement(sql); rs = ps.executeQuery();
+			while(rs.next() ) {
+				list.add( new MemberDto( rs.getInt(1), rs.getString(2), 
+										rs.getString(3), rs.getInt(4) ) ) ;
+			}
+		}catch (Exception e) {System.out.println(e);} return list;
+	}
 }
 
 

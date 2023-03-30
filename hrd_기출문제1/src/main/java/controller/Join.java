@@ -19,8 +19,8 @@ public class Join extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setCharacterEncoding("UTF-8");
-		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");	request.setCharacterEncoding("UTF-8");
+		
 		int custno = Integer.parseInt( request.getParameter("custno"));
 		String custname = request.getParameter("custname");
 		String phone = request.getParameter("phone");

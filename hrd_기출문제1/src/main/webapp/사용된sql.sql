@@ -46,3 +46,79 @@ insert into money_tbl_02 values(100004, 20160007, 500, 2, 1000, 'A001', '2016010
 insert into money_tbl_02 values(100004, 20160008, 300, 1, 300, 'A005', '20160104');
 insert into money_tbl_02 values(100004, 20160009, 600, 1, 600, 'A006', '20160104');
 insert into money_tbl_02 values(100004, 20160010, 3000, 1, 3000, 'A007', '20160106');
+
+
+
+/* ---------- 기능 구현 sql ---------- */
+-- 1. 마지막 회원번호의 +1 ( max )
+select max(custno)+1 from member_tbl_02;
+-- 2. 회원등록 
+insert into member_tbl_02(custname,phone,address,joindate,grade,city) values(?,?,?,?,?,?);
+-- 3. 만약에 등급이 'A' 이면 'VIP ~~  [ IF ]
+	-- IF( 조건 , 참 , 거짓 ) as 표시할필드명
+    -- IF중첩 : IF(조건 , 참 , IF(조건2 , 참2 , IF(조건3 , 참3 , 거짓 ) ) ) as 표시할필드명 
+select 
+	custno , custname ,  phone , address ,  joindate ,
+    if( grade = 'A' , 'VIP' , if( grade = 'B' , '일반' , '직원' ) ) as g ,
+    city 
+from member_tbl_02;
+-- 3. 회원별 매출 통계
+ 
+	-- 1. 테이블 출력 
+	select * from member_tbl_02;	-- 회원번호pk
+	select * from money_tbl_02;		-- 회원번호pk , 매출번호 pk
+    
+	-- 2. 두 테이블의 교집합 
+		-- 1. where 이용한 조인하기 
+    select * from member_tbl_02 , money_tbl_02 
+    where member_tbl_02.custno = money_tbl_02.custno;
+		-- 2. 자연조인( natural join) 이용한 조인하기 
+    select * from member_tbl_02 natural join money_tbl_02;
+		-- 3. 조인( join on ) 이용한 조인하기 
+    select * from member_tbl_02 join money_tbl_02 
+    on member_tbl_02.custno = money_tbl_02.custno;
+		-- 4. 테이블의 별칭사용하기 
+    select * from member_tbl_02 m natural join money_tbl_02 mo;
+    
+    -- 3. 특정 필드만 검색 [ * : 모든필드 ]
+    select m.custno , m.custname , m.grade , mo.price 
+    from member_tbl_02 m natural join money_tbl_02 mo;
+    
+    -- 4. 통계/집계	[ 전체집계=그룹 필수x vs 그룹별 집계 = 그룹 필수 ]
+    select sum( mo.price ) from member_tbl_02 m natural join money_tbl_02 mo;
+    
+    -- 5. 중복된 레코드 합치기 [ 그룹하기 ] group by 필드명
+    select m.custno , m.custname , m.grade , sum( mo.price ) as psum
+    from member_tbl_02 m natural join money_tbl_02 mo
+    group by m.custno;
+
+	-- 6. 정렬하기 order by 필드명 asc/desc
+    select m.custno , m.custname , m.grade , sum( mo.price ) as psum
+    from member_tbl_02 m natural join money_tbl_02 mo
+    group by m.custno
+    order by psum desc;
+    
+    -- 7. 출력 조건 
+    select 
+		m.custno , 
+        m.custname , 
+        if( m.grade = 'A' , 'VIP' , if( m.grade='B' , '일반','직원') ) as g , 
+        sum( mo.price ) as psum
+    from member_tbl_02 m natural join money_tbl_02 mo
+    group by m.custno
+    order by sum( mo.price ) desc;
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+

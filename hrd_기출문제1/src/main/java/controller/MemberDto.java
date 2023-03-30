@@ -8,11 +8,20 @@ public class MemberDto {
 	private String  joindate;
 	private String  grade;
 	private int  city;
+	// 추가 
+	private int psum;	// 총매출 
 	
+	// 통계용 생성자 
+	public MemberDto(int custno, String custname, String grade, int psum) {
+		super();
+		this.custno = custno;
+		this.custname = custname;
+		this.grade = grade;
+		this.psum = psum;
+	}
 	public MemberDto() {
 		// TODO Auto-generated constructor stub
 	}
-
 	public MemberDto(int custno, String custname, String phone, String address, String joindate, String grade,
 			int city) {
 		super();
@@ -80,6 +89,16 @@ public class MemberDto {
 	public void setCity(int city) {
 		this.city = city;
 	}
+
+	
+	public int getPsum() {
+		return psum;
+	}
+
+	public void setPsum(int psum) {
+		this.psum = psum;
+	}
+
 	
 
 }
