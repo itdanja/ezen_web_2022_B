@@ -65,6 +65,16 @@ public class Dao {
 			}
 		}catch (Exception e) {System.out.println(e);} return list;
 	}
+	// 4. 특정 회원 출력 
+	public MemberDto getmember( int custno ) {
+		String sql = "select * from member_tbl_02 where custno = "+custno;
+		try { 	ps = con.prepareStatement(sql); rs = ps.executeQuery();
+			if( rs.next() ) {
+				return new MemberDto( rs.getInt(1), rs.getString(2), rs.getString(3), 
+						rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7));
+			}
+		}catch (Exception e) {System.out.println(e);} return null;
+	}
 }
 
 
