@@ -19,6 +19,20 @@ public class Join extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8");
+		int custno = Integer.parseInt( request.getParameter("custno"));
+		String custname = request.getParameter("custname");
+		String phone = request.getParameter("phone");
+		String address = request.getParameter("address");
+		String joindate = request.getParameter("joindate");
+		String grade = request.getParameter("grade");
+		int city = Integer.parseInt( request.getParameter("city"));
+		
+		MemberDto dto = new MemberDto(custno, custname, phone, address, joindate, grade, city);
+		Dao dao = new Dao();	boolean result = dao.update(dto); 	
+		response.sendRedirect("/hrd_exam1/update.jsp?custno="+custno);
+		
 		
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

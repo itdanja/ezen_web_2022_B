@@ -55,7 +55,30 @@
 			</table>
 		</form>
 	</center>
+	
+	<script type="text/javascript">
+		function onupdate() { document.updateform.submit(); alert('수정성공'); }	
+	</script>
+	
 	<%@include file="footer.jsp" %>
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
