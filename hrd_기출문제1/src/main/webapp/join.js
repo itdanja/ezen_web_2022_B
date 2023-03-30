@@ -20,7 +20,7 @@ function join(){
 		document.joinform.address.focus(); // 커서이동
 		return false;
 	}if( document.joinform.joindate.value ==""){
-		alert('address 입력해주세요');
+		alert('joindate 입력해주세요');
 		document.joinform.joindate.focus(); // 커서이동
 		return false;
 	}if( document.joinform.grade.value ==""){
