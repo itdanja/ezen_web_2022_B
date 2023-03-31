@@ -3,6 +3,7 @@ package model.dao;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import model.dto.ChatDto;
 import model.dto.ProductDto;
@@ -153,7 +154,48 @@ public class ProductDao extends Dao {
 		}catch (Exception e) { 	System.out.println(e); 	}  
 		return list;
 	}
+	// 7. 날짜별 포인트 충전 내역 
+	public HashMap< String , Integer > getSum(){
+		// ArrayList<String> list ;	// String 타입객체만 리스트에 저장
+		HashMap< String , Integer > map = new HashMap<>(); // String 타입의 키 와 Integer 타입의 데이터 저장
+		String sql = "select \r\n"
+				+ "		 sum( if( mpcomment ='포인트 충전'  , mpamount , 0 ) ) as 충전된포인트총합계 ,\r\n"
+				+ "        date_format( mpdate , '%Y%m%d' ) as 충전날짜\r\n"
+				+ "    from mpoint\r\n"
+				+ "    group by date_format( mpdate , '%Y%m%d' )\r\n"
+				+ "    order by 충전날짜 desc limit 5;";
+		try {
+			ps = con.prepareStatement(sql);	rs = ps.executeQuery();
+			while(rs.next() ) {
+				map.put( rs.getString(2) , rs.getInt(1) );
+			}
+		}catch (Exception e) { 	System.out.println(e); 	}  return map;
+	}
 }
+
+
+/*
+ 
+ 	// 1. 해당 타입의 객체를 여러개 저장할수 있는 리스트 객체 선언 
+ 	ArrayList< 타입 > list = new ArrayList<>();
+ 		데이터 : '유재석' , '강호동' , '신동엽' 	-> 타입 1개 
+ 		[ '유재석' , '강호동' , '신동엽'  ]
+ 		
+ 		.add( 데이터 )
+ 		
+ 	// 2. 해당 키타입과 데이터타입 의 해당하는 키와데이터를 여러개 저장할수 있는 맵 객체 선언 
+ 	HashMap< 키타입 , 데이터타입 > map = new HashMap<>();
+ 		데이터 : '유재석=30' , '강호동=10' , '신동엽=90' -> 타입 2개 
+ 		{ '유재석'=30 , '강호동'=10 , '신동엽'=90  }
+ 		
+ 		.put( 키 , 데이터 )
+ 		
+ 	// * JSON = JS객체
+ 	LET 객체명 = { 필드명 : 값 , 필드명 : 값  }
+ 	 
+ 	
+ 	
+ */
 
 
 

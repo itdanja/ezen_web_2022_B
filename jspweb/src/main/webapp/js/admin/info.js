@@ -1,26 +1,31 @@
 
+/*
+	JSON = JS객체
+	let 객체명 = { 필드명/키 : 데이터 , 필드명/키 : 데이터 ,필드명/키 : 데이터 }
+	1. 해당 객체의 필드명만 호출/추출
+		Object.keys( 객체명 ) : 객체내 모든 필드명/키 이름을 배열로 추출
+	2. 해당 객체의 값만 호출/추출
+		Object.values( 객체명 ) : 객체내 모든 데이터 를 배열로 추출
+*/
+ const ctx = document.getElementById('myChart');
+ 
+$.get( "/jspweb/point" , (r)=>{
+	
+	console.log( r );		console.log( Object.keys( r ) );	console.log( Object.values( r ) );
 // --------------------- chart.js 차트 ----------------//
-
 	// new Chart( 'dom객체' , { 차트옵션} );
 	// { type : '차트이름' , data : { 차트에 표시할 데이터 } , options : { 차트옵션 } }
 		// labels : 가로축
-  const ctx = document.getElementById('myChart');
-  
   new Chart(ctx, {
-    type: 'bar', // bar : 막대차트 , line : 선차트 등등
+    type: 'line', // bar : 막대차트 , line : 선차트 등등
     data: {
-      labels: ['2023-03-27', '2023-03-28', '2023-03-29', '2023-03-30', '2023-03-31' ], // 가로축 
+      labels: Object.keys( r ) , // 가로축 // 날짜필드명
       datasets: [
 		  {
         	label: '포인트 충전 내역',	// 데이터 항목명 
-        	data: [ 100000 , 1532874 , 123874 , 955324 ,  743125], // 해당 항목의 데이터
+        	data: Object.values( r ), // 해당 항목의 데이터 // 데이터 값
        	 	borderWidth: 1 
-     	 },
-     	 {
-        	label: '포인트 충전 취소 내역',	// 데이터 항목명 
-        	data: [ 711153 , 756663 , 75772 , 41233.4 ,  453532], // 해당 항목의 데이터
-       	 	borderWidth: 1
-     	 } 
+     	 }
       ]
     },
     options: {
@@ -31,6 +36,17 @@
       }
     }
   });
+})
+
+
+
+
+
+
+
+
+
+
 
 
 
