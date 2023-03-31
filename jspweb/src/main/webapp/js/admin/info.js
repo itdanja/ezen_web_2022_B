@@ -1,4 +1,40 @@
-3// js -> admin -> info.js
+
+// --------------------- chart.js 차트 ----------------//
+
+	// new Chart( 'dom객체' , { 차트옵션} );
+	// { type : '차트이름' , data : { 차트에 표시할 데이터 } , options : { 차트옵션 } }
+		// labels : 가로축
+  const ctx = document.getElementById('myChart');
+  
+  new Chart(ctx, {
+    type: 'bar', // bar : 막대차트 , line : 선차트 등등
+    data: {
+      labels: ['2023-03-27', '2023-03-28', '2023-03-29', '2023-03-30', '2023-03-31' ], // 가로축 
+      datasets: [
+		  {
+        	label: '포인트 충전 내역',	// 데이터 항목명 
+        	data: [ 100000 , 1532874 , 123874 , 955324 ,  743125], // 해당 항목의 데이터
+       	 	borderWidth: 1 
+     	 },
+     	 {
+        	label: '포인트 충전 취소 내역',	// 데이터 항목명 
+        	data: [ 711153 , 756663 , 75772 , 41233.4 ,  453532], // 해당 항목의 데이터
+       	 	borderWidth: 1
+     	 } 
+      ]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+
+
+// js -> admin -> info.js
 
 console.log( 'js열림')
 

@@ -5,6 +5,7 @@ function setpay( p ){
 	alert('결제금액 선택' + p );
 }
 
+/* 포트원 가맹점[관리자회원] 식별번호 */
 var IMP = window.IMP;   // 생략 가능
 IMP.init("imp35631338"); // 예: imp00000000 
 
@@ -29,10 +30,28 @@ function requestPay() {
         console.log(rsp )
       } else { // 결제취소/실패 
         // 결제 성공 했다는 가정 
-        
+       	let info = {
+			mpcomment : '포인트 충전' , 
+			mpamount : pay ,
+			mno : memberInfo.mno
+		}
+        $.ajax({
+			url : "/jspweb/point" ,
+			data : info , 
+			method:"post",
+			success:(r)=>{
+				console.log(r);
+				if(r=="true"){ alert('포인트충전완료'); } 
+			}
+		})
       }
     });
-  }
+}
+  
+  
+  
+  
+  
   
   
   
