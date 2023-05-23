@@ -1,0 +1,178 @@
+
+* 주의할점
+		1. 명령어 한줄마다 commit[ 명령어 완료]
+		2. select 시 테이블 출력시 화면 잘림[ 선택사항  set linesize 1000 ]
+
+1. 테이블 생성 
+create table student_tbl_03( 
+   sno varchar2(6) not null, 
+   sname varchar2(10) ,
+   sphone varchar2(15) , 
+   sgender varchar2(4) , 
+   saddress varchar2(40) , 
+   primary key(sno) 
+);
+
+** 문제가 있을경우 테이블 삭제 
+drop table studnet_tbl_03;
+
+2. 샘플 데이터 추가
+insert into student_tbl_03 values( '10101' , '김행복' , '010-1111-2222','M','서울 동대문구 휘경1동');
+insert into student_tbl_03 values( '10102' , '이축복' , '010-1111-3333','F','서울 동대문구 휘경2동');
+insert into student_tbl_03 values( '10103' , '장믿음' , '010-1111-4444','M','울릉군 울릉읍 독도 1리');
+insert into student_tbl_03 values( '10104' , '최사랑' , '010-1111-5555','F','울릉군 울릉읍 독도 2리');
+insert into student_tbl_03 values( '10105' , '진평화' , '010-1111-6666','M','제주도 제주시 외나무골');
+insert into student_tbl_03 values( '10106' , '차공단' , '010-1111-7777','M','제주도 제주시 감나무골');
+
+1. 테이블 생성
+create table exam_tbl_03(
+	sno varchar2(6) not null ,
+	ekor number(4),
+	emath number(4),
+	eeng number(4),
+	ehist number(4),
+	primary key( sno )
+);
+2. 샘플 데이터 추가
+insert into exam_tbl_03 values( '10101' , 98 , 91 , 95 , 90 );
+insert into exam_tbl_03 values( '10102' , 87 , 89 , 92 , 82 );
+
+
+ 이후에 꼭 commit 해주세요!!!!!!!!!!!!!!!!!!!!!!
+
+
+--- 마지막 문제 
+1. 교집합 : 두 집합의 공통으로 포함된 원소들  [ 점수가 존재하는 레코드 조인해서 검색 ]
+	select * from 테이블명A  natural join 테이블명B
+	select * from 테이블명A  join 테이블명B on 조인조건
+	select * from 테이블명A  inner join 테이블명B on 조인조건
+	select * from 테이블명A , 테이블명B where 조인조건
+
+	1.select * from student_tbl_03 A natural join exam_tbl_03 B;
+	2.select * from student_tbl_03 A inner join exam_tbl_03 B on A.sno = B.sno;
+	3.select * from student_tbl_03 A join exam_tbl_03 B on A.sno = B.sno;
+	4.select * from student_tbl_03 A , exam_tbl_03 B where A.sno = B.sno;
+	
+2. 합집합 : 두 집합의  모든 원소들
+	select * from 테이블명A FULL OUTER JOIN 테이블B ON 조인조건
+	1. 
+	select * 
+	from student_tbl_03 A FULL OUTER JOIN exam_tbl_03 B 
+	ON A.sno = B.sno;
+
+--- 1. 필요한 필드 추출 [ 필드명 as 별칭   또는 필드명 별칭 ]
+	select 
+		A.sno 학번 ,
+		A.sname 이름 ,
+		B.ekor 국어 ,
+		B.ekor 수학 ,
+		B.ekor 영어 ,
+		B.ekor 역사 
+	from student_tbl_03 A FULL OUTER JOIN exam_tbl_03 B 
+	ON A.sno = B.sno;
+
+--- 2. 문자 자르기 함수 [ substr( 필드명 , 시작번호 , 개수 ) ]
+ 	select 
+		substr( A.sno , 1 , 1 ) 학년 ,
+		substr( A.sno , 2 , 2 ) 반 ,
+		substr( A.sno , 4 , 2 ) 번호 ,
+		A.sname 이름 ,
+		B.ekor 국어 ,
+		B.emath 수학 ,
+		B.eeng 영어 ,
+		B.ehist 역사 
+	from 
+		student_tbl_03 A 
+			FULL OUTER JOIN 
+		exam_tbl_03 B 
+			ON A.sno = B.sno;
+
+-- 3. 합계 / 평균 [ 필드+필드   ,  필드+필드/개수 ]
+	select 
+		substr( A.sno , 1 , 1 ) 학년 ,
+		substr( A.sno , 2 , 2 ) 반 ,
+		substr( A.sno , 4 , 2 ) 번호 ,
+		A.sname 이름 ,
+		B.ekor 국어 ,
+		B.emath 수학 ,
+		B.eeng 영어 ,
+		B.ehist 역사 ,
+		( B.ekor + B.emath + B.eeng + B.ehist ) 합계 ,
+		( B.ekor + B.emath + B.eeng + B.ehist )/4 평균 
+	from 
+		student_tbl_03 A 
+			FULL OUTER JOIN 
+		exam_tbl_03 B 
+			ON A.sno = B.sno;
+
+-- 4. 순위 
+	1. RANK() OVER ( ORDER BY 필드명 DESC )	: 높은순으로 1등
+	2. RANK() OVER ( ORDER BY 필드명 ASC )		: 낮은순으로 1등 
+	*  RANK() OVER ( ORDER BY B.ekor DESC )	: 국어점수가 높은 순으로 등수 
+
+	select 
+		substr( A.sno , 1 , 1 ) 학년 ,
+		substr( A.sno , 2 , 2 ) 반 ,
+		substr( A.sno , 4 , 2 ) 번호 ,
+		A.sname 이름 ,
+		B.ekor 국어 ,
+		B.emath 수학 ,
+		B.eeng 영어 ,
+		B.ehist 역사 ,
+		( B.ekor + B.emath + B.eeng + B.ehist ) 합계 ,
+		( B.ekor + B.emath + B.eeng + B.ehist )/4 평균 ,
+		RANK() OVER( ORDER BY ( B.ekor + B.emath + B.eeng + B.ehist ) DESC ) 순위
+	from 
+		student_tbl_03 A 
+			FULL OUTER JOIN 
+		exam_tbl_03 B 
+			ON A.sno = B.sno;
+
+-- 5. null 치환 [ 순위에서 null 포함되는 경우에 null 1등으로 들어감 ]
+	* 값이 null 이면 0 으로 교체 
+	1. NVL( 필드명 , 교체할값 ) : 만약에 해당 필드의 값이 NULL 이면 해당 값으로 교체/치환  
+	* NVL( B.ekor , 0 )	: 만약에 국어점수가 없으면 null 데이터를 0 으로 치환 
+	( NVL( B.ekor , 0 ) + NVL( B.emath , 0 ) + NVL( B.eeng , 0 ) +NVL( B.ehist , 0 )
+
+	select 
+		substr( A.sno , 1 , 1 ) 학년 ,
+		substr( A.sno , 2 , 2 ) 반 ,
+		substr( A.sno , 4 , 2 ) 번호 ,
+		A.sname 이름 ,
+		B.ekor 국어 ,
+		B.emath 수학 ,
+		B.eeng 영어 ,
+		B.ehist 역사 ,
+		( B.ekor + B.emath + B.eeng + B.ehist ) 합계 ,
+		( B.ekor + B.emath + B.eeng + B.ehist )/4 평균 ,
+		RANK() OVER( ORDER BY ( NVL( B.ekor , 0 ) + NVL( B.emath , 0 ) + NVL( B.eeng , 0 ) +NVL( B.ehist , 0 )  ) DESC ) 순위
+	from 
+		student_tbl_03 A 
+			FULL OUTER JOIN 
+		exam_tbl_03 B 
+			ON A.sno = B.sno;
+
+-- 6. 정렬 [ order by 필드명 desc/asc ]
+   select 
+      substr( A.sno , 1 , 1 ) 학년 ,
+      substr( A.sno , 2 , 2 ) 반 ,
+      substr( A.sno , 4 , 2 ) 번호 ,
+      A.sname 이름 ,
+      B.ekor 국어 ,
+      B.emath 수학 ,
+      B.eeng 영어 ,
+      B.ehist 역사 ,
+      ( B.ekor + B.emath + B.eeng + B.ehist ) 합계 ,
+      ( B.ekor + B.emath + B.eeng + B.ehist )/4 평균 ,
+      RANK() OVER( ORDER BY ( NVL( B.ekor , 0 ) + NVL( B.emath , 0 ) + NVL( B.eeng , 0 ) +NVL( B.ehist , 0 )  ) DESC ) 순위
+   from 
+      student_tbl_03 A 
+         FULL OUTER JOIN 
+      exam_tbl_03 B 
+         ON A.sno = B.sno
+   order by ( NVL( B.ekor , 0 ) + NVL( B.emath , 0 ) + NVL( B.eeng , 0 ) +NVL( B.ehist , 0 ) ) desc;
+
+
+
+
+
