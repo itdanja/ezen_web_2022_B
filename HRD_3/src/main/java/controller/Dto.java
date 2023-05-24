@@ -17,8 +17,26 @@ public class Dto {
 	private String  v_area;
 	private String  v_confirm;
 	
+	private int v_total ;
 	
-	
+	// 4. 후보자등수에 사용되는 생성자
+	public Dto(String m_no, String m_name, int v_total) {
+		super();
+		this.m_no = m_no;
+		this.m_name = m_name;
+		this.v_total = v_total;
+	}
+
+	// 3. 투표검수시 사용되는 생성자 
+	public Dto(String m_no, String v_jumin, String v_name, String v_time, String v_confirm) {
+		super();
+		this.m_no = m_no;
+		this.v_jumin = v_jumin;
+		this.v_name = v_name;
+		this.v_time = v_time;
+		this.v_confirm = v_confirm;
+	}
+
 	// 2. 투표시 사용되는 생성자 
 	public Dto(String m_no, String v_jumin, String v_name, String v_time, String v_area, String v_confirm) {
 		super();
@@ -49,8 +67,18 @@ public class Dto {
 	// get, set 메소드 [ 추후 필드 추가시 다시 자동완성 ]
 	
 	
+	
+	
 	public String getM_no() {
 		return m_no;
+	}
+
+	public int getV_total() {
+		return v_total;
+	}
+
+	public void setV_total(int v_total) {
+		this.v_total = v_total;
 	}
 
 	public String getV_jumin() {

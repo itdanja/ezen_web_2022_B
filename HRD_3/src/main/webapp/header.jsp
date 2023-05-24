@@ -14,8 +14,8 @@
 		<tr>
 			<td> <a href="list.jsp">후보조회</a> </td>
 			<td> <a href="vote.jsp">투표하기</a> </td>
-			<td> <a href="#">투표검수조회</a> </td>
-			<td> <a href="#">후보자등수</a> </td>
+			<td> <a href="voteConfirm.jsp">투표검수조회</a> </td>
+			<td> <a href="voteTop.jsp">후보자등수</a> </td>
 			<td> <a href="index.jsp">홈으로</a> </td>
 		</tr>
 	</table>
